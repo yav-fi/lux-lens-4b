@@ -10,9 +10,19 @@ dependencies = ["pydantic>=2.10,<3", "optiland==0.6.3", "numpy>=2,<3"]
 
 [project.optional-dependencies]
 test = ["pytest>=8,<10"]
+training = [
+    "tinker==0.39.2",
+    "tinker-cookbook==0.7.1",
+    "tml-renderers==0.4.2",
+    "transformers==5.12.1",
+    "torch==2.12.0",
+]
 
 [project.scripts]
 lux-cooke-smoke = "lux_frontier.cooke_smoke:main"
+lux-train = "lux_frontier.training:main"
+lux-optical-grade = "lux_frontier.optical_grading:main"
+lux-optical-diagnostic = "lux_frontier.optical_diagnostic:main"
 
 [tool.setuptools.packages.find]
 include = ["lux_frontier*"]

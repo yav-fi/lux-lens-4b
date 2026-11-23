@@ -69,12 +69,23 @@ class NominalMetrics(Contract):
     mtf: Annotated[tuple[MTFMeasurement, ...], Field(min_length=1)]
 
 
+class GeometrySummary(Contract):
+    """Decision features, not a replacement for the full prescription artifact."""
+
+    element_count: Annotated[int, Field(strict=True, gt=0)]
+    minimum_edge_thickness_mm: Positive
+    minimum_air_gap_mm: Nonnegative
+    maximum_clear_aperture_mm: Positive
+    maximum_absolute_curvature_per_mm: Nonnegative
+
+
 class Candidate(Contract):
     candidate_id: LocalID  # local to the enclosing BriefCase
     prescription_ref: ArtifactRef
     layout: Text  # prompt-visible description, ordered from object to sensor
     glass_types: Annotated[tuple[Text, ...], Field(min_length=1)]  # same element order
     nominal_metrics: NominalMetrics
+    geometry: GeometrySummary | None = None  # optional for existing contract callers
 
 
 class Submission(Contract):
