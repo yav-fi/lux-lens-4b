@@ -284,12 +284,19 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-record", type=Path, default=DEFAULT_SOURCE)
     parser.add_argument("--output-dir", type=Path, default=Path("outputs/optical_diagnostics"))
-    parser.add_argument("--workers", type=int, choices=range(1, 5), default=4)
+    parser.add_argument("--workers", type=int, choices=range(1, 9), default=4)
     parser.add_argument("--precommit", type=Path, help="verify the ranking against a prior pre-evaluation heuristic record")
+    parser.add_argument("--focus-positions", type=int, choices=(9, 33), default=9)
+    parser.add_argument("--coarse-diagnostic", type=Path, default=Path("outputs/optical_diagnostics/20261123T194942Z-29c360f3/run.json"))
     args = parser.parse_args()
     if not args.output_dir.resolve().is_relative_to((Path.cwd() / "outputs").resolve()):
         parser.error("diagnostic records must be inside ignored outputs/")
-    run_diagnostic(args.source_record, args.output_dir, args.workers, args.precommit)
+    if args.focus_positions == 33:
+        from lux_frontier.optical_fine_diagnostic import run_fine_diagnostic
+
+        run_fine_diagnostic(args.coarse_diagnostic, args.output_dir, args.workers)
+    else:
+        run_diagnostic(args.source_record, args.output_dir, args.workers, args.precommit)
 
 
 if __name__ == "__main__":

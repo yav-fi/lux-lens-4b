@@ -23,6 +23,8 @@ lux-cooke-smoke = "lux_frontier.cooke_smoke:main"
 lux-train = "lux_frontier.training:main"
 lux-optical-grade = "lux_frontier.optical_grading:main"
 lux-optical-diagnostic = "lux_frontier.optical_diagnostic:main"
+lux-optical-sensitivity = "lux_frontier.optical_sensitivity:main"
+lux-optical-batch = "lux_frontier.optical_batch:main"
 
 [tool.setuptools.packages.find]
 include = ["lux_frontier*"]

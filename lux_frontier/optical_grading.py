@@ -78,7 +78,9 @@ class OpticalCache:
         value = _json(operation())  # software errors are deliberately never cached
         payload = dict(key_inputs=inputs, value=value, value_digest=digest(value))
         path.parent.mkdir(parents=True, exist_ok=True)
-        temporary = path.with_suffix(".tmp")
+        # Independent workers can legitimately compute an identical physical
+        # control state. Give each writer its own atomic replacement file.
+        temporary = path.with_name(path.stem + "." + uuid4().hex + ".tmp")
         temporary.write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n")
         temporary.replace(path)
         return value, False
@@ -204,6 +206,9 @@ class OpticalGrader:
         return _json(dict(protocol=PROTOCOL, prescription=p, brief=brief, profile=self.profile,
                           settings=self.settings, numpy_version=np.__version__, optiland_version="0.6.3"))
 
+    def nominal_objective(self, metrics: NominalMetrics, brief: Brief) -> float:
+        return objective(metrics, brief)
+
     def refine(self, p: Prescription, brief: Brief) -> dict:
         inputs = self.context(p, brief)
 
@@ -222,7 +227,7 @@ class OpticalGrader:
                 design = p.model_copy(update={"sensor_z_mm": float(vector[0]), "spacings_mm": tuple(spacings)})
                 try:
                     metrics, details = measure(design, brief, pupil_samples=self.settings.pupil_samples)
-                    value = objective(metrics, brief)
+                    value = self.nominal_objective(metrics, brief)
                     entry = dict(parameters=vector.tolist(), objective=value, metrics=metrics.model_dump(mode="json"), details=details,
                                  constraint_failures=constraint_failures(metrics, brief))
                 except InvalidBuild as exc:
