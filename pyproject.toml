@@ -25,6 +25,10 @@ lux-optical-grade = "lux_frontier.optical_grading:main"
 lux-optical-diagnostic = "lux_frontier.optical_diagnostic:main"
 lux-optical-sensitivity = "lux_frontier.optical_sensitivity:main"
 lux-optical-batch = "lux_frontier.optical_batch:main"
+lux-baseline = "lux_frontier.baseline:main"
+
+[tool.setuptools.package-data]
+lux_frontier = ["research/*.json"]
 
 [tool.setuptools.packages.find]
 include = ["lux_frontier*"]

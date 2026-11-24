@@ -103,6 +103,9 @@ def test_mock_training_flow_updates_refreshes_evaluates_and_reloads(tmp_path):
     assert backend.closed and "cleanup_error_type" not in data
     assert data["status"] == "completed" and data["smoke_success"]
     assert data["optimizer_updates_completed"] == 3
+    assert data["optimizer_updates_attempted"] == 3
+    assert data["task_source"] == "synthetic_task"
+    assert data["reward_function"] == "lux_frontier.synthetic_training.synthetic_grader"
     assert data["usable_groups"] == 12
     assert data["checkpoint_reload_sampled"]
     initial, final = data["evaluations"]["initial"], data["evaluations"]["final"]
@@ -136,6 +139,8 @@ def test_failed_update_is_not_counted_and_raw_responses_survive(tmp_path):
     assert record.data["error_type"] == "RuntimeError"
     assert not record.data["steps"][0]["optimizer_update_completed"]
     assert record.data["optimizer_updates_completed"] == 0
+    assert record.data["optimizer_updates_attempted"] == 1
+    assert record.data["failure_stage"] == "train-0:update"
     assert record.data["groups"][-1]["completions"][0]["raw_response"]
     assert "fake provider failure" not in record.path.read_text()
 

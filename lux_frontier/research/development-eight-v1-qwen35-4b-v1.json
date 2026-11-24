@@ -1,0 +1,570 @@
+{
+  "schema_version": 1,
+  "result_id": "development-eight-v1-qwen35-4b-first-v1",
+  "batch_id": "development-eight-v1",
+  "manifest_sha256": "c5d5d2a818b85a6898a1bba19d62b31716602316b3fb913ac0ce1b0c139dc689",
+  "manifest_file_sha256": "4499f6fdafdb3d12ef260e4140ad08729d24399a6e551f3fea2908d32af8ced3",
+  "source_run": "outputs/baselines/development-eight-v1-qwen35-4b-first",
+  "source_run_sha256": "c54bec1b6a633ec193aaa429552723dc7fc9cbae18967d7215824202b41794ca",
+  "frozen_inputs_sha256": "8a68cb1106573cdb54bff6045601e8b32115dedfc245dc84eda2b872f4e8262e",
+  "model_id": "Qwen/Qwen3.5-4B",
+  "renderer": "qwen3_5_disable_thinking",
+  "thinking_enabled": false,
+  "direct_base_model": true,
+  "decoding": {
+    "temperature": 0.0,
+    "max_tokens": 128,
+    "num_samples": 1,
+    "top_p": 1.0,
+    "top_k": -1,
+    "stop": [
+      248046
+    ],
+    "seed_by_brief": {
+      "development-eight-v1-01-label-inspection": 17,
+      "development-eight-v1-02-conveyor-vision": 18,
+      "development-eight-v1-03-warehouse-low-light": 19,
+      "development-eight-v1-04-daylight-wide-survey": 20,
+      "development-eight-v1-05-compact-inspection": 21,
+      "development-eight-v1-06-fine-barcode": 22,
+      "development-eight-v1-07-robot-wide-detail": 23,
+      "development-eight-v1-08-red-alignment": 24
+    }
+  },
+  "dependency_versions": {
+    "tinker": "0.39.2",
+    "tinker-cookbook": "0.7.1",
+    "transformers": "5.12.1",
+    "tml-renderers": "0.4.2"
+  },
+  "original_source_sha256": {
+    "tinker_backend.py": "d9f1cee0f8497af61235a0bf8cfe1e92309d706a89d209714d89c0f17a8f4a99",
+    "prompting.py": "43cf8ddf40c3c13c1c89f298032d878c7a0ec3ed19d559bccbc57b2cb205619a",
+    "contracts.py": "c3616c86797120f0a2daf368c5d164924317107a4c5b62633498e647cad76564",
+    "synthetic_training.py": "da86a77913280a6c48fc75b8a56a73961ec1af2bf8b0fb3db8ddefbdea404f4f",
+    "optical_batch.py": "67bf1afd64866d5c95121c153757abf85ff1d9994dff6938da70fe4cff1b116e"
+  },
+  "token_usage": {
+    "sampling_prefill_tokens": 26282,
+    "generated_tokens": 120,
+    "source": "frozen input token IDs and returned output token IDs"
+  },
+  "estimated_cost_usd": 0.008793660000000002,
+  "expected_summary": {
+    "qwen": {
+      "valid_answers": 8,
+      "denominator": 8,
+      "briefs_reaching_90_of_100": 2,
+      "mean_reward_all_eight": 0.31
+    },
+    "heuristic": {
+      "valid_answers": 8,
+      "briefs_reaching_90_of_100": 2,
+      "mean_reward_all_eight": 0.31
+    },
+    "exact_random": {
+      "valid_answers": 8,
+      "expected_briefs_reaching_90_of_100": 1.8571428571428572,
+      "exact_expected_briefs_reaching_90_of_100": "13/7",
+      "mean_reward_all_eight": 0.261875,
+      "exact_mean_reward_all_eight": "419/1600"
+    }
+  },
+  "briefs": [
+    {
+      "brief_id": "development-eight-v1-01-label-inspection",
+      "name": "Label inspection",
+      "prompt_sha256": "5205e419edc5e50172003250dc5e49a13d6a7b354ee0c83f486b8b10d8c42f56",
+      "prompt_tokens": 3227,
+      "prompt_token_ids_sha256": "5dd8c875702cb3cb02e10667140c29f2ea86fbcf724087821f8c8e12e78f143f",
+      "completion": {
+        "tokens": [
+          90,
+          198,
+          1,
+          30342,
+          7824,
+          763,
+          498,
+          198,
+          17,
+          11,
+          198,
+          22,
+          198,
+          60,
+          198,
+          92,
+          248046
+        ],
+        "logprobs": [
+          -0.6725417375564575,
+          -0.006764319725334644,
+          -0.2617075443267822,
+          -0.00010196938819717616,
+          -1.6666668670950457e-05,
+          -0.011090189218521118,
+          -0.0013970860745757818,
+          -0.5072128176689148,
+          -0.2691536247730255,
+          -0.023307546973228455,
+          -0.004492652602493763,
+          -0.03488263487815857,
+          -4.053152952110395e-05,
+          -0.0004952965537086129,
+          -0.0004344008048065007,
+          -2.8527168979053386e-05,
+          -7.164831185946241e-05
+        ],
+        "stop_reason": "stop",
+        "raw_response": "{\n\"starter_ids\": [\n2,\n7\n]\n}<|im_end|>",
+        "response_text": "{\n\"starter_ids\": [\n2,\n7\n]\n}",
+        "clean": true,
+        "brief_id": "development-eight-v1-01-label-inspection"
+      },
+      "selected_ids": [
+        2,
+        7
+      ],
+      "shipped_candidate_id": 7,
+      "shipped_design": {
+        "lineage": "redistributed-stack",
+        "prescription_ref": {
+          "uri": "local://lux/prescriptions/b01ed5d66673848ef3c83e8b95d0dbbd8d0220d4afaa1a2b322954221ffcdd95",
+          "revision": "cooke-optical-v1"
+        },
+        "prescription_sha256": "b01ed5d66673848ef3c83e8b95d0dbbd8d0220d4afaa1a2b322954221ffcdd95"
+      },
+      "reward": 1.0,
+      "final_pass": true,
+      "heuristic_reward": 1.0
+    },
+    {
+      "brief_id": "development-eight-v1-02-conveyor-vision",
+      "name": "Conveyor vision",
+      "prompt_sha256": "42162d4ac7b2745c73784c3fee4afe402b4c97ea23e6d4fd5868d1e78d3bb8cb",
+      "prompt_tokens": 3230,
+      "prompt_token_ids_sha256": "c9e0f05e83f7aab30a2e30a644ce75a7dd0c91e66b4a5ea1e284de371959bb45",
+      "completion": {
+        "tokens": [
+          90,
+          198,
+          1,
+          30342,
+          7824,
+          763,
+          498,
+          198,
+          18,
+          11,
+          198,
+          20,
+          198,
+          60,
+          198,
+          92,
+          248046
+        ],
+        "logprobs": [
+          -0.549264132976532,
+          -0.004809574689716101,
+          -0.23510870337486267,
+          -9.492685785517097e-05,
+          -1.3448477147903759e-05,
+          -0.006740836426615715,
+          -0.0011500095715746284,
+          -0.6681928038597107,
+          -0.033549465239048004,
+          -0.01609472744166851,
+          -0.003780367551371455,
+          -0.0280978512018919,
+          -2.1486994228325784e-05,
+          -0.0005580481374636292,
+          -0.0007147826836444438,
+          -3.139908585580997e-05,
+          -5.718466127291322e-05
+        ],
+        "stop_reason": "stop",
+        "raw_response": "{\n\"starter_ids\": [\n3,\n5\n]\n}<|im_end|>",
+        "response_text": "{\n\"starter_ids\": [\n3,\n5\n]\n}",
+        "clean": true,
+        "brief_id": "development-eight-v1-02-conveyor-vision"
+      },
+      "selected_ids": [
+        3,
+        5
+      ],
+      "shipped_candidate_id": 3,
+      "shipped_design": {
+        "lineage": "centered-parent",
+        "prescription_ref": {
+          "uri": "local://lux/prescriptions/74cbcaffb2d46d8779528a7757f9403712283aca30580c9f2f4451b76386144d",
+          "revision": "cooke-optical-v1"
+        },
+        "prescription_sha256": "74cbcaffb2d46d8779528a7757f9403712283aca30580c9f2f4451b76386144d"
+      },
+      "reward": 0.13,
+      "final_pass": false,
+      "heuristic_reward": 0.13
+    },
+    {
+      "brief_id": "development-eight-v1-03-warehouse-low-light",
+      "name": "Low-light warehouse navigation",
+      "prompt_sha256": "b4a11b97095de39c5063edcb79e53372f5d19e67d5c0b802f92c155bca6ba44b",
+      "prompt_tokens": 3231,
+      "prompt_token_ids_sha256": "58e39d952848a2a99c2ace07ad3295c6d09cc6f3f1f76d5d15a9a46efc24994f",
+      "completion": {
+        "tokens": [
+          90,
+          198,
+          1,
+          30342,
+          7824,
+          763,
+          498,
+          198,
+          17,
+          11,
+          198,
+          18,
+          198,
+          60,
+          198,
+          92,
+          248046
+        ],
+        "logprobs": [
+          -0.4773316979408264,
+          -0.005274922586977482,
+          -0.21137739717960358,
+          -9.165264782495797e-05,
+          -1.6674825019435957e-05,
+          -0.0125419981777668,
+          -0.0008181149023585021,
+          -0.5179322957992554,
+          -0.0750308632850647,
+          -0.011090517975389957,
+          -0.002959461882710457,
+          -0.0010641638655215502,
+          -1.64574939844897e-05,
+          -0.00030151766259223223,
+          -0.0009151860140264034,
+          -2.676983058336191e-05,
+          -4.8671547119738534e-05
+        ],
+        "stop_reason": "stop",
+        "raw_response": "{\n\"starter_ids\": [\n2,\n3\n]\n}<|im_end|>",
+        "response_text": "{\n\"starter_ids\": [\n2,\n3\n]\n}",
+        "clean": true,
+        "brief_id": "development-eight-v1-03-warehouse-low-light"
+      },
+      "selected_ids": [
+        2,
+        3
+      ],
+      "shipped_candidate_id": 3,
+      "shipped_design": {
+        "lineage": "centered-parent",
+        "prescription_ref": {
+          "uri": "local://lux/prescriptions/ebe52f5fcdf5b24c95d7e956688a00e26b098c973b6fb4565c68e717c55b112a",
+          "revision": "cooke-optical-v1"
+        },
+        "prescription_sha256": "ebe52f5fcdf5b24c95d7e956688a00e26b098c973b6fb4565c68e717c55b112a"
+      },
+      "reward": 0.95,
+      "final_pass": true,
+      "heuristic_reward": 0.95
+    },
+    {
+      "brief_id": "development-eight-v1-04-daylight-wide-survey",
+      "name": "Wide daylight survey",
+      "prompt_sha256": "5f851123855448c292c4c2a451b58c08ed1f1f7cc718dc7d0199b37a34724339",
+      "prompt_tokens": 3228,
+      "prompt_token_ids_sha256": "c820c8e339c21f03c914746f16c73d78c1c507d1048a50830cb9b56590739a9e",
+      "completion": {
+        "tokens": [
+          4754,
+          30342,
+          7824,
+          8631,
+          17,
+          11,
+          19,
+          13587,
+          248046
+        ],
+        "logprobs": [
+          -0.665625810623169,
+          -0.0001684558519627899,
+          -1.5470179278054275e-05,
+          -0.004918396007269621,
+          -0.24276533722877502,
+          -5.285280349198729e-05,
+          -0.0311918742954731,
+          -0.00023642626183573157,
+          -2.8057946110493504e-05
+        ],
+        "stop_reason": "stop",
+        "raw_response": "{\"starter_ids\":[2,4]}<|im_end|>",
+        "response_text": "{\"starter_ids\":[2,4]}",
+        "clean": true,
+        "brief_id": "development-eight-v1-04-daylight-wide-survey"
+      },
+      "selected_ids": [
+        2,
+        4
+      ],
+      "shipped_candidate_id": null,
+      "shipped_design": null,
+      "reward": 0.0,
+      "final_pass": false,
+      "heuristic_reward": 0.0
+    },
+    {
+      "brief_id": "development-eight-v1-05-compact-inspection",
+      "name": "Compact inspection",
+      "prompt_sha256": "711a91cebbe565623534211722c0aa9b7913f4bcd1503aa0616b7337e02c5721",
+      "prompt_tokens": 3231,
+      "prompt_token_ids_sha256": "af930cfc35070257278a914ee516cf4aebd43cc4e13be8c11a88f86cf54faf10",
+      "completion": {
+        "tokens": [
+          90,
+          198,
+          1,
+          30342,
+          7824,
+          763,
+          498,
+          198,
+          22,
+          11,
+          198,
+          20,
+          198,
+          60,
+          198,
+          92,
+          248046
+        ],
+        "logprobs": [
+          -0.5798670649528503,
+          -0.005473363678902388,
+          -0.21041221916675568,
+          -8.094871009234339e-05,
+          -1.5682466255384497e-05,
+          -0.01608067937195301,
+          -0.0012938553700223565,
+          -0.34961971640586853,
+          -0.6096066236495972,
+          -0.016105949878692627,
+          -0.0029908816795796156,
+          -0.006777505856007338,
+          -3.948437370127067e-05,
+          -0.0005581099539995193,
+          -0.0006320609245449305,
+          -2.4433049475192092e-05,
+          -7.079812348820269e-05
+        ],
+        "stop_reason": "stop",
+        "raw_response": "{\n\"starter_ids\": [\n7,\n5\n]\n}<|im_end|>",
+        "response_text": "{\n\"starter_ids\": [\n7,\n5\n]\n}",
+        "clean": true,
+        "brief_id": "development-eight-v1-05-compact-inspection"
+      },
+      "selected_ids": [
+        7,
+        5
+      ],
+      "shipped_candidate_id": null,
+      "shipped_design": null,
+      "reward": 0.0,
+      "final_pass": false,
+      "heuristic_reward": 0.0
+    },
+    {
+      "brief_id": "development-eight-v1-06-fine-barcode",
+      "name": "Fine barcode inspection",
+      "prompt_sha256": "f47662bf5fec818261ce12f8daf855a82991ac34f3b9d1afe4327be739f05d88",
+      "prompt_tokens": 3237,
+      "prompt_token_ids_sha256": "1bede737a4a09af77462c21b78bc96241fa24d6a5d78057e611065344e41bfdd",
+      "completion": {
+        "tokens": [
+          4754,
+          30342,
+          7824,
+          8631,
+          20,
+          11,
+          18,
+          13587,
+          248046
+        ],
+        "logprobs": [
+          -0.6296103000640869,
+          -0.00013634870992973447,
+          -1.463852277083788e-05,
+          -0.006219606846570969,
+          -0.6367031335830688,
+          -0.0010341635206714272,
+          -0.11313534528017044,
+          -0.00025074693257920444,
+          -6.366706656990573e-05
+        ],
+        "stop_reason": "stop",
+        "raw_response": "{\"starter_ids\":[5,3]}<|im_end|>",
+        "response_text": "{\"starter_ids\":[5,3]}",
+        "clean": true,
+        "brief_id": "development-eight-v1-06-fine-barcode"
+      },
+      "selected_ids": [
+        5,
+        3
+      ],
+      "shipped_candidate_id": null,
+      "shipped_design": null,
+      "reward": 0.0,
+      "final_pass": false,
+      "heuristic_reward": 0.0
+    },
+    {
+      "brief_id": "development-eight-v1-07-robot-wide-detail",
+      "name": "Wide-detail robotics",
+      "prompt_sha256": "5848a49a63cea7ede90196fcc48c1586a8bb7e3ed57cc9922d96729a217547a0",
+      "prompt_tokens": 3670,
+      "prompt_token_ids_sha256": "9638be4d4e6248ede25b26bcf08c4e7184231f472bd7b7d68ec8882ff0b1f2d5",
+      "completion": {
+        "tokens": [
+          90,
+          198,
+          1,
+          30342,
+          7824,
+          763,
+          498,
+          198,
+          17,
+          11,
+          198,
+          23,
+          198,
+          60,
+          198,
+          92,
+          248046
+        ],
+        "logprobs": [
+          -0.48383086919784546,
+          -0.004251047968864441,
+          -0.1343228816986084,
+          -8.508332393830642e-05,
+          -1.645588781684637e-05,
+          -0.011072496883571148,
+          -0.0004648530448321253,
+          -0.4823194146156311,
+          -0.29809755086898804,
+          -0.018195146694779396,
+          -0.0016099832719191909,
+          -0.2298407107591629,
+          -4.390600952319801e-05,
+          -0.0006319510284811258,
+          -0.00033789093140512705,
+          -2.0990528355468996e-05,
+          -5.048768798587844e-05
+        ],
+        "stop_reason": "stop",
+        "raw_response": "{\n\"starter_ids\": [\n2,\n8\n]\n}<|im_end|>",
+        "response_text": "{\n\"starter_ids\": [\n2,\n8\n]\n}",
+        "clean": true,
+        "brief_id": "development-eight-v1-07-robot-wide-detail"
+      },
+      "selected_ids": [
+        2,
+        8
+      ],
+      "shipped_candidate_id": 2,
+      "shipped_design": {
+        "lineage": "centered-parent",
+        "prescription_ref": {
+          "uri": "local://lux/prescriptions/56674515c8b97e9cac5346beeb15cb07138765d7c406d33dbb14e2ecee82ed41",
+          "revision": "cooke-optical-v1"
+        },
+        "prescription_sha256": "56674515c8b97e9cac5346beeb15cb07138765d7c406d33dbb14e2ecee82ed41"
+      },
+      "reward": 0.22,
+      "final_pass": false,
+      "heuristic_reward": 0.22
+    },
+    {
+      "brief_id": "development-eight-v1-08-red-alignment",
+      "name": "Red alignment",
+      "prompt_sha256": "4f4f79d8be3c3c73cc17017af2ac7e20f15b263bbde5aa512e676c392a369987",
+      "prompt_tokens": 3228,
+      "prompt_token_ids_sha256": "06e9542ca74f8bcaeb68e81f8a9e727146ab3db6f8a881d7d5a55313f17075a6",
+      "completion": {
+        "tokens": [
+          90,
+          198,
+          1,
+          30342,
+          7824,
+          763,
+          498,
+          198,
+          19,
+          11,
+          198,
+          21,
+          198,
+          60,
+          198,
+          92,
+          248046
+        ],
+        "logprobs": [
+          -0.47342437505722046,
+          -0.0046310084871947765,
+          -0.23433813452720642,
+          -9.92211134871468e-05,
+          -1.5987108781700954e-05,
+          -0.009788723662495613,
+          -0.0009767621522769332,
+          -0.4868394732475281,
+          -0.12965607643127441,
+          -0.048671454191207886,
+          -0.0015045912005007267,
+          -0.3297733962535858,
+          -7.428947719745338e-05,
+          -0.0004922155640088022,
+          -0.00033943585003726184,
+          -2.7464919185149483e-05,
+          -6.47334527457133e-05
+        ],
+        "stop_reason": "stop",
+        "raw_response": "{\n\"starter_ids\": [\n4,\n6\n]\n}<|im_end|>",
+        "response_text": "{\n\"starter_ids\": [\n4,\n6\n]\n}",
+        "clean": true,
+        "brief_id": "development-eight-v1-08-red-alignment"
+      },
+      "selected_ids": [
+        4,
+        6
+      ],
+      "shipped_candidate_id": 6,
+      "shipped_design": {
+        "lineage": "thicker-rear",
+        "prescription_ref": {
+          "uri": "local://lux/prescriptions/2f58c91e6bfc716f46494b89fe27a1f4d95873f4902e25f59246906314f5d1ba",
+          "revision": "cooke-optical-v1"
+        },
+        "prescription_sha256": "2f58c91e6bfc716f46494b89fe27a1f4d95873f4902e25f59246906314f5d1ba"
+      },
+      "reward": 0.18,
+      "final_pass": false,
+      "heuristic_reward": 0.18
+    }
+  ],
+  "replay_cache": {
+    "file": "development-eight-v1-replay-v1.json",
+    "sha256": "e3e5d0f471492d25aeed4fa2cd6dc6b888ea1e4ab48feff2360f37cb10e30238"
+  }
+}

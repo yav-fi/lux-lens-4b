@@ -12,7 +12,7 @@ import hashlib
 import importlib.metadata
 import json
 from dataclasses import asdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Annotated
 from uuid import uuid4
@@ -87,6 +87,8 @@ class RunRecord:
             token_usage_basis="Application counts; prompt prefill conservatively counted once per completion, without caching.",
             cases={}, groups=[], steps=[], evaluations={}, usable_groups=0,
             optimizer_updates_completed=0, checkpoints={}, checkpoint_reload_sampled=False,
+            optimizer_updates_attempted=0, active_stage="record_created",
+            started_utc=datetime.now(timezone.utc).isoformat(),
             smoke_success=False, estimated_cost_usd=0,
         )
         self.write()
@@ -150,18 +152,30 @@ async def run_live(settings: Settings, mode: str, output_root: Path, *, backend=
     record = RunRecord(settings, mode, output_root)
     backend = backend if backend is not None else TinkerBackend(settings)
     get_task = task_source if task_source is not None else lambda seed, split, index: synthetic_task(seed, split, index, grader)
+    first_task = get_task(settings.seed, "eval", 0)
+    record.data.update(
+        task_source="synthetic_task" if task_source is None else type(task_source).__name__,
+        reward_function=f"{first_task.grader.__module__}.{getattr(first_task.grader, '__qualname__', type(first_task.grader).__name__)}",
+        data_split_policy="disjoint seeded synthetic train/eval briefs",
+    )
     if isinstance(task_source, FixedTaskSource):
         record.data.update(synthetic=task_source.task.provenance == "synthetic",
                            source_record=task_source.task.source_record,
                            data_split_policy="single development brief; no held-out-data claim")
 
+    def stage(name, brief_id=None):
+        record.data.update(active_stage=name, active_brief_id=brief_id)
+        record.write()
+
     async def sample_group(task: TrainingTask, phase: str, count: int, seed: int):
         env = task.environment
+        stage(f"{phase}:encode", env.case.brief.brief_id)
         text = task.render()
         record.add_case(env, text)
         tokens = backend.encode(text)
         if not 0 < len(tokens) <= settings.max_prompt_tokens:
             raise ValueError(f"prompt has {len(tokens)} tokens, limit {settings.max_prompt_tokens}")
+        stage(f"{phase}:sample", env.case.brief.brief_id)
         completions = await backend.sample(tokens, count, seed)
         # Record all responses before parsing or invoking a replaceable grader.
         group = dict(phase=phase, brief_id=env.case.brief.brief_id, sampling_seed=seed,
@@ -175,6 +189,7 @@ async def run_live(settings: Settings, mode: str, output_root: Path, *, backend=
             raise ValueError(f"provider returned {len(completions)} completions, expected {count}")
         if any(len(c.tokens) > settings.max_tokens for c in completions):
             raise ValueError("provider exceeded the generated-token workload limit")
+        stage(f"{phase}:grade", env.case.brief.brief_id)
         rewards = []
         for completion, entry in zip(completions, group["completions"], strict=True):
             # Chat-template parsing removes framing only; JSON remains untouched.
@@ -197,6 +212,7 @@ async def run_live(settings: Settings, mode: str, output_root: Path, *, backend=
         record.write()
 
     try:
+        stage("initialize_training" if mode == "train" else "initialize_sampling")
         record.data["backend"] = await backend.initialize(training=mode == "train")
         if mode == "sample":
             await sample_group(get_task(settings.seed, "eval", 0), "sample", settings.samples_per_brief, settings.seed)
@@ -223,31 +239,44 @@ async def run_live(settings: Settings, mode: str, output_root: Path, *, backend=
                 record.data["steps"].append(step_record)
                 if examples:
                     record.data["token_usage"]["training_tokens_submitted"] += sum(len(p) + len(c.tokens) - 1 for p, c, _ in examples)
-                    record.write()
+                    record.data["optimizer_updates_attempted"] += 1
+                    step_record["optimizer_update_attempted"] = True
+                    stage(f"train-{step}:update")
                     step_record["metrics"] = await backend.update(examples)
                     step_record["optimizer_update_completed"] = True
                     record.data["optimizer_updates_completed"] += 1
                     record.write()
+                    stage(f"train-{step}:refresh_sampler")
                     await backend.refresh_sampler()
                 else:
                     step_record["skipped_reason"] = "all groups have constant rewards; zero advantages"
                 record.write()
+            stage("save_checkpoint")
             record.data["checkpoints"] = await backend.save_checkpoint()
+            saved_at = datetime.now(timezone.utc)
+            record.data["checkpoints"]["saved_at_utc"] = saved_at.isoformat()
+            ttl = record.data["checkpoints"].get("ttl_seconds")
+            if ttl is not None:
+                record.data["checkpoints"]["estimated_expiry_utc"] = (saved_at + timedelta(seconds=ttl)).isoformat()
             record.write()
             await evaluate("final", held_out)
+            stage("reload_checkpoint")
             await backend.reload_checkpoint(record.data["checkpoints"])
             _, completions, _ = await sample_group(held_out[0], "checkpoint-reload", 1, settings.seed + 9000)
             record.data["checkpoint_reload_sampled"] = bool(completions[0].tokens)
             success = (record.data["usable_groups"] > 0 and record.data["optimizer_updates_completed"] > 0
                        and record.data["checkpoint_reload_sampled"])
             record.data.update(smoke_success=success, status="completed" if success else "no_learning_signal")
+        stage("finished")
     except AuthenticationUnavailable:
         record.data.update(status="authentication_unavailable",
+                           failure_stage=record.data["active_stage"],
                            error="No Tinker credentials; use tinker auth login or TINKER_API_KEY.")
     except Exception as exc:
         # Provider exception messages can contain request details. Serialize only
         # a safe class/status, never arbitrary server text or HTTP headers.
-        record.data.update(status="failed", error_type=type(exc).__name__)
+        record.data.update(status="failed", error_type=type(exc).__name__,
+                           failure_stage=record.data["active_stage"])
         status_code = getattr(exc, "status_code", None)
         if isinstance(status_code, int):
             record.data["provider_status_code"] = status_code
@@ -255,6 +284,7 @@ async def run_live(settings: Settings, mode: str, output_root: Path, *, backend=
         if isinstance(exc, ValueError):
             record.data["error"] = str(exc)
     finally:
+        record.data["finished_utc"] = datetime.now(timezone.utc).isoformat()
         try:
             await backend.close("errored" if record.data["status"] == "failed" else "success")
         except Exception as exc:
@@ -296,6 +326,8 @@ def main() -> None:
     print(json.dumps(dict(synthetic=record.data["synthetic"], status=record.data["status"], record=str(record.path),
                           usable_groups=record.data["usable_groups"],
                           optimizer_updates_completed=record.data["optimizer_updates_completed"],
+                          optimizer_updates_attempted=record.data["optimizer_updates_attempted"],
+                          failure_stage=record.data.get("failure_stage"),
                           smoke_success=record.data["smoke_success"],
                           estimated_upper_cost_usd=record.data["workload"]["estimated_upper_cost_usd"],
                           estimated_cost_usd=record.data["estimated_cost_usd"],
