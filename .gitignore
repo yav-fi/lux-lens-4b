@@ -6,3 +6,4 @@ build/
 dist/
 outputs/
 .cache/
+README_internal.md

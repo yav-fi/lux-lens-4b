@@ -182,6 +182,11 @@ def mtf_value(calculator, field_index: int, orientation: str, frequency: float) 
 def measure(prescription: Prescription, brief: Brief, *, pupil_samples: int = 64,
             errors: BuildErrors | None = None, sensor_shift_mm: float = 0) -> tuple[NominalMetrics, dict]:
     lens = make_optic(prescription, errors, sensor_shift_mm)
+    return measure_optic(lens, prescription, brief, pupil_samples=pupil_samples, sensor_shift_mm=sensor_shift_mm)
+
+
+def measure_optic(lens, prescription, brief: Brief, *, pupil_samples: int, sensor_shift_mm: float = 0,
+                  curves: bool = False) -> tuple[NominalMetrics, dict]:
     eps = 1e-4
     diagnostics = []
     with warnings.catch_warnings(record=True) as caught:
@@ -226,6 +231,11 @@ def measure(prescription: Prescription, brief: Brief, *, pupil_samples: int = 64
             measurements.append(MTFMeasurement(**target.model_dump(exclude={"minimum_mtf_fraction"}), mtf_fraction=value))
             diagnostics.append(dict(field_deg=target.field_angle_deg, normalized_field=field,
                                     wavelength_um=target.wavelength_um, **details))
+            if curves:
+                axis = calculator.freq_tang if target.orientation == "tangential" else calculator.freq_sag
+                diagnostics[-1]["curve"] = dict(frequency_lp_per_mm=axis[index].tolist(),
+                                                mtf=calculator.mtf[index][details["orientation_index"]].tolist(),
+                                                orientation=target.orientation)
         advisory_codes = sorted({type(w.message).__name__ for w in caught})
     metrics = NominalMetrics(effective_focal_length_mm=focal, first_surface_to_sensor_mm=float(lens.image_surface.geometry.cs.z),
                              f_number=f_number, mtf=tuple(measurements))

@@ -18,7 +18,7 @@ def load_renderer():
     renderer = get_renderer(RENDERER, tokenizer, model_name=MODEL)
     # Verify the actual installed renderer against the model's HF chat template,
     # rather than hand-writing special tokens or trusting a similarly named renderer.
-    messages = [{"role": "user", "content": "Select two lens starters."}]
+    messages = [{"role": "user", "content": "Select a lens starter."}]
     rendered = renderer.build_generation_prompt(messages).to_ints()
     expected = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True,
                                              enable_thinking=False, return_dict=False)
@@ -58,7 +58,7 @@ class TinkerBackend:
 
         params = self.tinker.SamplingParams(
             max_tokens=self.settings.max_tokens, temperature=self.settings.temperature,
-            seed=seed, stop=self.renderer.get_stop_sequences())
+            seed=seed, stop=self.renderer.get_stop_sequences(), top_p=getattr(self.settings, "top_p", 1.0))
         result = await self.sampler.sample(
             prompt=self.tinker.ModelInput.from_ints(prompt_tokens), num_samples=count, sampling_params=params)
         completions = []
