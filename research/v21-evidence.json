@@ -1,0 +1,871 @@
+{
+  "version": "lux-v21-evidence-1",
+  "recorded_date": "2026-11-25",
+  "manifests": {
+    "v2-pilot": "ce96c878365d62685d15731b5bad7f384141b2aaf22daa2ba391c0df0ec46dcb",
+    "v2-curriculum": "58f0cb9ed94475a94b8da8716f22994a2b4ae949c3bc2317842693182bea1fd8",
+    "v21-pool": "23f0ab26e4b984a2be985a5d9914c3e1423e1d176db64746a2b3e007e4161314",
+    "v21-expanded": "e350d81e497df22e9ec6b41a580625a3fd77b55d41614ba720ad4b02f24732ff",
+    "v21-dev-32": "068225be5660cca93f262fb1ff288f3d96505ac993ce826a6f16691b6876d4a5",
+    "v21-train-32": "71bb47bb0cea79ebc28ffdb71f97a72dc57740aed3a80b2eb7955ad03ed0b583",
+    "v21-pilot-100": "22529d2cacb832b36497cf814103cfd0315fc7de9c1c6c4a661e4694b4212461"
+  },
+  "pilot": {
+    "development": {
+      "tasks": 14,
+      "capability": 4,
+      "rejection_reasons": {
+        "no_nominal_solution": 10
+      },
+      "families": {
+        "A": 4,
+        "B": 2,
+        "D": 2,
+        "E": 4
+      },
+      "closest_to_spec_regret_cases": 4,
+      "sharpest_regret_cases": 2,
+      "initially_sharpest_nominal_failures_on_feasible_tasks": 0,
+      "construction_manufacturing_reversal_counts": 0,
+      "independently_repeated_manufacturing_reversal_tasks": 0,
+      "brief_switch_cases": 2,
+      "disjoint_profile_optima_cases": 0,
+      "graded_design_draws": 320,
+      "average_construction_random_reward": 0.07855680584358637,
+      "distinct_situations": 14,
+      "presentation_duplicates": 0,
+      "distinct_physics_contexts": 14,
+      "recombined_candidate_sets": 0,
+      "prescriptions": 8,
+      "ancestry": [
+        "optiland-0.6.3:TripletTelescopeObjective"
+      ],
+      "difficulty": {
+        "moderate": 4,
+        "hard": 10
+      },
+      "mean_exact_random_pass": 0.08928571428571429,
+      "position_pass_rate": {
+        "1": 0.07142857142857142,
+        "2": 0.0,
+        "3": 0.07142857142857142,
+        "4": 0.07142857142857142,
+        "5": 0.14285714285714285,
+        "6": 0.21428571428571427,
+        "7": 0.0,
+        "8": 0.14285714285714285
+      },
+      "candidate_id_pass_rate": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.07142857142857142,
+        "4": 0.0,
+        "5": 0.07142857142857142,
+        "6": 0.21428571428571427,
+        "7": 0.21428571428571427,
+        "8": 0.14285714285714285
+      }
+    },
+    "test": {
+      "tasks": 14,
+      "capability": 6,
+      "rejection_reasons": {
+        "no_nominal_solution": 8
+      },
+      "families": {
+        "A": 6,
+        "B": 4,
+        "E": 6,
+        "C": 1,
+        "D": 2
+      },
+      "closest_to_spec_regret_cases": 2,
+      "sharpest_regret_cases": 2,
+      "initially_sharpest_nominal_failures_on_feasible_tasks": 2,
+      "construction_manufacturing_reversal_counts": 1,
+      "independently_repeated_manufacturing_reversal_tasks": 1,
+      "brief_switch_cases": 2,
+      "disjoint_profile_optima_cases": 0,
+      "graded_design_draws": 704,
+      "average_construction_random_reward": 0.18639171487980302,
+      "distinct_situations": 14,
+      "presentation_duplicates": 0,
+      "distinct_physics_contexts": 14,
+      "recombined_candidate_sets": 0,
+      "prescriptions": 8,
+      "ancestry": [
+        "optiland-0.6.3:TelescopeDoublet"
+      ],
+      "difficulty": {
+        "easy": 4,
+        "hard": 10
+      },
+      "mean_exact_random_pass": 0.19642857142857142,
+      "position_pass_rate": {
+        "1": 0.2857142857142857,
+        "2": 0.14285714285714285,
+        "3": 0.21428571428571427,
+        "4": 0.14285714285714285,
+        "5": 0.21428571428571427,
+        "6": 0.14285714285714285,
+        "7": 0.21428571428571427,
+        "8": 0.21428571428571427
+      },
+      "candidate_id_pass_rate": {
+        "1": 0.21428571428571427,
+        "2": 0.14285714285714285,
+        "3": 0.21428571428571427,
+        "4": 0.14285714285714285,
+        "5": 0.35714285714285715,
+        "6": 0.21428571428571427,
+        "7": 0.14285714285714285,
+        "8": 0.14285714285714285
+      }
+    },
+    "train": {
+      "tasks": 30,
+      "capability": 22,
+      "rejection_reasons": {
+        "no_nominal_solution": 6,
+        "insufficient_reward_spread": 2
+      },
+      "families": {
+        "A": 20,
+        "E": 22,
+        "B": 12,
+        "D": 9,
+        "C": 6
+      },
+      "closest_to_spec_regret_cases": 4,
+      "sharpest_regret_cases": 7,
+      "initially_sharpest_nominal_failures_on_feasible_tasks": 0,
+      "construction_manufacturing_reversal_counts": 6,
+      "independently_repeated_manufacturing_reversal_tasks": 4,
+      "brief_switch_cases": 9,
+      "disjoint_profile_optima_cases": 0,
+      "graded_design_draws": 2816,
+      "average_construction_random_reward": 0.2716430360844162,
+      "distinct_situations": 30,
+      "presentation_duplicates": 0,
+      "distinct_physics_contexts": 30,
+      "recombined_candidate_sets": 0,
+      "prescriptions": 15,
+      "ancestry": [
+        "optiland-0.6.3:CookeTriplet"
+      ],
+      "difficulty": {
+        "hard": 18,
+        "moderate": 5,
+        "easy": 7
+      },
+      "mean_exact_random_pass": 0.2833333333333333,
+      "position_pass_rate": {
+        "1": 0.3,
+        "2": 0.26666666666666666,
+        "3": 0.26666666666666666,
+        "4": 0.26666666666666666,
+        "5": 0.23333333333333334,
+        "6": 0.3333333333333333,
+        "7": 0.26666666666666666,
+        "8": 0.3333333333333333
+      },
+      "candidate_id_pass_rate": {
+        "1": 0.3,
+        "2": 0.3333333333333333,
+        "3": 0.23333333333333334,
+        "4": 0.26666666666666666,
+        "5": 0.26666666666666666,
+        "6": 0.36666666666666664,
+        "7": 0.26666666666666666,
+        "8": 0.23333333333333334
+      }
+    }
+  },
+  "expanded": {
+    "development": {
+      "tasks": 14,
+      "capability": 4,
+      "rejection_reasons": {
+        "no_nominal_solution": 10
+      },
+      "families": {
+        "A": 4,
+        "B": 2,
+        "D": 2,
+        "E": 4
+      },
+      "closest_to_spec_regret_cases": 4,
+      "sharpest_regret_cases": 2,
+      "initially_sharpest_nominal_failures_on_feasible_tasks": 0,
+      "construction_manufacturing_reversal_counts": 0,
+      "independently_repeated_manufacturing_reversal_tasks": 0,
+      "brief_switch_cases": 2,
+      "disjoint_profile_optima_cases": 0,
+      "graded_design_draws": 320,
+      "average_construction_random_reward": 0.07855680584358637,
+      "distinct_situations": 14,
+      "presentation_duplicates": 0,
+      "distinct_physics_contexts": 14,
+      "recombined_candidate_sets": 0,
+      "prescriptions": 8,
+      "ancestry": [
+        "optiland-0.6.3:TripletTelescopeObjective"
+      ],
+      "difficulty": {
+        "moderate": 4,
+        "hard": 10
+      },
+      "mean_exact_random_pass": 0.08928571428571429,
+      "position_pass_rate": {
+        "1": 0.07142857142857142,
+        "2": 0.0,
+        "3": 0.07142857142857142,
+        "4": 0.07142857142857142,
+        "5": 0.14285714285714285,
+        "6": 0.21428571428571427,
+        "7": 0.0,
+        "8": 0.14285714285714285
+      },
+      "candidate_id_pass_rate": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.07142857142857142,
+        "4": 0.0,
+        "5": 0.07142857142857142,
+        "6": 0.21428571428571427,
+        "7": 0.21428571428571427,
+        "8": 0.14285714285714285
+      }
+    },
+    "test": {
+      "tasks": 14,
+      "capability": 6,
+      "rejection_reasons": {
+        "no_nominal_solution": 8
+      },
+      "families": {
+        "A": 6,
+        "B": 4,
+        "E": 6,
+        "C": 1,
+        "D": 2
+      },
+      "closest_to_spec_regret_cases": 2,
+      "sharpest_regret_cases": 2,
+      "initially_sharpest_nominal_failures_on_feasible_tasks": 2,
+      "construction_manufacturing_reversal_counts": 1,
+      "independently_repeated_manufacturing_reversal_tasks": 1,
+      "brief_switch_cases": 2,
+      "disjoint_profile_optima_cases": 0,
+      "graded_design_draws": 704,
+      "average_construction_random_reward": 0.18639171487980302,
+      "distinct_situations": 14,
+      "presentation_duplicates": 0,
+      "distinct_physics_contexts": 14,
+      "recombined_candidate_sets": 0,
+      "prescriptions": 8,
+      "ancestry": [
+        "optiland-0.6.3:TelescopeDoublet"
+      ],
+      "difficulty": {
+        "easy": 4,
+        "hard": 10
+      },
+      "mean_exact_random_pass": 0.19642857142857142,
+      "position_pass_rate": {
+        "1": 0.2857142857142857,
+        "2": 0.14285714285714285,
+        "3": 0.21428571428571427,
+        "4": 0.14285714285714285,
+        "5": 0.21428571428571427,
+        "6": 0.14285714285714285,
+        "7": 0.21428571428571427,
+        "8": 0.21428571428571427
+      },
+      "candidate_id_pass_rate": {
+        "1": 0.21428571428571427,
+        "2": 0.14285714285714285,
+        "3": 0.21428571428571427,
+        "4": 0.14285714285714285,
+        "5": 0.35714285714285715,
+        "6": 0.21428571428571427,
+        "7": 0.14285714285714285,
+        "8": 0.14285714285714285
+      }
+    },
+    "train": {
+      "tasks": 100,
+      "capability": 85,
+      "rejection_reasons": {
+        "no_nominal_solution": 10,
+        "insufficient_reward_spread": 2,
+        "no_yield_target_solution": 3
+      },
+      "families": {
+        "A": 68,
+        "E": 85,
+        "B": 75,
+        "D": 40,
+        "C": 32
+      },
+      "closest_to_spec_regret_cases": 39,
+      "sharpest_regret_cases": 29,
+      "initially_sharpest_nominal_failures_on_feasible_tasks": 0,
+      "construction_manufacturing_reversal_counts": 32,
+      "independently_repeated_manufacturing_reversal_tasks": 20,
+      "brief_switch_cases": 40,
+      "disjoint_profile_optima_cases": 0,
+      "graded_design_draws": 11088,
+      "average_construction_random_reward": 0.4913034881561295,
+      "distinct_situations": 100,
+      "presentation_duplicates": 0,
+      "distinct_physics_contexts": 30,
+      "recombined_candidate_sets": 54,
+      "prescriptions": 22,
+      "ancestry": [
+        "optiland-0.6.3:CookeTriplet"
+      ],
+      "difficulty": {
+        "hard": 29,
+        "moderate": 16,
+        "easy": 55
+      },
+      "mean_exact_random_pass": 0.51,
+      "position_pass_rate": {
+        "1": 0.55,
+        "2": 0.48,
+        "3": 0.55,
+        "4": 0.52,
+        "5": 0.44,
+        "6": 0.51,
+        "7": 0.53,
+        "8": 0.5
+      },
+      "candidate_id_pass_rate": {
+        "1": 0.51,
+        "2": 0.51,
+        "3": 0.48,
+        "4": 0.52,
+        "5": 0.49,
+        "6": 0.54,
+        "7": 0.52,
+        "8": 0.51
+      }
+    }
+  },
+  "cold_start": {
+    "groups": 800,
+    "seed": 17,
+    "random_pass_under_sampled_construction_mix": 0.2828125,
+    "difficulty": {
+      "easy": 85,
+      "moderate": 425,
+      "hard": 290
+    }
+  },
+  "paired_manufacturing": {
+    "train-cohort000-contrast-spec004-standard-adjusted": {
+      "candidates": {
+        "1": {
+          "passed": 31,
+          "tested": 32,
+          "yield_fraction": 0.96875,
+          "interval95": [
+            0.8425573617998744,
+            0.9944621398359969
+          ],
+          "threshold_status": "above",
+          "fidelity": "investigation",
+          "evidence": "provisional_simulated",
+          "stream_prefix": [
+            1280836097,
+            2403179344,
+            542749757,
+            2197485472,
+            342189877
+          ]
+        },
+        "2": {
+          "passed": 31,
+          "tested": 32,
+          "yield_fraction": 0.96875,
+          "interval95": [
+            0.8425573617998744,
+            0.9944621398359969
+          ],
+          "threshold_status": "above",
+          "fidelity": "investigation",
+          "evidence": "provisional_simulated",
+          "stream_prefix": [
+            1280836097,
+            2403179344,
+            542749757,
+            2197485472,
+            342189877
+          ]
+        },
+        "8": {
+          "passed": 31,
+          "tested": 32,
+          "yield_fraction": 0.96875,
+          "interval95": [
+            0.8425573617998744,
+            0.9944621398359969
+          ],
+          "threshold_status": "above",
+          "fidelity": "investigation",
+          "evidence": "provisional_simulated",
+          "stream_prefix": [
+            1280836097,
+            2403179344,
+            542749757,
+            2197485472,
+            342189877
+          ]
+        },
+        "7": {
+          "passed": 32,
+          "tested": 32,
+          "yield_fraction": 1.0,
+          "interval95": [
+            0.8928208017449293,
+            1.0
+          ],
+          "threshold_status": "above",
+          "fidelity": "investigation",
+          "evidence": "provisional_simulated",
+          "stream_prefix": [
+            1280836097,
+            2403179344,
+            542749757,
+            2197485472,
+            342189877
+          ]
+        },
+        "6": {
+          "passed": 12,
+          "tested": 32,
+          "yield_fraction": 0.375,
+          "interval95": [
+            0.22933887309454212,
+            0.5474559264692255
+          ],
+          "threshold_status": "below",
+          "fidelity": "investigation",
+          "evidence": "provisional_simulated",
+          "stream_prefix": [
+            1280836097,
+            2403179344,
+            542749757,
+            2197485472,
+            342189877
+          ]
+        }
+      },
+      "preselected_pairs": {
+        "6-7": {
+          "only_first": 0,
+          "only_second": 20,
+          "builds": 32,
+          "difference_second_minus_first": 0.625,
+          "exact_mcnemar_p": 1.9073486328125e-06
+        }
+      }
+    },
+    "train-cohort000-contrast-spec006-standard-adjusted": {
+      "candidates": {
+        "7": {
+          "passed": 5,
+          "tested": 32,
+          "yield_fraction": 0.15625,
+          "interval95": [
+            0.0686442028250571,
+            0.3175414959753039
+          ],
+          "threshold_status": "below",
+          "fidelity": "investigation",
+          "evidence": "provisional_simulated",
+          "stream_prefix": [
+            1280836097,
+            1299410721,
+            4156698612,
+            4201964755,
+            2558132787
+          ]
+        },
+        "8": {
+          "passed": 25,
+          "tested": 32,
+          "yield_fraction": 0.78125,
+          "interval95": [
+            0.6124500635075647,
+            0.8897616374739581
+          ],
+          "threshold_status": "unresolved",
+          "fidelity": "investigation",
+          "evidence": "provisional_simulated",
+          "stream_prefix": [
+            1280836097,
+            1299410721,
+            4156698612,
+            4201964755,
+            2558132787
+          ]
+        },
+        "6": {
+          "passed": 5,
+          "tested": 32,
+          "yield_fraction": 0.15625,
+          "interval95": [
+            0.0686442028250571,
+            0.3175414959753039
+          ],
+          "threshold_status": "below",
+          "fidelity": "investigation",
+          "evidence": "provisional_simulated",
+          "stream_prefix": [
+            1280836097,
+            1299410721,
+            4156698612,
+            4201964755,
+            2558132787
+          ]
+        },
+        "4": {
+          "passed": 29,
+          "tested": 32,
+          "yield_fraction": 0.90625,
+          "interval95": [
+            0.7578184527161212,
+            0.9675984487016337
+          ],
+          "threshold_status": "above",
+          "fidelity": "investigation",
+          "evidence": "provisional_simulated",
+          "stream_prefix": [
+            1280836097,
+            1299410721,
+            4156698612,
+            4201964755,
+            2558132787
+          ]
+        }
+      },
+      "preselected_pairs": {
+        "6-4": {
+          "only_first": 0,
+          "only_second": 24,
+          "builds": 32,
+          "difference_second_minus_first": 0.75,
+          "exact_mcnemar_p": 1.1920928955078125e-07
+        },
+        "7-4": {
+          "only_first": 0,
+          "only_second": 24,
+          "builds": 32,
+          "difference_second_minus_first": 0.75,
+          "exact_mcnemar_p": 1.1920928955078125e-07
+        }
+      }
+    }
+  },
+  "convergence": [
+    {
+      "task_id": "development-cohort000-spec003-standard-adjusted",
+      "candidate_order": [
+        7,
+        4,
+        2,
+        6,
+        8,
+        1,
+        3,
+        5
+      ],
+      "canonical_pupil_grid": 32,
+      "canonical_budget": 25,
+      "canonical_nominal": [
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "fixed_design_resolution": {
+        "64": {
+          "pair_order_agreement": 0.75,
+          "nominal": [
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.4254342668450647
+        },
+        "128": {
+          "pair_order_agreement": 0.75,
+          "nominal": [
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.4257568812265689
+        }
+      },
+      "refits": {
+        "7": {
+          "pair_order_agreement": 0.8928571428571429,
+          "nominal": [
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "nominal_flips": 0
+        },
+        "49": {
+          "pair_order_agreement": 0.9285714285714286,
+          "nominal": [
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "nominal_flips": 0
+        }
+      },
+      "wall_seconds": 97.04902495798888
+    },
+    {
+      "task_id": "test-cohort000-spec001-economy-adjusted",
+      "candidate_order": [
+        8,
+        5,
+        1,
+        6,
+        3,
+        7,
+        2,
+        4
+      ],
+      "canonical_pupil_grid": 32,
+      "canonical_budget": 25,
+      "canonical_nominal": [
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false
+      ],
+      "fixed_design_resolution": {
+        "64": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            true,
+            true,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false
+          ],
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.012025500749428975
+        },
+        "128": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            true,
+            true,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false
+          ],
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.014464135627250643
+        }
+      },
+      "refits": {
+        "7": {
+          "pair_order_agreement": 0.8571428571428571,
+          "nominal": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "nominal_flips": 4
+        },
+        "49": {
+          "pair_order_agreement": 0.75,
+          "nominal": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
+          "nominal_flips": 1
+        }
+      },
+      "wall_seconds": 75.43796708300943
+    }
+  ],
+  "development_power_diagnostic": {
+    "recommended_lineages": null,
+    "development_lineages": 1,
+    "paired_lineage_sd": null,
+    "minimum_effect": 0.15,
+    "target_power": 0.8,
+    "alpha_per_contrast": 0.01,
+    "minimum_exact_test_resolution_lineages": 8,
+    "comparison": [
+      "physics_heuristic",
+      "closest_to_spec"
+    ],
+    "planning_assumption": "approximately equal numbers of briefs per lineage",
+    "development_evaluation_sha256": "3af5abbf89861888e8dbc47020b6a94f238ab06cf70dd9d3b4a5e94ea135cf2f"
+  },
+  "tokenizer": {
+    "development": {
+      "summary": {
+        "minimum": 1233,
+        "mean": 1251.357142857143,
+        "maximum": 1340,
+        "uncached_prefill_usd_per_1000": 0.412948
+      },
+      "full": {
+        "minimum": 2393,
+        "mean": 2411.3571428571427,
+        "maximum": 2500,
+        "uncached_prefill_usd_per_1000": 0.795748
+      },
+      "physics": {
+        "minimum": 3778,
+        "mean": 3812.5,
+        "maximum": 3914,
+        "uncached_prefill_usd_per_1000": 1.258125
+      }
+    },
+    "training": {
+      "summary": {
+        "minimum": 1252,
+        "mean": 1339.46,
+        "maximum": 1371,
+        "uncached_prefill_usd_per_1000": 0.442022
+      },
+      "full": {
+        "minimum": 2394,
+        "mean": 2482.97,
+        "maximum": 2516,
+        "uncached_prefill_usd_per_1000": 0.81938
+      },
+      "physics": {
+        "minimum": 3770,
+        "mean": 3875.58,
+        "maximum": 3926,
+        "uncached_prefill_usd_per_1000": 1.278941
+      }
+    }
+  },
+  "conservative_plans": {
+    "exploration": {
+      "maximum_sampled_completions": 576,
+      "token_bound": {
+        "prefill": 2359296,
+        "generated": 18432,
+        "training": 0
+      },
+      "storage_reserve_usd": 0.0,
+      "budget_estimate_usd": 2.391276,
+      "rates_usd_per_million": {
+        "prefill": 0.33,
+        "generated": 1.005,
+        "training": 0.737
+      },
+      "application_margin": 3,
+      "provider_limit": false
+    },
+    "smoke": {
+      "maximum_sampled_completions": 80,
+      "token_bound": {
+        "prefill": 344192,
+        "generated": 2560,
+        "training": 66032
+      },
+      "storage_reserve_usd": 0.1,
+      "budget_estimate_usd": 0.594465,
+      "rates_usd_per_million": {
+        "prefill": 0.33,
+        "generated": 1.005,
+        "training": 0.737
+      },
+      "application_margin": 3,
+      "provider_limit": false
+    },
+    "matched_per_training_arm": {
+      "maximum_sampled_completions": 2640,
+      "token_bound": {
+        "prefill": 10829952,
+        "generated": 84480,
+        "training": 2641280
+      },
+      "storage_reserve_usd": 0.4,
+      "budget_estimate_usd": 17.21623,
+      "rates_usd_per_million": {
+        "prefill": 0.33,
+        "generated": 1.005,
+        "training": 0.737
+      },
+      "application_margin": 3,
+      "provider_limit": false
+    }
+  },
+  "replay_assets": {
+    "development.json.gz": {
+      "sha256": "5eeeaa91bc2f39a4454bbe6dc653ea1ebfd445be4db0e1e2dd2033942d894e89",
+      "bytes": 1432010
+    },
+    "manufacturing.json.gz": {
+      "sha256": "6c232a4083a7ac2c5448c9e7f0e278e82f88cf49a0f04d9e2f22b5b6589725e1",
+      "bytes": 3498322
+    }
+  },
+  "paid_v21_calls": 0
+}

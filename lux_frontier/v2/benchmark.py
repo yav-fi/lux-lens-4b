@@ -17,7 +17,7 @@ from pydantic import Field
 from lux_frontier.contracts import Contract, NominalMetrics
 from lux_frontier.optical_engine import InvalidBuild
 from lux_frontier.optical_grading import OpticalCache
-from lux_frontier.v2.grading import PHASES, VERSION, digest, grade, submit
+from lux_frontier.v2.grading import PHASES, VERSION, digest, grade, load_envelope, submit
 from lux_frontier.v2.optics import (
     OPTICS_VERSION, PROFILES, Lens, Requirements, build_optic, clearance, failures,
     measurements, paraxial_matrix, reference, simulate_build,
@@ -66,11 +66,28 @@ def write_envelope(path, value, key):
     write_json(path, {key: value, "sha256": digest(value)})
 
 
-def load_envelope(path, key):
-    result = json.loads(Path(path).read_text())
-    if result["sha256"] != digest(result[key]):
-        raise ValueError(f"{key} failed integrity check")
-    return result[key]
+def load_replay_details(manifest, task):
+    details = load_envelope(Path(manifest).parent/"replay-data"/(task["task_id"]+".json"), "details")
+    expected = task.get("replay_details_sha256")
+    if expected is not None:
+        if digest(details) != expected:
+            raise ValueError("replay details differ from frozen task")
+        return details
+    # Early V2 pilots predate a direct link. Corroborate their independently
+    # checksummed replay with frozen optimizer objectives and build counts.
+    for candidate in task["candidates"]:
+        key = str(candidate["id"])
+        outcome, replay = task["outcomes"][key], details[key]
+        trial = min((r for r in replay["trajectory"] if r["measured"] is not None),
+                    key=lambda r: (bool(r["failures"]), r["score"]))
+        if (trial["prescription"] != outcome["refined_prescription"] or trial["score"] != outcome["objective"]
+                or replay["trajectory"][0]["prescription"] != candidate["prescription"]):
+            raise ValueError("legacy replay does not match frozen optimizer result")
+        for phase, counts in outcome["simulations"].items():
+            rows = replay["builds"][phase]
+            if (sum(b["passed"] for b in rows), len(rows)) != (counts["passed"], counts["tested"]):
+                raise ValueError("legacy replay does not match frozen manufacturing result")
+    return details
 
 
 def provenance():
@@ -79,7 +96,8 @@ def provenance():
         commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, stderr=subprocess.DEVNULL, text=True).strip()
     except (FileNotFoundError, subprocess.CalledProcessError):
         commit = None
-    modules = [*Path(__file__).parent.glob("*.py"), root/"lux_frontier"/"optical_engine.py",
+    research_modules = [p for p in Path(__file__).parent.glob("*.py") if p.name != "serve.py"]
+    modules = [*research_modules, root/"lux_frontier"/"optical_engine.py",
                root/"lux_frontier"/"optical_grading.py", root/"lux_frontier"/"contracts.py",
                root/"lux_frontier"/"grpo.py", root/"lux_frontier"/"tinker_backend.py", root/"pyproject.toml", root/"uv.lock"]
     return dict(source_commit=commit, source_hashes={str(p.relative_to(root)): digest(p.read_text()) for p in sorted(modules) if p.is_file()},
@@ -236,7 +254,7 @@ def sensitivity(p, brief, protocol, initial):
     return result
 
 
-def render(task, representation="physics"):
+def render(task, representation="physics", *, format_example=False):
     if representation not in REPRESENTATIONS:
         raise ValueError("unknown prompt representation")
     brief = task["brief"]
@@ -285,6 +303,8 @@ def render(task, representation="physics"):
                 f"{name} " + (numbers([probe["focal_delta_mm"], *probe["mtf_delta"]]) if probe else "invalid")
                 for name, probe in c["sensitivity"].items()))
     lines.append('Return only a JSON object with a single integer field named "starter_id".')
+    if format_example:
+        lines.append('Example of JSON syntax using an unavailable ID: {"starter_id":0}. Replace 0 with your selected candidate ID.')
     return "\n".join(lines)
 
 
@@ -344,10 +364,11 @@ def characterize(task):
 
 
 def prepare_group(args):
-    split, index, pool_index, scenario, profile_names, protocol, root, source_key, contrast = args
-    base = reference(SPLITS[split])
+    split, index, pool_index, scenario, profile_names, protocol, root, source_key, contrast, lineage = args
+    base = Lens.model_validate(lineage["prescription"]) if lineage else reference(SPLITS[split])
     pool = candidate_pool(base, protocol.seed, pool_index, contrast=contrast)
-    cohort = f"{split}-cohort{pool_index:03d}" + ("-contrast" if contrast else "")
+    prefix = f"{split}-{digest(base.ancestry)[:12]}" if lineage else split
+    cohort = f"{prefix}-cohort{pool_index:03d}" + ("-contrast" if contrast else "")
     group_id = f"{cohort}-spec{index:03d}"
     cache = OpticalCache(root/"cache")
     forms = {}
@@ -456,7 +477,7 @@ def validate_splits(tasks):
         raise ValueError(f"split leakage in {len(collisions)} identities, lineages, or groups")
 
 
-def generate(root, protocol, *, workers=1, scenarios=7, pools=1, profiles=None, contrast_parent=None):
+def generate(root, protocol, *, workers=1, scenarios=7, pools=1, profiles=None, contrast_parent=None, lineages=None):
     if (root/"manifest.json").exists():
         raise ValueError("manifest already published; use a new output directory")
     if min(workers, pools, scenarios) <= 0 or protocol.pupil_samples & (protocol.pupil_samples-1):
@@ -467,6 +488,16 @@ def generate(root, protocol, *, workers=1, scenarios=7, pools=1, profiles=None, 
     started = time.perf_counter()
     previous = None
     prior_tasks = []
+    if lineages:
+        if contrast_parent is not None:
+            raise ValueError("use a separate manifest for an externally sourced lineage panel")
+        from lux_frontier.v2.validation import validate_prescription
+        if len({row["prescription"]["ancestry"] for row in lineages}) != len(lineages):
+            raise ValueError("each supplied independent lineage must be unique")
+        for row in lineages:
+            if row["split"] not in SPLITS or not row.get("source"):
+                raise ValueError("each lineage needs a split and documented prescription source")
+            row["validation"] = validate_prescription(Lens.model_validate(row["prescription"]), protocol.pupil_samples)
     if contrast_parent is not None:
         previous = load_envelope(contrast_parent, "manifest")
         if previous["protocol"] != protocol.model_dump(mode="json"):
@@ -480,21 +511,23 @@ def generate(root, protocol, *, workers=1, scenarios=7, pools=1, profiles=None, 
     recipes = CONTRAST_SCENARIOS if contrasts else SCENARIOS
     if contrasts and profiles == ("precision-fixed", "standard-adjusted"):
         profiles = ("standard-fixed", "standard-adjusted")
-    for split_index, split in enumerate(split_names):
+    entries = [(row["split"], row) for row in lineages] if lineages else [(s, None) for s in split_names]
+    for split_index, (split, lineage) in enumerate(entries):
         for pool in range(pools):
             for index in range(scenarios):
                 # Train, development and test use different focal/f-number
                 # centers and fields, even before accounting for the ancestry.
                 scenario = list(recipes[index % len(recipes)])
                 if index >= len(recipes):
-                    rng = random.Random(digest([protocol.seed, split, index, "brief"]))
+                    rng = random.Random(digest([protocol.seed, "crossed" if lineage else split, index, "brief"]))
                     scenario[1] += rng.uniform(-.012, .012)
                     scenario[6] *= rng.uniform(.85, 1.15)
-                scenario[1] += (.0, -.002, .004)[split_index]
-                scenario[3] += (.0, .013, -.008)[split_index]
-                selected_profiles = profiles if split != "test" or "economy-adjusted" in profiles else (
+                if not lineage:
+                    scenario[1] += (.0, -.002, .004)[split_index]
+                    scenario[3] += (.0, .013, -.008)[split_index]
+                selected_profiles = profiles if lineage or split != "test" or "economy-adjusted" in profiles else (
                     profiles[0], "economy-adjusted")
-                jobs.append((split, index, pool, scenario, selected_profiles, protocol, root, source_key, contrasts))
+                jobs.append((split, index, pool, scenario, selected_profiles, protocol, root, source_key, contrasts, lineage))
     tasks, rejected = [], []
     def collect(results):
         for batch, skipped in results:
@@ -542,7 +575,7 @@ def generate(root, protocol, *, workers=1, scenarios=7, pools=1, profiles=None, 
         tasks = [*prior_tasks, *tasks]
     manifest = dict(version=VERSION, optics_version=OPTICS_VERSION, protocol=protocol.model_dump(mode="json"),
                     configuration=dict(scenarios=scenarios, pools=pools, profiles=profiles,
-                                       training_contrast_parent_sha256=parent_digest), provenance=source,
+                                       training_contrast_parent_sha256=parent_digest, supplied_lineages=lineages), provenance=source,
                     runtime_seconds=time.perf_counter()-started, attempted_groups=len(jobs),
                     rejection_details=rejected, task_index=[dict(id=t["task_id"], split=t["split"], group=t["group"],
                         capability=t["capability"], reason=t["capability_rejection"], families=t["construction"]["families"],

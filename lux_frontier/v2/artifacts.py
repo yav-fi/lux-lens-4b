@@ -29,18 +29,20 @@ def ray_record(lens, p, field, wave):
                 sensor_intersections_mm=coordinates(rays.x, rays.y, rays.z, rays.i))
 
 
-def snapshot(p, brief, samples, *, errors=None, focus=0., curves=False):
+def snapshot(p, brief, samples, *, errors=None, focus=0., curves=False, full_clearance=False):
     lens, geometry = build_optic(p, errors, focus)
     surfaces = []
     for index in range(1, len(lens.surfaces)-1):
         s = lens.surfaces[index]
         cs = s.geometry.cs
         rim = float(s.aperture.r_max)
+        glass_rim = p.clear_semidiameters_mm[(index-1)//2] if full_clearance else rim
         radius = float(s.geometry.radius)
         surfaces.append(dict(index=index, radius_mm=radius, aperture_radius_mm=rim, is_stop=s.is_stop,
                              vertex_mm=[float(cs.x), float(cs.y), float(cs.z)],
                              tilt_rad=[float(cs.rx), float(cs.ry)],
-                             radial_profile_mm=[[float(r), sag(radius, abs(float(r)))] for r in np.linspace(-rim, rim, 41)]))
+                             radial_profile_mm=[[float(r), sag(radius, abs(float(r)))]
+                                                for r in np.linspace(-glass_rim, glass_rim, 41)]))
     targets = list(dict.fromkeys((t.field_angle_deg, t.wavelength_um) for t in brief.mtf_thresholds))
     analyzed = measurements(p, brief, samples, optic=(lens, geometry), focus=focus, curves=True) if curves else None
     return dict(surface_geometry=surfaces, traces=[ray_record(lens, p, f, w) for f, w in targets],
@@ -82,7 +84,8 @@ def export_replay(task, manifest, output, *, model_records=None, phase="developm
         responses = response_map(record, [task], name=label).get(task["task_id"])
         if not responses:
             raise ValueError(f"{label} has no matching task")
-        comparisons[label] = [dict(**r, prompt=render(task, r["representation"]),
+        comparisons[label] = [dict(r, model=record["model"], checkpoint=record.get("checkpoint"),
+                                   prompt=render(task, r["representation"], format_example=r.get("format_example", False)),
                                    grade=asdict(grade(task, r["response"], clean=r["clean"], phase=phase))) for r in responses]
     if not comparisons:
         closest = task["construction"]["heuristic_id"]

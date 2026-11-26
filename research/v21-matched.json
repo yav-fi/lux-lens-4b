@@ -1,0 +1,28 @@
+{
+  "steps": 20,
+  "seed": 17,
+  "groups_per_step": 4,
+  "minimum_groups": 2,
+  "group_size": 8,
+  "max_attempts_per_step": 16,
+  "lora_rank": 16,
+  "learning_rate": 0.00002,
+  "temperature": 1.25,
+  "top_p": 1.0,
+  "representation": "physics",
+  "sampling": "separate",
+  "format_example": true,
+  "matched_attempts": true,
+  "mixture": {
+    "adaptive": false,
+    "weights": {"A": 0.15, "B": 0.15, "C": 0.20, "D": 0.10, "E": 0.40}
+  },
+  "random_reward_probability": 0.5,
+  "checkpoint_every": 5,
+  "eval_every": 5,
+  "eval_samples": 2,
+  "eval_briefs": 8,
+  "ttl_seconds": 604800,
+  "max_completions": 2640,
+  "budget_usd": 17.23
+}

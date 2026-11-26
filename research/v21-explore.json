@@ -1,0 +1,11 @@
+{
+  "seed": 17,
+  "group_size": 8,
+  "max_prompt_tokens": 4096,
+  "max_tokens": 32,
+  "top_p": 1.0,
+  "format_example": true,
+  "position_offsets": [0, 4],
+  "max_completions": 576,
+  "budget_usd": 2.40
+}

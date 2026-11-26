@@ -66,23 +66,23 @@ def compare_sensor_traces(p, lens):
     return rows
 
 
-def validate_references(pupil_samples=32):
-    rows = []
-    for cls in REFERENCE_CLASSES:
-        p = reference(cls.__name__)
-        profile = PROFILES["precision-fixed"]
-        brief = requirements(p, profile, (1, 0., .02, 0., .12, .02, .65), cls.__name__)
-        optic, geometry = build_optic(p)
-        matrix = paraxial_matrix(p, optic)
-        measured = measurements(p, brief, pupil_samples)
-        real = NominalMetrics.model_validate(measured["metrics"]).effective_focal_length_mm
-        delta = abs(real-matrix["efl_mm"])
-        if delta >= 1e-4 or not all(value > 0 for value in geometry.values()):
-            raise ValueError(f"reference failed focal length or clearance validation: {p.ancestry}, {delta}")
-        rows.append(dict(reference=p.ancestry, geometry=geometry, abcd=matrix, real_ray_efl_mm=real,
+def validate_prescription(p, pupil_samples=32):
+    profile = PROFILES["precision-fixed"]
+    brief = requirements(p, profile, (1, 0., .02, 0., .12, .02, .65), p.ancestry)
+    optic, geometry = build_optic(p)
+    matrix = paraxial_matrix(p, optic)
+    measured = measurements(p, brief, pupil_samples)
+    real = NominalMetrics.model_validate(measured["metrics"]).effective_focal_length_mm
+    delta = abs(real-matrix["efl_mm"])
+    if delta >= 1e-4 or not all(value > 0 for value in geometry.values()):
+        raise ValueError(f"reference failed focal length or clearance validation: {p.ancestry}, {delta}")
+    return dict(reference=p.ancestry, geometry=geometry, abcd=matrix, real_ray_efl_mm=real,
                          absolute_efl_error_mm=delta, physical_failures=failures(measured, brief),
-                         independent_sensor_intersections=compare_sensor_traces(p, optic)))
-    return rows
+                         independent_sensor_intersections=compare_sensor_traces(p, optic))
+
+
+def validate_references(pupil_samples=32):
+    return [validate_prescription(reference(cls.__name__), pupil_samples) for cls in REFERENCE_CLASSES]
 
 
 def pair_order_similarity(values_a, values_b):
@@ -136,3 +136,33 @@ def study(task, *, builds=16):
                                        nominal_pass=not failures(measured, brief), merit=merit(measured, brief)[0])
     return dict(task_id=task["task_id"], optimizer=optimization, focus_quantization=focus_results,
                 pupil_samples=convergence, references=validate_references(protocol.pupil_samples), runtime_seconds=time.perf_counter()-started)
+
+
+def ranking_convergence(task, pupil_grids=(64, 128)):
+    """Compare all frozen final nominal designs, then refit at shorter and longer budgets."""
+    started = time.perf_counter()
+    protocol = Protocol.model_validate(task["protocol"])
+    brief = Requirements.model_validate(task["brief"])
+    outcomes = [task["outcomes"][str(c["id"])] for c in task["candidates"]]
+    canonical = [r["objective"] for r in outcomes]
+    fixed = {}
+    for size in pupil_grids:
+        measurements_at_size = [measurements(Lens.model_validate(r["refined_prescription"]), brief, size) for r in outcomes]
+        scores = [merit(m, brief)[0] for m in measurements_at_size]
+        nominal = [not failures(m, brief) for m in measurements_at_size]
+        fixed[size] = dict(pair_order_agreement=pair_order_similarity(scores, canonical), nominal=nominal,
+                           nominal_flips=sum(x != r["nominal_pass"] for x, r in zip(nominal, outcomes, strict=True)),
+                           maximum_mtf_delta=max(abs(a["mtf_fraction"]-b["mtf_fraction"])
+                                                 for m, r in zip(measurements_at_size, outcomes, strict=True)
+                                                 for a, b in zip(m["metrics"]["mtf"], r["final"]["metrics"]["mtf"], strict=True)))
+    refits = {}
+    for budget in (7, 49):
+        fitted = [refine(Lens.model_validate(c["prescription"]), brief,
+                         protocol.model_copy(update={"evaluations": budget}))["final"] for c in task["candidates"]]
+        nominal = [not item["failures"] for item in fitted]
+        refits[budget] = dict(pair_order_agreement=pair_order_similarity([r["score"] for r in fitted], canonical),
+                              nominal=nominal, nominal_flips=sum(x != r["nominal_pass"] for x, r in zip(nominal, outcomes, strict=True)))
+    return dict(task_id=task["task_id"], candidate_order=[c["id"] for c in task["candidates"]],
+                canonical_pupil_grid=protocol.pupil_samples, canonical_budget=protocol.evaluations,
+                canonical_nominal=[r["nominal_pass"] for r in outcomes], fixed_design_resolution=fixed, refits=refits,
+                wall_seconds=time.perf_counter()-started)

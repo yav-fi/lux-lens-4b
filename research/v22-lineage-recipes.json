@@ -1,0 +1,144 @@
+[
+  {
+    "split": "development",
+    "source": "https://optics.udjat.nl/achromats.html Table 11; named example at 100 mm scale; modeled front stop and mechanical rims; sensor at computed 0.55 um paraxial focus",
+    "prescription": {
+      "ancestry": "Sacek-table11:Steinheil",
+      "radii_mm": [
+        44.2,
+        22.9,
+        22.85,
+        -1500.0
+      ],
+      "spacings_mm": [
+        0.7,
+        0.1,
+        0.9
+      ],
+      "sensor_z_mm": 100.97314418930026,
+      "clear_semidiameters_mm": [
+        5.4,
+        5.4
+      ],
+      "stop_surface": 1,
+      "stop_diameter_mm": 10.0,
+      "glasses": [
+        [
+          "F2",
+          "schott"
+        ],
+        [
+          "N-BK7",
+          "schott"
+        ]
+      ],
+      "material_sha256": [
+        "8942cd5f0717647645d12a1c195090e5d1b01bfbb9393a1b1c1d21b2be637455",
+        "359dadddae166f2fff802645201ae43611f2fdf8f336808491230838162fc0ce"
+      ],
+      "fields_deg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          7.0
+        ],
+        [
+          0.0,
+          14.0
+        ],
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "wavelengths_um": [
+        0.48,
+        0.55,
+        0.65
+      ],
+      "primary_wavelength_um": 0.55
+    }
+  },
+  {
+    "split": "development",
+    "source": "https://optics.udjat.nl/achromats.html Table 11; named example at 100 mm scale; modeled front stop and mechanical rims; sensor at computed 0.55 um paraxial focus",
+    "prescription": {
+      "ancestry": "Sacek-table11:Gauss",
+      "radii_mm": [
+        12.9,
+        33.45,
+        14.206,
+        10.357
+      ],
+      "spacings_mm": [
+        0.665,
+        0.03,
+        0.42
+      ],
+      "sensor_z_mm": 97.40783458945415,
+      "clear_semidiameters_mm": [
+        3.75,
+        3.75
+      ],
+      "stop_surface": 1,
+      "stop_diameter_mm": 6.666666666666667,
+      "glasses": [
+        [
+          "N-BK7",
+          "schott"
+        ],
+        [
+          "F2",
+          "schott"
+        ]
+      ],
+      "material_sha256": [
+        "359dadddae166f2fff802645201ae43611f2fdf8f336808491230838162fc0ce",
+        "8942cd5f0717647645d12a1c195090e5d1b01bfbb9393a1b1c1d21b2be637455"
+      ],
+      "fields_deg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          7.0
+        ],
+        [
+          0.0,
+          14.0
+        ],
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "wavelengths_um": [
+        0.48,
+        0.55,
+        0.65
+      ],
+      "primary_wavelength_um": 0.55
+    }
+  }
+]

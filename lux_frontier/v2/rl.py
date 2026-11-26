@@ -15,11 +15,11 @@ from lux_frontier.contracts import Contract
 from lux_frontier.grpo import group_advantages, rl_arrays
 from lux_frontier.tinker_backend import AuthenticationUnavailable, MODEL, RENDERER, TinkerBackend, load_renderer
 from lux_frontier.v2.benchmark import FAMILIES, REPRESENTATIONS, load_envelope, provenance, render, write_envelope
+from lux_frontier.v2.curriculum import Curriculum, difficulty, observation, optical_baselines, schedule, training_summary
 from lux_frontier.v2.grading import MODES, digest, grade
 
 RATES = dict(prefill=.33, generated=1.005, training=.737)
-DEFAULT_CURRICULUM = ((0., {"A": 3., "B": 2.}), (.32, {"A": 1., "B": 2., "C": 3.}),
-                      (.64, {"B": 1., "C": 2., "D": 2., "E": 4.}))
+TRAINING_MODES = (*MODES, "random")
 
 
 class Settings(Contract):
@@ -45,16 +45,28 @@ class Settings(Contract):
     ttl_seconds: int = Field(default=86400, ge=3600, le=7776000)
     max_completions: int = Field(default=2000, ge=1)
     budget_usd: float = Field(default=3, gt=0)
-    curriculum: tuple[tuple[float, dict[str, float]], ...] = DEFAULT_CURRICULUM
+    curriculum: tuple[tuple[float, dict[str, float]], ...] | None = None
+    mixture: Curriculum = Field(default_factory=Curriculum)
+    matched_attempts: bool = False
+    random_reward_probability: float = Field(default=.5, gt=0, lt=1)
+    position_offsets: tuple[int, ...] = (0,)
+    format_example: bool = False
 
     @model_validator(mode="after")
     def coherent(self):
         if not self.minimum_groups <= self.groups_per_step <= self.max_attempts_per_step:
             raise ValueError("minimum_groups <= groups_per_step <= max_attempts_per_step required")
-        if self.representation not in REPRESENTATIONS or self.mode not in MODES or self.sampling not in ("batched", "separate"):
+        if self.representation not in REPRESENTATIONS or self.mode not in TRAINING_MODES or self.sampling not in ("batched", "separate"):
             raise ValueError("unsupported reward, representation or sampling mode")
         if self.max_prompt_tokens+self.max_tokens > 64000:
             raise ValueError("request exceeds the selected model's context")
+        if not self.position_offsets or len(set(self.position_offsets)) != len(self.position_offsets) or any(
+                not 0 <= offset < 8 for offset in self.position_offsets):
+            raise ValueError("position offsets must be distinct values in 0–7")
+        if self.curriculum is None:
+            if self.matched_attempts and self.mixture.adaptive:
+                raise ValueError("matched attempts require a fixed mixture shared across arms")
+            return self
         starts = [start for start, _ in self.curriculum]
         if not starts or starts[0] != 0 or sorted(set(starts)) != starts or starts[-1] >= 1:
             raise ValueError("curriculum requires unique increasing start fractions in [0,1)")
@@ -141,27 +153,51 @@ def entropy(values):
     return -sum((c/n)*math.log2(c/n) for c in counts.values())
 
 
-def assess_group(task, completions, phase, mode):
-    grades = [grade(task, c.response_text, clean=c.clean, phase=phase, mode=mode) for c in completions]
+def random_rewards(seed, count, probability=.5):
+    return [float(seed_for("random-reward-v1", seed, i) / (2**31-1) < probability) for i in range(count)]
+
+
+def assess_group(task, completions, phase, mode, *, reward_seed=0, probability=.5):
+    grades = [grade(task, c.response_text, clean=c.clean, phase=phase) for c in completions]
     valid = [g for g in grades if g.error is None]
     optical = len({g.reward for g in valid}) > 1
-    rewards = [g.reward for g in grades]
+    if mode == "random":
+        rewards = random_rewards(reward_seed, len(completions), probability)
+    elif mode == "nominal":
+        rewards = [grade(task, c.response_text, clean=c.clean, phase=phase, mode=mode).reward for c in completions]
+    else:
+        rewards = [g.reward for g in grades]
+    valid_rewards = [r for r, g in zip(rewards, grades, strict=True) if g.error is None]
+    informative = len(set(valid_rewards)) > 1
     # Keep malformed completions visible as failures, and exclude them from the
     # policy-gradient batch. They cannot determine the optical baseline.
-    valid_advantages = iter(group_advantages([g.reward for g in valid]) if valid else ())
+    valid_advantages = iter(group_advantages(valid_rewards) if valid else ())
     advantages = [next(valid_advantages) if g.error is None else 0. for g in grades]
     logprobs = [v for c in completions for v in (c.logprobs or []) if math.isfinite(v)]
     positions = list(range(min(16, max((len(c.tokens) for c in completions), default=0))))
     token_entropy = [entropy([c.tokens[i] for c in completions if i < len(c.tokens)]) for i in positions]
+    order = {c["id"]: i+1 for i, c in enumerate(task["candidates"])}
+    failure_counts = Counter()
+    for graded in grades:
+        if graded.error:
+            failure_counts[graded.error] += 1
+        elif not graded.nominal_pass:
+            failures = task["outcomes"][str(graded.starter_id)].get("failures", ())
+            failure_counts.update({f["constraint"] for f in failures} or {"nominal_below_requirements"})
+        elif not graded.final_pass:
+            failure_counts["yield_below_target"] += 1
     diagnostics = dict(unique_valid_actions=len({g.starter_id for g in valid}),
+                       failure_counts=dict(failure_counts),
                        action_counts=dict(Counter(str(g.starter_id) if g.error is None else "invalid" for g in grades)),
+                       position_counts=dict(Counter(str(order[g.starter_id]) for g in valid)),
                        valid_action_entropy_bits=entropy([g.starter_id for g in valid]),
                        response_entropy_bits=entropy([c.raw_response for c in completions]),
                        token_position_entropy_bits=token_entropy,
                        mean_sampled_token_surprisal_nats=-statistics.mean(logprobs) if logprobs else None,
-                       reward_variance=statistics.pvariance(rewards), invalid=len(grades)-len(valid),
-                       stop_reasons=dict(Counter(c.stop_reason for c in completions)), informative=optical,
-                       malformed_only=not optical and max(rewards) > min(rewards),
+                       reward_variance=statistics.pvariance(rewards), optical_reward_variance=statistics.pvariance(g.reward for g in grades),
+                       training_rewards=rewards, invalid=len(grades)-len(valid),
+                       stop_reasons=dict(Counter(c.stop_reason for c in completions)), informative=informative,
+                       optically_informative=optical, malformed_only=not informative and max(rewards) > min(rewards),
                        primary_outcome_spread=len({(g.nominal_pass, g.yield_fraction if mode == "yield" else 0) for g in valid}) > 1)
     return grades, advantages, diagnostics
 
@@ -178,10 +214,11 @@ class Ledger:
         self.started = time.perf_counter()
         self.data = dict(version="lux-v2-run-1", model=MODEL, renderer=RENDERER,
                          mode=mode, status="running", settings=settings.model_dump(mode="json"), plan=plan,
+                         started_utc=datetime.now(timezone.utc).isoformat(),
                          inputs=inputs, provenance=provenance(),
                          usage=dict(prefill=0, generated=0, training=0), sampled_completions=0,
                          group_journal=self.journal.name, group_count=0, steps=[], checkpoints=[], evaluations=[], responses=[], probes=[],
-                         attempted=0, accepted=0, rejected=0)
+                         attempted=0, accepted=0, rejected=0, optimizer_updates=0)
         self.flush()
 
     def cost(self):
@@ -211,9 +248,11 @@ class Ledger:
 
 
 async def sample_group(ledger, backend, task, *, phase, mode, count, seed, strategy, representation,
-                       temperature=None, context=None):
+                       temperature=None, context=None, position_offset=0, reward_seed=0):
     settings = ledger.settings
-    prompt = render(task, representation)
+    candidates = task["candidates"]
+    presented = dict(task, candidates=candidates[position_offset:]+candidates[:position_offset])
+    prompt = render(presented, representation, format_example=settings.format_example)
     tokens = backend.encode(prompt)
     if not 0 < len(tokens) <= settings.max_prompt_tokens:
         raise ValueError("rendered prompt exceeds configured token bounds")
@@ -237,13 +276,20 @@ async def sample_group(ledger, backend, task, *, phase, mode, count, seed, strat
             ledger.data.setdefault("partial_groups", []).append(dict(task_id=task["task_id"], prompt=prompt, requests=requests,
                                                                       completions=[asdict(c) for c in completions]))
             ledger.flush()
-    grades, advantages, stats = assess_group(task, completions, phase, mode)
+    grades, advantages, stats = assess_group(presented, completions, phase, mode,
+                                           reward_seed=reward_seed, probability=settings.random_reward_probability)
     group = dict(task_id=task["task_id"], task_sha256=digest(task), prompt=prompt, prompt_sha256=digest(prompt),
                  representation=representation, phase=phase, mode=mode, requests=requests, sampling=strategy,
+                 difficulty=difficulty(task), position_offset=position_offset,
+                 candidate_order=[c["id"] for c in presented["candidates"]], baselines=optical_baselines(task, phase),
                  temperature=temperature if temperature is not None else settings.temperature, prompt_tokens=len(tokens),
                  completions=[dict(asdict(c), grade=asdict(g), advantage=a)
                               for c, g, a in zip(completions, grades, advantages, strict=True)], diagnostics=stats)
     group.update(context or {})
+    if phase == "training" and "room_for_update" in group:
+        group["accepted_for_update"] = stats["informative"] and group["room_for_update"]
+    if mode == "random":
+        group["random_reward_seed"] = reward_seed
     ledger.record_group(group)
     return group, tokens, completions, advantages
 
@@ -307,7 +353,7 @@ async def train(settings, train_tasks, dev_tasks, path, *, backend=None, resume=
     dev_order = sorted(dev_tasks, key=lambda t: digest([settings.seed, t["task_id"]]))
     certified = [t for t in dev_order if t["capability"]][:math.ceil(settings.eval_briefs/2)]
     dev_tasks = [*certified, *[t for t in dev_order if t not in certified]][:settings.eval_briefs]
-    for start, _ in settings.curriculum:
+    for start, _ in settings.curriculum or ():
         step = math.ceil(start*settings.steps)
         if step < settings.steps:
             next(staged_tasks(train_tasks, settings, step))
@@ -319,22 +365,33 @@ async def train(settings, train_tasks, dev_tasks, path, *, backend=None, resume=
     backend = backend or Backend(settings)
     checkpoint, first, updates = None, 0, 0
     probe = None
+    history = []
     try:
         if resume:
             checkpoint, prior_usage = resume_state(resume, settings, inputs, ledger.data["provenance"])
             first = checkpoint["step"]
             ledger.data.update(resumed_from=str(resume), original_checkpoint=checkpoint, **prior_usage)
+            history = checkpoint.get("curriculum_history", [])
         await backend.initialize(True, resume=checkpoint)
         await dev_evaluate(ledger, backend, dev_tasks, first)
         for step in range(first, settings.steps):
             used, attempted, examples = 0, 0, []
-            for index, (task, family) in enumerate(staged_tasks(train_tasks, settings, step)):
+            step_observations = []
+            if settings.curriculum is None:
+                tasks, allocation = schedule(train_tasks, settings.mixture, history, seed=settings.seed,
+                                             step=step, attempts=settings.max_attempts_per_step)
+            else:
+                tasks, allocation = staged_tasks(train_tasks, settings, step), None
+            for index, (task, family) in enumerate(tasks):
                 g, tokens, completions, adv = await sample_group(
                     ledger, backend, task, phase="training", mode=settings.mode, count=settings.group_size,
                     seed=seed_for(settings.seed, step, index, task["task_id"]), strategy=settings.sampling,
-                    representation=settings.representation, context=dict(step=step+1, curriculum_family=family))
+                    representation=settings.representation, context=dict(step=step+1, curriculum_family=family,
+                                                                          room_for_update=used < settings.groups_per_step),
+                    reward_seed=seed_for(settings.seed, "reward-control", step, index))
                 attempted += 1
-                accepted = g["diagnostics"]["informative"]
+                accepted = g["accepted_for_update"]
+                step_observations.append(dict(observation(g), accepted=accepted))
                 if accepted:
                     selected = [(tokens, c, a) for c, a in zip(completions, adv, strict=True) if a]
                     for datum in selected:
@@ -344,9 +401,12 @@ async def train(settings, train_tasks, dev_tasks, path, *, backend=None, resume=
                 ledger.data["attempted"] += 1
                 ledger.data["accepted" if accepted else "rejected"] += 1
                 ledger.flush()
-                if used == settings.groups_per_step:
+                if used == settings.groups_per_step and not settings.matched_attempts:
                     break
             rec = dict(step=step+1, attempted=attempted, accepted=used, rejected=attempted-used, updated=False)
+            history = (history+step_observations)[-settings.mixture.window:]
+            if allocation is not None:
+                rec.update(curriculum=allocation, all_attempts=training_summary(step_observations))
             ledger.data["steps"].append(rec)
             ledger.flush()
             if used >= settings.minimum_groups:
@@ -358,6 +418,7 @@ async def train(settings, train_tasks, dev_tasks, path, *, backend=None, resume=
                 rec["metrics"] = await backend.update(examples)
                 rec["updated"] = True
                 updates += 1
+                ledger.data["optimizer_updates"] += 1
                 ledger.flush()
                 await backend.refresh_sampler()
                 if probe is None:
@@ -371,7 +432,10 @@ async def train(settings, train_tasks, dev_tasks, path, *, backend=None, resume=
                 rec["skipped"] = "insufficient informative groups"
             final = step+1 == settings.steps
             if updates and ((step+1) % settings.checkpoint_every == 0 or final):
-                ledger.data["checkpoints"].append(await backend.save(step+1))
+                saved = await backend.save(step+1)
+                if settings.curriculum is None:
+                    saved["curriculum_history"] = history
+                ledger.data["checkpoints"].append(saved)
                 ledger.flush()
             if (step+1) % settings.eval_every == 0 or final:
                 await dev_evaluate(ledger, backend, dev_tasks, step+1)
@@ -384,7 +448,11 @@ async def train(settings, train_tasks, dev_tasks, path, *, backend=None, resume=
             ledger.data["checkpoint_reload_probe"] = dict(logprobs=reloaded, before_reload=final_likelihoods,
                 max_abs_delta=max(abs(a-b) for a, b in zip(final_likelihoods, reloaded, strict=True)))
         reload_ok = ledger.data.get("checkpoint_reload_probe", {}).get("max_abs_delta", math.inf) < .02
-        ledger.data["status"] = ("completed" if probe and probe["max_abs_delta"] > 1e-6 and reload_ok else
+        moved = bool(probe and probe["max_abs_delta"] > 1e-6)
+        ledger.data["probability_shift_verified"] = moved
+        # A matched control can legitimately have a zero-gradient first step.
+        # The one-step smoke specifically requires a changed completion probability.
+        ledger.data["status"] = ("completed" if updates and reload_ok and (moved or settings.steps > 1) else
                                  "update_unverified" if updates else "no_learning_signal")
     except Exception as exc:
         ledger.data.update(status="authentication_unavailable" if isinstance(exc, AuthenticationUnavailable) else "failed",
@@ -400,47 +468,70 @@ async def train(settings, train_tasks, dev_tasks, path, *, backend=None, resume=
     return ledger.data
 
 
-async def inference(settings, tasks, path, *, exploration=False, checkpoint=None, temperatures=(.6, 1., 1.35), backend=None):
+async def inference(settings, tasks, path, *, exploration=False, checkpoint=None, temperatures=(.6, 1., 1.35), backend=None,
+                    evaluation_seal=None, checkpoint_training=None):
     if not tasks:
         raise ValueError("no inference tasks selected")
     if exploration and (any(t["split"] == "test" for t in tasks) or not temperatures
                         or any(not 0 < t <= 2 for t in temperatures)):
         raise ValueError("exploration uses training/development tasks and temperatures in (0, 2]")
-    combinations = ([(r, strategy, temp) for r in REPRESENTATIONS for strategy in ("batched", "separate")
-                     for temp in temperatures] if exploration else [(settings.representation, settings.sampling, settings.temperature)])
+    combinations = ([(r, strategy, temp, offset) for r in REPRESENTATIONS for strategy in ("batched", "separate")
+                     for temp in temperatures for offset in settings.position_offsets] if exploration else
+                    [(settings.representation, settings.sampling, settings.temperature, 0)])
     groups = len(tasks)*len(combinations)
     plan = estimate(settings, groups=groups if exploration else 0, other_samples=0 if exploration else groups*settings.eval_samples)
     enforce(plan, settings)
     ledger = Ledger(path, settings, plan, "exploration" if exploration else "inference", [digest(t) for t in tasks])
     ledger.data["checkpoint"] = checkpoint
+    if evaluation_seal is not None:
+        ledger.data["evaluation_seal_sha256"] = digest(evaluation_seal)
+        ledger.data["checkpoint_training"] = checkpoint_training
     ledger.data["execution_backend"] = "offline_injected_backend" if backend else "tinker"
     backend = backend or Backend(settings)
     try:
         await backend.initialize(False, checkpoint=checkpoint)
         settings_summary = {}
-        for representation, strategy, temp in combinations:
+        for representation, strategy, temp, offset in combinations:
             measurements = []
             for task in tasks:
                 phase = {"train": "training", "development": "development", "test": "final"}[task["split"]]
                 g, *_ = await sample_group(ledger, backend, task, phase=phase, mode="yield",
                     count=settings.group_size if exploration else settings.eval_samples, seed=seed_for(settings.seed, task["task_id"]),
-                    strategy=strategy, representation=representation, temperature=temp)
+                    strategy=strategy, representation=representation, temperature=temp, position_offset=offset)
                 measurements.append(g)
                 ledger.data["responses"].extend(dict(task_id=task["task_id"], task_sha256=g["task_sha256"],
                     prompt_sha256=g["prompt_sha256"], representation=representation, sampling=strategy, temperature=temp,
+                    position_offset=offset, format_example=settings.format_example,
+                    candidate_order=g["candidate_order"], selected_starter=c["grade"]["starter_id"],
                     response=c["response_text"], raw_response=c["raw_response"], stop_reason=c["stop_reason"],
                     clean=c["clean"], sampled_reward=c["grade"]["reward"]) for c in g["completions"])
-            key = f"{representation}/{strategy}/{temp:g}"
-            settings_summary[key] = dict(groups=len(measurements), mean_prompt_tokens=statistics.mean(g["prompt_tokens"] for g in measurements),
-                mean_reward=statistics.mean(c["grade"]["reward"] for g in measurements for c in g["completions"]),
+            key = f"{representation}/{strategy}/{temp:g}" + (f"/rotation-{offset}" if offset else "")
+            summary = training_summary([observation(g) for g in measurements])
+            by_family = {f: training_summary([observation(g) for g, t in zip(measurements, tasks, strict=True)
+                                              if f in t["construction"]["families"]])["overall"] for f in FAMILIES}
+            positions, ids = Counter(), Counter()
+            failures = Counter()
+            for g in measurements:
+                positions.update(g["diagnostics"]["position_counts"])
+                ids.update(g["diagnostics"]["action_counts"])
+                failures.update(g["diagnostics"]["failure_counts"])
+            baselines = {}
+            for key_name in measurements[0]["baselines"]:
+                values = [g["baselines"][key_name] for g in measurements if g["baselines"][key_name] is not None]
+                baselines[key_name] = statistics.mean(values) if values else None
+            settings_summary[key] = dict(**summary["overall"], mean_prompt_tokens=statistics.mean(g["prompt_tokens"] for g in measurements),
+                baselines=baselines,
+                position_counts=dict(positions), action_counts=dict(ids), failure_counts=dict(failures),
+                by_difficulty=summary["by_difficulty"], by_family=by_family,
                 informative_fraction=statistics.mean(g["diagnostics"]["informative"] for g in measurements),
                 malformed_only_fraction=statistics.mean(g["diagnostics"]["malformed_only"] for g in measurements),
-                invalid_fraction=sum(g["diagnostics"]["invalid"] for g in measurements)/sum(len(g["completions"]) for g in measurements),
                 mean_unique_valid_actions=statistics.mean(g["diagnostics"]["unique_valid_actions"] for g in measurements))
         per_task = {}
         for row in ledger.data["responses"]:
             t = row["task_id"]
             key = f"{row['representation']}/{row['sampling']}/{row['temperature']:g}"
+            if row["position_offset"]:
+                key += f"/rotation-{row['position_offset']}"
             per_task.setdefault(t, {}).setdefault(key, []).append(row["sampled_reward"])
         ledger.data.update(status="completed", diagnostics=settings_summary, by_task_reward_samples=per_task)
     except Exception as exc:

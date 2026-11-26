@@ -1,0 +1,22 @@
+{
+  "steps": 1,
+  "seed": 17,
+  "groups_per_step": 2,
+  "minimum_groups": 1,
+  "group_size": 8,
+  "max_attempts_per_step": 8,
+  "lora_rank": 16,
+  "learning_rate": 0.00002,
+  "temperature": 1.25,
+  "top_p": 1.0,
+  "representation": "physics",
+  "sampling": "separate",
+  "format_example": true,
+  "checkpoint_every": 1,
+  "eval_every": 1,
+  "eval_samples": 2,
+  "eval_briefs": 4,
+  "ttl_seconds": 86400,
+  "max_completions": 80,
+  "budget_usd": 0.60
+}

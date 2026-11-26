@@ -120,7 +120,10 @@ def response_map(record, tasks, *, name):
         task = by_task.get(row["task_id"])
         if task is None:
             continue
-        prompt = render(task, row["representation"])
+        offset = row.get("position_offset", 0)
+        if offset or record.get("mode") == "exploration":
+            raise ValueError(f"{name} must use the fixed evaluation prompt order and settings")
+        prompt = render(task, row["representation"], format_example=row.get("format_example", False))
         if row.get("prompt_sha256") != digest(prompt) or row.get("task_sha256") != digest(task):
             raise ValueError(f"{name} prompt or task did not match the frozen evaluation")
         result.setdefault(row["task_id"], []).append(row)

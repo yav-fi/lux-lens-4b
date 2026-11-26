@@ -16,6 +16,13 @@ def digest(value):
     return hashlib.sha256(data.encode()).hexdigest()
 
 
+def load_envelope(path, key):
+    result = json.loads(Path(path).read_text())
+    if result["sha256"] != digest(result[key]):
+        raise ValueError(f"{key} failed integrity check")
+    return result[key]
+
+
 def unique_object(pairs):
     result = {}
     for key, value in pairs:

@@ -1,0 +1,1190 @@
+{
+  "evidence": {
+    "exploration": {
+      "run_sha256": "59f8ebeb6df918922cce0392e3a499fdd6622cfae0c6f59faad7a3a0980df620",
+      "usage": {
+        "prefill": 1424576,
+        "generated": 4668,
+        "training": 0
+      },
+      "estimated_token_spend_usd": 1.424404,
+      "overall": {
+        "groups": 72,
+        "completions": 576,
+        "metrics": {
+          "pass_rate": 0.5086805555555556,
+          "invalid_fraction": 0.043402777777777776,
+          "reward": 0.48777251851075465,
+          "valid_reward_variance": 0.03356636513778595,
+          "valid_reward_range": 0.17084514100383497,
+          "useful_group": 0.18055555555555555,
+          "target_outcome_spread": 0.18055555555555555,
+          "informative_group": 0.3194444444444444,
+          "unique_valid": 1.6111111111111112,
+          "entropy_bits": 0.43179939216372876
+        },
+        "baselines": {
+          "random_pass": 0.20833333333333334,
+          "closest_pass": 0.3333333333333333,
+          "physics_pass": 0.6666666666666666,
+          "oracle_pass": 0.6666666666666666,
+          "random_reward": 0.19948152069562422
+        },
+        "meaningful_groups": 13,
+        "informative_groups": 23,
+        "groups_by_unique_valid": {
+          "1": 43,
+          "2": 13,
+          "4": 5,
+          "3": 9,
+          "0": 2
+        },
+        "failures": {
+          "unknown_starter": 1,
+          "invalid_submission": 23,
+          "unclean_completion": 1
+        }
+      },
+      "feasible": {
+        "groups": 48,
+        "completions": 384,
+        "metrics": {
+          "pass_rate": 0.7630208333333334,
+          "invalid_fraction": 0.057291666666666664,
+          "reward": 0.731025719831799,
+          "valid_reward_variance": 0.05034954671893481,
+          "valid_reward_range": 0.2562352627511051,
+          "useful_group": 0.2708333333333333,
+          "target_outcome_spread": 0.2708333333333333,
+          "informative_group": 0.2708333333333333,
+          "unique_valid": 1.5833333333333333,
+          "entropy_bits": 0.4201110416971052
+        },
+        "baselines": {
+          "random_pass": 0.3125,
+          "closest_pass": 0.5,
+          "physics_pass": 1,
+          "oracle_pass": 1,
+          "random_reward": 0.2985575869198275
+        },
+        "meaningful_groups": 13,
+        "informative_groups": 13,
+        "groups_by_unique_valid": {
+          "1": 29,
+          "2": 7,
+          "3": 7,
+          "4": 3,
+          "0": 2
+        },
+        "failures": {
+          "unknown_starter": 1,
+          "invalid_submission": 20,
+          "unclean_completion": 1
+        }
+      },
+      "impossible": {
+        "groups": 24,
+        "completions": 192,
+        "metrics": {
+          "pass_rate": 0,
+          "invalid_fraction": 0.015625,
+          "reward": 0.0012661158686660507,
+          "valid_reward_variance": 1.975488241042931e-09,
+          "valid_reward_range": 6.489750929472481e-05,
+          "useful_group": 0,
+          "target_outcome_spread": 0,
+          "informative_group": 0.4166666666666667,
+          "unique_valid": 1.6666666666666667,
+          "entropy_bits": 0.45517609309697593
+        },
+        "baselines": {
+          "random_pass": 0.0,
+          "closest_pass": 0,
+          "physics_pass": 0,
+          "oracle_pass": 0,
+          "random_reward": 0.0013293882472177145
+        },
+        "meaningful_groups": 0,
+        "informative_groups": 10,
+        "groups_by_unique_valid": {
+          "1": 14,
+          "4": 2,
+          "3": 2,
+          "2": 6
+        },
+        "failures": {
+          "invalid_submission": 3
+        }
+      },
+      "by_task": {
+        "development-cohort000-spec000-standard-adjusted": {
+          "groups": 24,
+          "completions": 192,
+          "metrics": {
+            "pass_rate": 0.921875,
+            "invalid_fraction": 0.0,
+            "reward": 0.8933704922484296,
+            "valid_reward_variance": 0.021394083063828527,
+            "valid_reward_range": 0.12111338674944988,
+            "useful_group": 0.125,
+            "target_outcome_spread": 0.125,
+            "informative_group": 0.125,
+            "unique_valid": 1.375,
+            "entropy_bits": 0.2654397789601178
+          },
+          "baselines": {
+            "random_pass": 0.375,
+            "closest_pass": 1,
+            "physics_pass": 1,
+            "oracle_pass": 1,
+            "random_reward": 0.36094740595426683
+          },
+          "meaningful_groups": 3,
+          "informative_groups": 3,
+          "groups_by_unique_valid": {
+            "1": 18,
+            "2": 3,
+            "3": 3
+          },
+          "failures": {}
+        },
+        "development-cohort000-spec001-standard-adjusted": {
+          "groups": 24,
+          "completions": 192,
+          "metrics": {
+            "pass_rate": 0,
+            "invalid_fraction": 0.015625,
+            "reward": 0.0012661158686660507,
+            "valid_reward_variance": 1.975488241042931e-09,
+            "valid_reward_range": 6.489750929472481e-05,
+            "useful_group": 0,
+            "target_outcome_spread": 0,
+            "informative_group": 0.4166666666666667,
+            "unique_valid": 1.6666666666666667,
+            "entropy_bits": 0.45517609309697593
+          },
+          "baselines": {
+            "random_pass": 0.0,
+            "closest_pass": 0,
+            "physics_pass": 0,
+            "oracle_pass": 0,
+            "random_reward": 0.0013293882472177145
+          },
+          "meaningful_groups": 0,
+          "informative_groups": 10,
+          "groups_by_unique_valid": {
+            "1": 14,
+            "4": 2,
+            "3": 2,
+            "2": 6
+          },
+          "failures": {
+            "invalid_submission": 3
+          }
+        },
+        "development-cohort000-spec003-standard-adjusted": {
+          "groups": 24,
+          "completions": 192,
+          "metrics": {
+            "pass_rate": 0.6041666666666666,
+            "invalid_fraction": 0.11458333333333333,
+            "reward": 0.5686809474151683,
+            "valid_reward_variance": 0.07930501037404108,
+            "valid_reward_range": 0.3913571387527603,
+            "useful_group": 0.4166666666666667,
+            "target_outcome_spread": 0.4166666666666667,
+            "informative_group": 0.4166666666666667,
+            "unique_valid": 1.7916666666666667,
+            "entropy_bits": 0.5747823044340926
+          },
+          "baselines": {
+            "random_pass": 0.25,
+            "closest_pass": 0,
+            "physics_pass": 1,
+            "oracle_pass": 1,
+            "random_reward": 0.2361677678853881
+          },
+          "meaningful_groups": 10,
+          "informative_groups": 10,
+          "groups_by_unique_valid": {
+            "1": 11,
+            "2": 4,
+            "3": 4,
+            "4": 3,
+            "0": 2
+          },
+          "failures": {
+            "unknown_starter": 1,
+            "invalid_submission": 20,
+            "unclean_completion": 1
+          }
+        }
+      },
+      "by_family": {
+        "A": {
+          "groups": 48,
+          "completions": 384,
+          "metrics": {
+            "pass_rate": 0.7630208333333334,
+            "invalid_fraction": 0.057291666666666664,
+            "reward": 0.731025719831799,
+            "valid_reward_variance": 0.05034954671893481,
+            "valid_reward_range": 0.2562352627511051,
+            "useful_group": 0.2708333333333333,
+            "target_outcome_spread": 0.2708333333333333,
+            "informative_group": 0.2708333333333333,
+            "unique_valid": 1.5833333333333333,
+            "entropy_bits": 0.4201110416971052
+          },
+          "baselines": {
+            "random_pass": 0.3125,
+            "closest_pass": 0.5,
+            "physics_pass": 1,
+            "oracle_pass": 1,
+            "random_reward": 0.2985575869198275
+          },
+          "meaningful_groups": 13,
+          "informative_groups": 13,
+          "groups_by_unique_valid": {
+            "1": 29,
+            "2": 7,
+            "3": 7,
+            "4": 3,
+            "0": 2
+          },
+          "failures": {
+            "unknown_starter": 1,
+            "invalid_submission": 20,
+            "unclean_completion": 1
+          }
+        },
+        "B": {
+          "groups": 24,
+          "completions": 192,
+          "metrics": {
+            "pass_rate": 0.921875,
+            "invalid_fraction": 0.0,
+            "reward": 0.8933704922484296,
+            "valid_reward_variance": 0.021394083063828527,
+            "valid_reward_range": 0.12111338674944988,
+            "useful_group": 0.125,
+            "target_outcome_spread": 0.125,
+            "informative_group": 0.125,
+            "unique_valid": 1.375,
+            "entropy_bits": 0.2654397789601178
+          },
+          "baselines": {
+            "random_pass": 0.375,
+            "closest_pass": 1,
+            "physics_pass": 1,
+            "oracle_pass": 1,
+            "random_reward": 0.36094740595426683
+          },
+          "meaningful_groups": 3,
+          "informative_groups": 3,
+          "groups_by_unique_valid": {
+            "1": 18,
+            "2": 3,
+            "3": 3
+          },
+          "failures": {}
+        },
+        "C": {
+          "groups": 0,
+          "completions": 0,
+          "metrics": null
+        },
+        "D": {
+          "groups": 0,
+          "completions": 0,
+          "metrics": null
+        },
+        "E": {
+          "groups": 48,
+          "completions": 384,
+          "metrics": {
+            "pass_rate": 0.7630208333333334,
+            "invalid_fraction": 0.057291666666666664,
+            "reward": 0.731025719831799,
+            "valid_reward_variance": 0.05034954671893481,
+            "valid_reward_range": 0.2562352627511051,
+            "useful_group": 0.2708333333333333,
+            "target_outcome_spread": 0.2708333333333333,
+            "informative_group": 0.2708333333333333,
+            "unique_valid": 1.5833333333333333,
+            "entropy_bits": 0.4201110416971052
+          },
+          "baselines": {
+            "random_pass": 0.3125,
+            "closest_pass": 0.5,
+            "physics_pass": 1,
+            "oracle_pass": 1,
+            "random_reward": 0.2985575869198275
+          },
+          "meaningful_groups": 13,
+          "informative_groups": 13,
+          "groups_by_unique_valid": {
+            "1": 29,
+            "2": 7,
+            "3": 7,
+            "4": 3,
+            "0": 2
+          },
+          "failures": {
+            "unknown_starter": 1,
+            "invalid_submission": 20,
+            "unclean_completion": 1
+          }
+        }
+      },
+      "rotation": {
+        "valid_pairs": 180,
+        "same_id": 86,
+        "same_position": 27,
+        "positions": {
+          "1": 28,
+          "2": 71,
+          "4": 48,
+          "5": 103,
+          "6": 89,
+          "7": 8,
+          "8": 15
+        },
+        "candidate_ids": {
+          "1": 2,
+          "2": 14,
+          "5": 51,
+          "6": 13,
+          "7": 190,
+          "8": 92,
+          "invalid": 22
+        },
+        "per_rotation": {
+          "0": {
+            "groups": 24,
+            "completions": 192,
+            "metrics": {
+              "pass_rate": 0.8958333333333334,
+              "invalid_fraction": 0.052083333333333336,
+              "reward": 0.8574063043318111,
+              "valid_reward_variance": 0.03341408614134887,
+              "valid_reward_range": 0.19690176859559064,
+              "useful_group": 0.20833333333333334,
+              "target_outcome_spread": 0.20833333333333334,
+              "informative_group": 0.20833333333333334,
+              "unique_valid": 1.5,
+              "entropy_bits": 0.35707546481744984
+            },
+            "baselines": {
+              "random_pass": 0.3125,
+              "closest_pass": 0.5,
+              "physics_pass": 1,
+              "oracle_pass": 1,
+              "random_reward": 0.2985575869198275
+            },
+            "meaningful_groups": 5,
+            "informative_groups": 5,
+            "groups_by_unique_valid": {
+              "1": 14,
+              "2": 6,
+              "3": 2,
+              "4": 1,
+              "0": 1
+            },
+            "failures": {
+              "invalid_submission": 10
+            }
+          },
+          "4": {
+            "groups": 24,
+            "completions": 192,
+            "metrics": {
+              "pass_rate": 0.6302083333333334,
+              "invalid_fraction": 0.0625,
+              "reward": 0.6046451353317869,
+              "valid_reward_variance": 0.06728500729652075,
+              "valid_reward_range": 0.31556875690661956,
+              "useful_group": 0.3333333333333333,
+              "target_outcome_spread": 0.3333333333333333,
+              "informative_group": 0.3333333333333333,
+              "unique_valid": 1.6666666666666667,
+              "entropy_bits": 0.48314661857676056
+            },
+            "baselines": {
+              "random_pass": 0.3125,
+              "closest_pass": 0.5,
+              "physics_pass": 1,
+              "oracle_pass": 1,
+              "random_reward": 0.2985575869198275
+            },
+            "meaningful_groups": 8,
+            "informative_groups": 8,
+            "groups_by_unique_valid": {
+              "1": 15,
+              "2": 1,
+              "4": 2,
+              "3": 5,
+              "0": 1
+            },
+            "failures": {
+              "unknown_starter": 1,
+              "invalid_submission": 10,
+              "unclean_completion": 1
+            }
+          }
+        }
+      },
+      "selected_lane": "full/separate/1.25"
+    },
+    "selected_lane": {
+      "groups": 4,
+      "completions": 32,
+      "metrics": {
+        "pass_rate": 0.5625,
+        "invalid_fraction": 0.09375,
+        "reward": 0.5397781824713797,
+        "valid_reward_variance": 0.19349031587792612,
+        "valid_reward_range": 0.9540454660351216,
+        "useful_group": 1,
+        "target_outcome_spread": 1,
+        "informative_group": 1,
+        "unique_valid": 3.5,
+        "entropy_bits": 1.6074465058570924
+      },
+      "baselines": {
+        "random_pass": 0.3125,
+        "closest_pass": 0.5,
+        "physics_pass": 1,
+        "oracle_pass": 1,
+        "random_reward": 0.2985575869198275
+      },
+      "meaningful_groups": 4,
+      "informative_groups": 4,
+      "groups_by_unique_valid": {
+        "3": 2,
+        "4": 2
+      },
+      "failures": {
+        "invalid_submission": 2,
+        "unclean_completion": 1
+      },
+      "rotation": {
+        "valid_pairs": 14,
+        "same_id": 8,
+        "same_position": 1,
+        "positions": {
+          "1": 8,
+          "2": 3,
+          "4": 4,
+          "5": 4,
+          "6": 7,
+          "8": 3
+        },
+        "candidate_ids": {
+          "1": 2,
+          "2": 4,
+          "5": 5,
+          "6": 3,
+          "7": 12,
+          "8": 3,
+          "invalid": 3
+        },
+        "per_rotation": {
+          "0": {
+            "groups": 2,
+            "completions": 16,
+            "metrics": {
+              "pass_rate": 0.6875,
+              "invalid_fraction": 0.0625,
+              "reward": 0.6600352393829598,
+              "valid_reward_variance": 0.15932780917184103,
+              "valid_reward_range": 0.9539355236371506,
+              "useful_group": 1,
+              "target_outcome_spread": 1,
+              "informative_group": 1,
+              "unique_valid": 3.5,
+              "entropy_bits": 1.5057450946869397
+            },
+            "baselines": {
+              "random_pass": 0.3125,
+              "closest_pass": 0.5,
+              "physics_pass": 1,
+              "oracle_pass": 1,
+              "random_reward": 0.2985575869198275
+            },
+            "meaningful_groups": 2,
+            "informative_groups": 2,
+            "groups_by_unique_valid": {
+              "3": 1,
+              "4": 1
+            },
+            "failures": {
+              "invalid_submission": 1
+            }
+          },
+          "4": {
+            "groups": 2,
+            "completions": 16,
+            "metrics": {
+              "pass_rate": 0.4375,
+              "invalid_fraction": 0.125,
+              "reward": 0.4195211255597995,
+              "valid_reward_variance": 0.2276528225840112,
+              "valid_reward_range": 0.9541554084330925,
+              "useful_group": 1,
+              "target_outcome_spread": 1,
+              "informative_group": 1,
+              "unique_valid": 3.5,
+              "entropy_bits": 1.7091479170272448
+            },
+            "baselines": {
+              "random_pass": 0.3125,
+              "closest_pass": 0.5,
+              "physics_pass": 1,
+              "oracle_pass": 1,
+              "random_reward": 0.2985575869198275
+            },
+            "meaningful_groups": 2,
+            "informative_groups": 2,
+            "groups_by_unique_valid": {
+              "3": 1,
+              "4": 1
+            },
+            "failures": {
+              "invalid_submission": 1,
+              "unclean_completion": 1
+            }
+          }
+        }
+      },
+      "order_delta": 0.25,
+      "checks": {
+        "both_feasible_tasks_have_meaningful_group": true,
+        "invalid_fraction_at_most_ten_percent": true,
+        "pooled_order_delta_at_most_25_points": true,
+        "feasible_pass_at_least_exact_chance": true
+      },
+      "smoke_gate": true,
+      "mean_prompt_tokens": 2396
+    },
+    "smoke": {
+      "run_sha256": "838ecf0a0ce4902dff79b5d1b30f1a8f02fac28b42ad1e45a65ae0fba1ef7d60",
+      "status": "completed",
+      "usage": {
+        "prefill": 127996,
+        "generated": 391,
+        "training": 37553
+      },
+      "optimizer_updates": 1,
+      "sampled_completions": 48,
+      "estimated_token_spend_usd": 0.210925,
+      "checkpoint_reserve_usd": 0.1,
+      "groups": [
+        {
+          "task": "train-cohort001-contrast-spec003-standard-fixed",
+          "family": "E",
+          "admitted": false,
+          "stats": {
+            "pass_rate": 0.875,
+            "invalid_fraction": 0.125,
+            "reward": 0.6671874999999999,
+            "valid_reward_variance": 0.0,
+            "valid_reward_range": 0.0,
+            "useful_group": false,
+            "target_outcome_spread": false,
+            "informative_group": false,
+            "unique_valid": 1,
+            "entropy_bits": -0.0
+          },
+          "valid_selected_ids": [
+            8
+          ]
+        },
+        {
+          "task": "train-cohort001-contrast-spec004-standard-adjusted",
+          "family": "A",
+          "admitted": true,
+          "stats": {
+            "pass_rate": 0.75,
+            "invalid_fraction": 0.125,
+            "reward": 0.7501072803197415,
+            "valid_reward_variance": 0.12223888793441937,
+            "valid_reward_range": 0.9991417574420683,
+            "useful_group": true,
+            "target_outcome_spread": true,
+            "informative_group": true,
+            "unique_valid": 4,
+            "entropy_bits": 1.6644977792004612
+          },
+          "valid_selected_ids": [
+            1,
+            2,
+            4,
+            7
+          ]
+        },
+        {
+          "task": "train-cohort000-contrast-spec006-standard-adjusted",
+          "family": "C",
+          "admitted": false,
+          "stats": {
+            "pass_rate": 0,
+            "invalid_fraction": 0.0,
+            "reward": 0.16875,
+            "valid_reward_variance": 0.0,
+            "valid_reward_range": 0.0,
+            "useful_group": false,
+            "target_outcome_spread": false,
+            "informative_group": false,
+            "unique_valid": 1,
+            "entropy_bits": -0.0
+          },
+          "valid_selected_ids": [
+            6
+          ]
+        },
+        {
+          "task": "train-cohort000-contrast-spec007-standard-fixed",
+          "family": "B",
+          "admitted": true,
+          "stats": {
+            "pass_rate": 0,
+            "invalid_fraction": 0.0,
+            "reward": 0.14875369661464788,
+            "valid_reward_variance": 0.019275001667700763,
+            "valid_reward_range": 0.28432886598217544,
+            "useful_group": true,
+            "target_outcome_spread": false,
+            "informative_group": true,
+            "unique_valid": 4,
+            "entropy_bits": 1.75
+          },
+          "valid_selected_ids": [
+            1,
+            2,
+            7,
+            8
+          ]
+        }
+      ],
+      "max_token_logprob_change": 0.19231963157653809,
+      "completion_logprob_change": -0.3155380185911554,
+      "max_reload_logprob_change": 0.0,
+      "development": [
+        {
+          "step": 0,
+          "task_ids": [
+            "development-cohort000-spec003-standard-adjusted",
+            "development-cohort000-spec000-standard-adjusted",
+            "development-cohort000-spec004-standard-adjusted",
+            "development-cohort000-spec006-precision-fixed"
+          ],
+          "metrics": {
+            "reward": 0.22099604465923403,
+            "yield_fraction": 0.21875,
+            "final_pass": 0.25,
+            "nominal_pass": 0.25
+          }
+        },
+        {
+          "step": 1,
+          "task_ids": [
+            "development-cohort000-spec003-standard-adjusted",
+            "development-cohort000-spec000-standard-adjusted",
+            "development-cohort000-spec004-standard-adjusted",
+            "development-cohort000-spec006-precision-fixed"
+          ],
+          "metrics": {
+            "reward": 0.22099604465923403,
+            "yield_fraction": 0.21875,
+            "final_pass": 0.25,
+            "nominal_pass": 0.25
+          }
+        }
+      ]
+    },
+    "convergence": {
+      "reference_grid": 256,
+      "cases": 24,
+      "boundary_cases": [
+        {
+          "task": "train-cohort000-contrast-spec006-standard-adjusted",
+          "candidate": 6
+        },
+        {
+          "task": "train-cohort000-contrast-spec006-standard-adjusted",
+          "candidate": 1
+        },
+        {
+          "task": "train-cohort000-contrast-spec006-standard-adjusted",
+          "candidate": 5
+        }
+      ],
+      "comparisons": {
+        "32": {
+          "nominal_disagreements": [],
+          "maximum_mtf_delta": 0.42658701294012874,
+          "median_max_mtf_delta": 0.016152020513653255,
+          "max_boundary_mtf_delta": 0.04996673660284773,
+          "median_cpu_seconds": 0.21706450000000022
+        },
+        "64": {
+          "nominal_disagreements": [],
+          "maximum_mtf_delta": 0.019287216250832556,
+          "median_max_mtf_delta": 0.00431122832186725,
+          "max_boundary_mtf_delta": 0.012764183990149114,
+          "median_cpu_seconds": 0.21636850000000019
+        },
+        "128": {
+          "nominal_disagreements": [],
+          "maximum_mtf_delta": 0.003990949873300703,
+          "median_max_mtf_delta": 0.0011042127315372685,
+          "max_boundary_mtf_delta": 0.003990949873300703,
+          "median_cpu_seconds": 0.2696365000000003
+        },
+        "256": {
+          "nominal_disagreements": [],
+          "maximum_mtf_delta": 0.0,
+          "median_max_mtf_delta": 0.0,
+          "max_boundary_mtf_delta": 0.0,
+          "median_cpu_seconds": 0.454885
+        }
+      }
+    },
+    "alias_probe": {
+      "target": {
+        "field_angle_deg": [
+          0.0,
+          1.0
+        ],
+        "spatial_frequency_lp_per_mm": 30.0,
+        "wavelength_um": 0.55,
+        "orientation": "tangential",
+        "minimum_mtf_fraction": 0.2701
+      },
+      "grids": {
+        "32": {
+          "max_adjacent_waves": 7.312231211875023,
+          "fraction_adjacent_above_half_wave": 0.8929577464788733,
+          "pads": {
+            "2": {
+              "mtf": 0.42755283768785124,
+              "cpu_seconds": 0.054693000000000325,
+              "orientation_index": 0,
+              "frequency_axis_step_lp_per_mm": 17.187445666045896,
+              "maximum_sampled_frequency_lp_per_mm": 532.8108156474228
+            },
+            "4": {
+              "mtf": 0.42755283768785124,
+              "cpu_seconds": 0.054428000000001475,
+              "orientation_index": 0,
+              "frequency_axis_step_lp_per_mm": 17.187445666045896,
+              "maximum_sampled_frequency_lp_per_mm": 1082.8090769608914
+            },
+            "8": {
+              "mtf": 0.42755283768785124,
+              "cpu_seconds": 0.05924700000000094,
+              "orientation_index": 0,
+              "frequency_axis_step_lp_per_mm": 17.187445666045896,
+              "maximum_sampled_frequency_lp_per_mm": 2182.805599587829
+            }
+          }
+        },
+        "64": {
+          "max_adjacent_waves": 3.8192773710544685,
+          "fraction_adjacent_above_half_wave": 0.8193803559657218,
+          "pads": {
+            "2": {
+              "mtf": 0.002118570842786584,
+              "cpu_seconds": 0.054719000000000406,
+              "orientation_index": 0,
+              "frequency_axis_step_lp_per_mm": 8.457314534086075,
+              "maximum_sampled_frequency_lp_per_mm": 532.8108156474227
+            }
+          }
+        },
+        "128": {
+          "max_adjacent_waves": 1.9458840344555028,
+          "fraction_adjacent_above_half_wave": 0.6579241963857348,
+          "pads": {
+            "2": {
+              "mtf": 0.001795956461282329,
+              "cpu_seconds": 0.06679600000000008,
+              "orientation_index": 0,
+              "frequency_axis_step_lp_per_mm": 4.195360753129314,
+              "maximum_sampled_frequency_lp_per_mm": 532.8108156474228
+            }
+          }
+        },
+        "256": {
+          "max_adjacent_waves": 0.9820849097443656,
+          "fraction_adjacent_above_half_wave": 0.3523807645272003,
+          "pads": {
+            "2": {
+              "mtf": 0.0009658247477224928,
+              "cpu_seconds": 0.11244300000000074,
+              "orientation_index": 0,
+              "frequency_axis_step_lp_per_mm": 2.0894541790095014,
+              "maximum_sampled_frequency_lp_per_mm": 532.8108156474228
+            }
+          }
+        },
+        "512": {
+          "max_adjacent_waves": 0.4932435588113009,
+          "fraction_adjacent_above_half_wave": 0.0,
+          "pads": {
+            "2": {
+              "mtf": 0.0006882724046015953,
+              "cpu_seconds": 0.2893869999999996,
+              "orientation_index": 0,
+              "frequency_axis_step_lp_per_mm": 1.042682613791434,
+              "maximum_sampled_frequency_lp_per_mm": 532.8108156474228
+            }
+          }
+        }
+      }
+    },
+    "optimizer_budgets": {
+      "development-cohort000-spec003-standard-adjusted": {
+        "7": {
+          "checked_nominal_ids": [
+            7,
+            8
+          ],
+          "agreeing_pairs": 23,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            7,
+            8
+          ],
+          "changed_prescriptions": 8
+        },
+        "25": {
+          "checked_nominal_ids": [
+            7,
+            8
+          ],
+          "agreeing_pairs": 28,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            7,
+            8
+          ],
+          "changed_prescriptions": 0
+        },
+        "49": {
+          "checked_nominal_ids": [
+            7,
+            8
+          ],
+          "agreeing_pairs": 28,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            7,
+            8
+          ],
+          "changed_prescriptions": 8
+        },
+        "73": {
+          "checked_nominal_ids": [
+            7,
+            8
+          ],
+          "agreeing_pairs": 28,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            7,
+            8
+          ],
+          "changed_prescriptions": 8
+        },
+        "97": {
+          "checked_nominal_ids": [
+            7,
+            8
+          ],
+          "agreeing_pairs": 28,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            7,
+            8
+          ],
+          "changed_prescriptions": 8
+        }
+      },
+      "test-cohort000-spec001-economy-adjusted": {
+        "7": {
+          "checked_nominal_ids": [
+            5
+          ],
+          "agreeing_pairs": 23,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            5
+          ],
+          "changed_prescriptions": 8
+        },
+        "25": {
+          "checked_nominal_ids": [
+            1,
+            2,
+            3,
+            5,
+            8
+          ],
+          "agreeing_pairs": 28,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            1,
+            2,
+            3,
+            5,
+            8
+          ],
+          "changed_prescriptions": 0
+        },
+        "49": {
+          "checked_nominal_ids": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            8
+          ],
+          "agreeing_pairs": 21,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            8
+          ],
+          "changed_prescriptions": 8
+        },
+        "73": {
+          "checked_nominal_ids": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8
+          ],
+          "agreeing_pairs": 21,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8
+          ],
+          "changed_prescriptions": 8
+        },
+        "97": {
+          "checked_nominal_ids": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8
+          ],
+          "agreeing_pairs": 21,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8
+          ],
+          "changed_prescriptions": 8
+        }
+      },
+      "train-cohort000-contrast-spec006-standard-adjusted": {
+        "7": {
+          "checked_nominal_ids": [
+            6,
+            7
+          ],
+          "agreeing_pairs": 19,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            6,
+            7
+          ],
+          "changed_prescriptions": 7
+        },
+        "25": {
+          "checked_nominal_ids": [
+            4,
+            6,
+            7,
+            8
+          ],
+          "agreeing_pairs": 28,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            4,
+            6,
+            7,
+            8
+          ],
+          "changed_prescriptions": 0
+        },
+        "49": {
+          "checked_nominal_ids": [
+            4,
+            6,
+            7,
+            8
+          ],
+          "agreeing_pairs": 23,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "changed_prescriptions": 7
+        },
+        "73": {
+          "checked_nominal_ids": [
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "agreeing_pairs": 23,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "changed_prescriptions": 8
+        },
+        "97": {
+          "checked_nominal_ids": [
+            4,
+            6,
+            7,
+            8
+          ],
+          "agreeing_pairs": 25,
+          "total_pairs": 28,
+          "search_nominal_ids": [
+            3,
+            4,
+            6,
+            7,
+            8
+          ],
+          "changed_prescriptions": 8
+        }
+      }
+    },
+    "cooke": {
+      "task": "train-cohort000-contrast-spec006-standard-adjusted",
+      "pair": [
+        6,
+        4
+      ],
+      "yields": {
+        "6": {
+          "passed": 28,
+          "tested": 128,
+          "yield_fraction": 0.21875,
+          "interval95": [
+            0.15590524094938307,
+            0.29798429695446543
+          ],
+          "threshold_status": "below",
+          "fidelity": "definitive",
+          "evidence": "confirmed_simulated",
+          "stream_prefix": [
+            1280836097,
+            3115151631,
+            3344244999,
+            3032238659,
+            1922856637
+          ]
+        },
+        "4": {
+          "passed": 108,
+          "tested": 128,
+          "yield_fraction": 0.84375,
+          "interval95": [
+            0.7709518905710295,
+            0.8965164519909334
+          ],
+          "threshold_status": "above",
+          "fidelity": "definitive",
+          "evidence": "confirmed_simulated",
+          "stream_prefix": [
+            1280836097,
+            3115151631,
+            3344244999,
+            3032238659,
+            1922856637
+          ]
+        }
+      },
+      "paired": {
+        "only_first": 0,
+        "only_second": 80,
+        "builds": 128,
+        "difference_second_minus_first": 0.625,
+        "exact_mcnemar_p": 1.6543612251060553e-24
+      },
+      "same_draw_first_32_by_grid": {
+        "32": {
+          "6": 9,
+          "4": 30
+        },
+        "128": {
+          "6": 9,
+          "4": 30
+        },
+        "256": {
+          "6": 9,
+          "4": 30
+        }
+      },
+      "failure_counts": {
+        "6": {
+          "mtf[1]": 67,
+          "mtf[2]": 88,
+          "mtf[0]": 6
+        },
+        "4": {
+          "mtf[2]": 12,
+          "mtf[1]": 15,
+          "mtf[0]": 1
+        }
+      }
+    },
+    "scout": {
+      "manifest_sha256": "96b24aecd7bb637f9628c266f8e5f5de0ce85bd8940f030bea41b426809b407a",
+      "tasks": 8,
+      "seconds": 127.93739658303093,
+      "physical_rejections": 0
+    }
+  },
+  "sha256": "378f2d91df94b3ad8866504d5fe688d60fc2033734f4d0b7bee50c1eaffbfe76"
+}

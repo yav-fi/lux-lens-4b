@@ -7,3 +7,7 @@ dist/
 outputs/
 .cache/
 README_internal.md
+
+# Local V2.1 presentation files and browser-ready copies of replay data.
+/lux_frontier/v2/serve.py
+/lux_frontier/v2/web/
