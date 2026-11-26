@@ -1,0 +1,15 @@
+{
+  "seed": 17,
+  "temperature": 1.25,
+  "top_p": 1.0,
+  "representation": "full",
+  "sampling": "separate",
+  "format_example": true,
+  "position_offsets": [
+    0,
+    4
+  ],
+  "eval_samples": 1,
+  "max_completions": 48,
+  "budget_usd": 0.2
+}

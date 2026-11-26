@@ -51,6 +51,8 @@ class Settings(Contract):
     random_reward_probability: float = Field(default=.5, gt=0, lt=1)
     position_offsets: tuple[int, ...] = (0,)
     format_example: bool = False
+    shuffle_training: bool = False
+    min_optical_reward_span: float = Field(default=0., ge=0., le=1.)
 
     @model_validator(mode="after")
     def coherent(self):
@@ -98,7 +100,7 @@ def training_plan(settings, held_out_count):
     evals = 1 + math.ceil(settings.steps/settings.eval_every)
     checkpoints = math.ceil(settings.steps/settings.checkpoint_every)
     return estimate(settings, groups=settings.max_attempts_per_step*settings.steps, updates=settings.steps,
-                    other_samples=evals*min(settings.eval_briefs, held_out_count)*settings.eval_samples,
+                    other_samples=evals*min(settings.eval_briefs, held_out_count)*settings.eval_samples*len(settings.position_offsets),
                     probes=4, checkpoints=checkpoints)
 
 
@@ -248,9 +250,11 @@ class Ledger:
 
 
 async def sample_group(ledger, backend, task, *, phase, mode, count, seed, strategy, representation,
-                       temperature=None, context=None, position_offset=0, reward_seed=0):
+                       temperature=None, context=None, position_offset=0, reward_seed=0, presentation_seed=None):
     settings = ledger.settings
-    candidates = task["candidates"]
+    candidates = list(task["candidates"])
+    if presentation_seed is not None:
+        random.Random(presentation_seed).shuffle(candidates)
     presented = dict(task, candidates=candidates[position_offset:]+candidates[:position_offset])
     prompt = render(presented, representation, format_example=settings.format_example)
     tokens = backend.encode(prompt)
@@ -282,12 +286,17 @@ async def sample_group(ledger, backend, task, *, phase, mode, count, seed, strat
                  representation=representation, phase=phase, mode=mode, requests=requests, sampling=strategy,
                  difficulty=difficulty(task), position_offset=position_offset,
                  candidate_order=[c["id"] for c in presented["candidates"]], baselines=optical_baselines(task, phase),
+                 presentation_seed=presentation_seed,
                  temperature=temperature if temperature is not None else settings.temperature, prompt_tokens=len(tokens),
                  completions=[dict(asdict(c), grade=asdict(g), advantage=a)
                               for c, g, a in zip(completions, grades, advantages, strict=True)], diagnostics=stats)
     group.update(context or {})
     if phase == "training" and "room_for_update" in group:
-        group["accepted_for_update"] = stats["informative"] and group["room_for_update"]
+        valid_rewards = [g.reward for g in grades if g.error is None]
+        span = max(valid_rewards)-min(valid_rewards) if valid_rewards else 0.
+        group["valid_optical_reward_span"] = span
+        group["accepted_for_update"] = (stats["informative"] and group["room_for_update"]
+                                        and span >= settings.min_optical_reward_span)
     if mode == "random":
         group["random_reward_seed"] = reward_seed
     ledger.record_group(group)
@@ -322,10 +331,11 @@ async def dev_evaluate(ledger, backend, tasks, step):
     settings = ledger.settings
     entries = []
     for task in tasks:
-        group, *_ = await sample_group(ledger, backend, task, phase="development", mode="yield", count=settings.eval_samples,
-                                       seed=seed_for(settings.seed, task["task_id"], "dev"), strategy=settings.sampling,
-                                       representation=settings.representation)
-        entries.append(group)
+        for offset in settings.position_offsets:
+            group, *_ = await sample_group(ledger, backend, task, phase="development", mode="yield", count=settings.eval_samples,
+                                           seed=seed_for(settings.seed, task["task_id"], "dev"), strategy=settings.sampling,
+                                           representation=settings.representation, position_offset=offset)
+            entries.append(group)
     ledger.data["evaluations"].append(dict(step=step, task_ids=[t["task_id"] for t in tasks],
         metrics={m: statistics.mean(statistics.mean(float(c["grade"][m]) for c in g["completions"]) for g in entries)
                  for m in ("reward", "yield_fraction", "final_pass", "nominal_pass")}))
@@ -388,7 +398,9 @@ async def train(settings, train_tasks, dev_tasks, path, *, backend=None, resume=
                     seed=seed_for(settings.seed, step, index, task["task_id"]), strategy=settings.sampling,
                     representation=settings.representation, context=dict(step=step+1, curriculum_family=family,
                                                                           room_for_update=used < settings.groups_per_step),
-                    reward_seed=seed_for(settings.seed, "reward-control", step, index))
+                    reward_seed=seed_for(settings.seed, "reward-control", step, index),
+                    presentation_seed=seed_for(settings.seed, "training-order", step, index, task["task_id"])
+                    if settings.shuffle_training else None)
                 attempted += 1
                 accepted = g["accepted_for_update"]
                 step_observations.append(dict(observation(g), accepted=accepted))
@@ -475,9 +487,12 @@ async def inference(settings, tasks, path, *, exploration=False, checkpoint=None
     if exploration and (any(t["split"] == "test" for t in tasks) or not temperatures
                         or any(not 0 < t <= 2 for t in temperatures)):
         raise ValueError("exploration uses training/development tasks and temperatures in (0, 2]")
+    if not exploration and settings.position_offsets != (0,) and any(t["split"] != "development" for t in tasks):
+        raise ValueError("permuted inference is limited to development")
     combinations = ([(r, strategy, temp, offset) for r in REPRESENTATIONS for strategy in ("batched", "separate")
                      for temp in temperatures for offset in settings.position_offsets] if exploration else
-                    [(settings.representation, settings.sampling, settings.temperature, 0)])
+                    [(settings.representation, settings.sampling, settings.temperature, offset)
+                     for offset in settings.position_offsets])
     groups = len(tasks)*len(combinations)
     plan = estimate(settings, groups=groups if exploration else 0, other_samples=0 if exploration else groups*settings.eval_samples)
     enforce(plan, settings)

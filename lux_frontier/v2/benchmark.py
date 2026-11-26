@@ -53,6 +53,8 @@ class Protocol(Contract):
     evaluations: int = Field(default=25, ge=1, le=301)
     pupil_samples: int = Field(default=32, ge=16, le=256)
     builds_per_phase: int = Field(default=8, ge=2, le=10000)
+    borderline_mtf: float | None = Field(default=None, gt=0, le=.1)
+    scoring_builds: int | None = Field(default=None, ge=2, le=10000)
 
 
 def write_json(path, value):
@@ -198,7 +200,7 @@ def refine(p, brief, protocol):
             design = shape(p, x)
         row = dict(parameters=x.tolist(), prescription=design.model_dump(mode="json"), axis=axis)
         try:
-            value = measurements(design, brief, protocol.pupil_samples)
+            value = measurements(design, brief, protocol.pupil_samples, borderline=protocol.borderline_mtf)
             score, violation = merit(value, brief)
             reasons = failures(value, brief)
             row.update(measured=value, score=score, violation=violation, failures=reasons)
@@ -242,10 +244,13 @@ def sensitivity(p, brief, protocol, initial):
               "front_radius_plus_0p1pct": (replace(zero, radius_fraction=(.001, *zero.radius_fraction[1:])), 0.),
               "front_decenter_x_plus_10um": (replace(zero, decenter_mm=((.01, 0.), *zero.decenter_mm[1:])), 0.)}
     result = {}
-    baseline = [row["mtf_fraction"] for row in initial["metrics"]["mtf"]]
     for name, (errors, focus) in probes.items():
         try:
-            measured = measurements(p, brief, protocol.pupil_samples, errors=errors, focus=focus)
+            samples = initial["trace"]["pupil_samples"]
+            measured = measurements(p, brief, samples, errors=errors, focus=focus, borderline=protocol.borderline_mtf)
+            baseline_measure = (initial if measured["trace"]["pupil_samples"] == samples else
+                                measurements(p, brief, measured["trace"]["pupil_samples"]))
+            baseline = [row["mtf_fraction"] for row in baseline_measure["metrics"]["mtf"]]
             changed = [row["mtf_fraction"] for row in measured["metrics"]["mtf"]]
             result[name] = dict(mtf_delta=[a-b for a, b in zip(changed, baseline, strict=True)],
                                 focal_delta_mm=measured["metrics"]["effective_focal_length_mm"]-initial["metrics"]["effective_focal_length_mm"])
@@ -382,7 +387,8 @@ def prepare_group(args):
         if not forms:
             for p in pool:
                 key = dict(version=OPTICS_VERSION, source_key=source_key, prescription=p, constraints=physical,
-                           evaluations=protocol.evaluations, pupil_samples=protocol.pupil_samples)
+                           evaluations=protocol.evaluations, pupil_samples=protocol.pupil_samples,
+                           borderline_mtf=protocol.borderline_mtf)
                 try:
                     def compute():
                         fitted = refine(p, brief, protocol)
@@ -412,19 +418,24 @@ def prepare_group(args):
                            refined_prescription=final["prescription"], failures=final["failures"], simulations={})
             records = {}
             for phase_index, phase in enumerate(PHASES):
+                if protocol.scoring_builds is not None and phase not in (
+                        "construction", {"train": "training", "development": "development", "test": "final"}[split]):
+                    continue
                 if outcome["nominal_pass"]:
                     stream_id = int(digest([group_id, "errors"])[:8], 16)
                     design = Lens.model_validate(final["prescription"])
                     # Profiles and candidates within a counterfactual group share
                     # random quantiles. The four purposes have disjoint streams.
+                    count = protocol.builds_per_phase if phase == "construction" else (
+                        protocol.scoring_builds or protocol.builds_per_phase)
                     settings = dict(version=OPTICS_VERSION, source_key=source_key, prescription=design,
                                     constraints=physical, profile=profile.record(), phase=phase,
-                                    stream_id=stream_id, seed=protocol.seed, count=protocol.builds_per_phase,
-                                    pupil_samples=protocol.pupil_samples)
+                                    stream_id=stream_id, seed=protocol.seed, count=count,
+                                    pupil_samples=protocol.pupil_samples, borderline_mtf=protocol.borderline_mtf)
                     def compute_builds():
                         return [simulate_build(design, brief, protocol.pupil_samples, profile,
-                                               [protocol.seed, stream_id, phase_index+1, b])
-                                for b in range(protocol.builds_per_phase)]
+                                               [protocol.seed, stream_id, phase_index+1, b], borderline=protocol.borderline_mtf)
+                                for b in range(count)]
                     builds, _ = cache.compute("tolerancing", settings, compute_builds)
                     records[phase] = builds
                     outcome["simulations"][phase] = dict(passed=sum(b["passed"] for b in builds), tested=len(builds))
@@ -432,7 +443,7 @@ def prepare_group(args):
             replay_details[str(local_id)] = dict(trajectory=fitted["trajectory"], builds=records)
         task = dict(version=VERSION, optics_version=OPTICS_VERSION, task_id=task_id, split=split,
                     group=group_id, cohort=cohort, brief=brief.model_dump(mode="json"),
-                    profile=profile.record(), protocol=protocol.model_dump(mode="json"),
+                    profile=profile.record(), protocol=protocol.model_dump(mode="json", exclude_none=True),
                     yield_target=brief.minimum_simulated_yield_fraction, candidates=candidates, outcomes=outcomes)
         task["construction"] = characterize(task)
         task["replay_details_sha256"] = digest(replay_details)
@@ -500,7 +511,7 @@ def generate(root, protocol, *, workers=1, scenarios=7, pools=1, profiles=None, 
             row["validation"] = validate_prescription(Lens.model_validate(row["prescription"]), protocol.pupil_samples)
     if contrast_parent is not None:
         previous = load_envelope(contrast_parent, "manifest")
-        if previous["protocol"] != protocol.model_dump(mode="json"):
+        if previous["protocol"] != protocol.model_dump(mode="json", exclude_none=True):
             raise ValueError("contrast extension requires identical physical budgets and seeds")
         prior_tasks = load_tasks(contrast_parent)
     source = provenance()
@@ -513,12 +524,14 @@ def generate(root, protocol, *, workers=1, scenarios=7, pools=1, profiles=None, 
         profiles = ("standard-fixed", "standard-adjusted")
     entries = [(row["split"], row) for row in lineages] if lineages else [(s, None) for s in split_names]
     for split_index, (split, lineage) in enumerate(entries):
-        for pool in range(pools):
-            for index in range(scenarios):
+        entry = lineage or {}
+        entry_recipes = entry.get("scenarios", recipes)
+        for pool in range(entry.get("pools", pools)):
+            for index in range(len(entry_recipes) if "scenarios" in entry else scenarios):
                 # Train, development and test use different focal/f-number
                 # centers and fields, even before accounting for the ancestry.
-                scenario = list(recipes[index % len(recipes)])
-                if index >= len(recipes):
+                scenario = list(entry_recipes[index % len(entry_recipes)])
+                if index >= len(entry_recipes):
                     rng = random.Random(digest([protocol.seed, "crossed" if lineage else split, index, "brief"]))
                     scenario[1] += rng.uniform(-.012, .012)
                     scenario[6] *= rng.uniform(.85, 1.15)
@@ -527,7 +540,8 @@ def generate(root, protocol, *, workers=1, scenarios=7, pools=1, profiles=None, 
                     scenario[3] += (.0, .013, -.008)[split_index]
                 selected_profiles = profiles if lineage or split != "test" or "economy-adjusted" in profiles else (
                     profiles[0], "economy-adjusted")
-                jobs.append((split, index, pool, scenario, selected_profiles, protocol, root, source_key, contrasts, lineage))
+                jobs.append((split, index, pool, scenario, selected_profiles, protocol, root, source_key,
+                             entry.get("contrast_pool", contrasts), lineage))
     tasks, rejected = [], []
     def collect(results):
         for batch, skipped in results:
@@ -573,7 +587,7 @@ def generate(root, protocol, *, workers=1, scenarios=7, pools=1, profiles=None, 
                 if not target.exists():
                     write_envelope(target, parent_payload, key)
         tasks = [*prior_tasks, *tasks]
-    manifest = dict(version=VERSION, optics_version=OPTICS_VERSION, protocol=protocol.model_dump(mode="json"),
+    manifest = dict(version=VERSION, optics_version=OPTICS_VERSION, protocol=protocol.model_dump(mode="json", exclude_none=True),
                     configuration=dict(scenarios=scenarios, pools=pools, profiles=profiles,
                                        training_contrast_parent_sha256=parent_digest, supplied_lineages=lineages), provenance=source,
                     runtime_seconds=time.perf_counter()-started, attempted_groups=len(jobs),

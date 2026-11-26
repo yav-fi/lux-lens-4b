@@ -121,9 +121,13 @@ def response_map(record, tasks, *, name):
         if task is None:
             continue
         offset = row.get("position_offset", 0)
-        if offset or record.get("mode") == "exploration":
+        if record.get("mode") == "exploration" or type(offset) is not int or not 0 <= offset < 8 or (
+                offset and (task["split"] != "development" or offset not in record.get("settings", {}).get("position_offsets", ()))):
             raise ValueError(f"{name} must use the fixed evaluation prompt order and settings")
-        prompt = render(task, row["representation"], format_example=row.get("format_example", False))
+        candidates = task["candidates"][offset:]+task["candidates"][:offset]
+        if row.get("candidate_order", [c["id"] for c in candidates]) != [c["id"] for c in candidates]:
+            raise ValueError(f"{name} has an incorrect recorded presentation")
+        prompt = render(dict(task, candidates=candidates), row["representation"], format_example=row.get("format_example", False))
         if row.get("prompt_sha256") != digest(prompt) or row.get("task_sha256") != digest(task):
             raise ValueError(f"{name} prompt or task did not match the frozen evaluation")
         result.setdefault(row["task_id"], []).append(row)
@@ -156,6 +160,28 @@ def evaluate(tasks, *, phase, train_tasks=None, predictions=None, paired_referen
         raise ValueError("prediction labels must not replace predeclared controls")
     control = ranker(train_tasks) if train_tasks else None
     responses = {name: response_map(record, tasks, name=name) for name, record in (predictions or {}).items()}
+    permutations = {tuple(record.get("settings", {}).get("position_offsets", (0,)))
+                    for record in (predictions or {}).values()}
+    matched_permutations = bool(permutations - {(0,)})
+    if matched_permutations:
+        if phase != "development" or len(permutations) != 1:
+            raise ValueError("all development arms must have the same registered permutations")
+        if len({(record["model"], record.get("renderer")) for record in predictions.values()}) != 1:
+            raise ValueError("development arms need the same model and renderer")
+        offsets = next(iter(permutations))
+        config_keys = ("representation", "sampling", "temperature", "top_p", "seed", "max_tokens",
+                       "max_prompt_tokens", "format_example", "eval_samples")
+        first_settings, *other_settings = [record["settings"] for record in predictions.values()]
+        expected = {offset: first_settings["eval_samples"] for offset in offsets}
+        if any(any(other.get(k) != first_settings[k] for k in config_keys) for other in other_settings):
+            raise ValueError("development inference settings differ between arms")
+        for name, by_task in responses.items():
+            for task in tasks:
+                got = by_task.get(task["task_id"], ())
+                if Counter(r.get("position_offset", 0) for r in got) != expected or any(
+                        any(r.get(k) != first_settings[k] for k in ("representation", "sampling", "temperature", "format_example"))
+                        for r in got):
+                    raise ValueError(f"{name} has an incomplete or mismatched permutation matrix")
     rows = {}
     for task in tasks:
         brief = Requirements.model_validate(task["brief"])
@@ -199,7 +225,19 @@ def evaluate(tasks, *, phase, train_tasks=None, predictions=None, paired_referen
         return dict(tasks=len(subset), ancestry_clusters=len(set(cluster)), methods=result)
 
     families = sorted({f for t in tasks for f in t["construction"]["families"]})
+    by_permutation = {str(offset): {
+        name: statistics.mean(adjudicate(t, [r for r in by_task[t["task_id"]] if r["position_offset"] == offset],
+                                       phase)["scores"]["final_pass"] for t in tasks)
+        for name, by_task in responses.items()} for offset in offsets} if matched_permutations else {}
+    by_lineage = defaultdict(list)
+    if phase == "development":
+        for task in tasks:
+            by_lineage["|".join(sorted({c["prescription"]["ancestry"] for c in task["candidates"]}))].append(task)
     return dict(phase=phase, paired_reference=paired_reference, ranker=control, overall=summary(tasks),
+                development_pass_by_permutation=by_permutation,
+                development_pass_by_lineage={lineage: {
+                    name: statistics.mean(rows[t["task_id"]][name]["scores"]["final_pass"] for t in subset)
+                    for name in methods} for lineage, subset in sorted(by_lineage.items())},
                 per_family={f: summary([t for t in tasks if f in t["construction"]["families"]]) for f in families},
                 task_results=rows,
                 prediction_sources={k: {"model": v["model"], "checkpoint": v.get("checkpoint"), "sha256": digest(v)}

@@ -138,31 +138,44 @@ def study(task, *, builds=16):
                 pupil_samples=convergence, references=validate_references(protocol.pupil_samples), runtime_seconds=time.perf_counter()-started)
 
 
-def ranking_convergence(task, pupil_grids=(64, 128)):
-    """Compare all frozen final nominal designs, then refit at shorter and longer budgets."""
+def ranking_convergence(task, pupil_grids=(64, 128), budgets=(7, 49)):
+    """Compare frozen nominal designs at other pupil grids and refinement budgets."""
     started = time.perf_counter()
     protocol = Protocol.model_validate(task["protocol"])
     brief = Requirements.model_validate(task["brief"])
     outcomes = [task["outcomes"][str(c["id"])] for c in task["candidates"]]
+    ids = [c["id"] for c in task["candidates"]]
     canonical = [r["objective"] for r in outcomes]
+    canonical_nominal = [r["nominal_pass"] for r in outcomes]
+
+    def best_id(scores, nominal):
+        return min(zip(nominal, scores, ids, strict=True), key=lambda row: (not row[0], row[1], row[2]))[2]
+
     fixed = {}
     for size in pupil_grids:
+        cpu_start = time.process_time()
         measurements_at_size = [measurements(Lens.model_validate(r["refined_prescription"]), brief, size) for r in outcomes]
+        seconds = time.process_time()-cpu_start
         scores = [merit(m, brief)[0] for m in measurements_at_size]
         nominal = [not failures(m, brief) for m in measurements_at_size]
         fixed[size] = dict(pair_order_agreement=pair_order_similarity(scores, canonical), nominal=nominal,
+                           cpu_seconds=seconds,
                            nominal_flips=sum(x != r["nominal_pass"] for x, r in zip(nominal, outcomes, strict=True)),
                            maximum_mtf_delta=max(abs(a["mtf_fraction"]-b["mtf_fraction"])
                                                  for m, r in zip(measurements_at_size, outcomes, strict=True)
                                                  for a, b in zip(m["metrics"]["mtf"], r["final"]["metrics"]["mtf"], strict=True)))
     refits = {}
-    for budget in (7, 49):
+    for budget in budgets:
+        cpu_start = time.process_time()
         fitted = [refine(Lens.model_validate(c["prescription"]), brief,
                          protocol.model_copy(update={"evaluations": budget}))["final"] for c in task["candidates"]]
+        seconds = time.process_time()-cpu_start
         nominal = [not item["failures"] for item in fitted]
-        refits[budget] = dict(pair_order_agreement=pair_order_similarity([r["score"] for r in fitted], canonical),
+        scores = [r["score"] for r in fitted]
+        refits[budget] = dict(pair_order_agreement=pair_order_similarity(scores, canonical), best_id=best_id(scores, nominal),
+                              cpu_seconds=seconds,
                               nominal=nominal, nominal_flips=sum(x != r["nominal_pass"] for x, r in zip(nominal, outcomes, strict=True)))
-    return dict(task_id=task["task_id"], candidate_order=[c["id"] for c in task["candidates"]],
+    return dict(task_id=task["task_id"], candidate_order=ids, canonical_best_id=best_id(canonical, canonical_nominal),
                 canonical_pupil_grid=protocol.pupil_samples, canonical_budget=protocol.evaluations,
                 canonical_nominal=[r["nominal_pass"] for r in outcomes], fixed_design_resolution=fixed, refits=refits,
                 wall_seconds=time.perf_counter()-started)

@@ -1,0 +1,5295 @@
+{
+  "manifest_sha256": "5ea5b7b9dc869f7e3bb482c6cdda6a4b5328733f8d27302dbe8b846e5f225448",
+  "protocol": {
+    "seed": 17291,
+    "evaluations": 25,
+    "pupil_samples": 128,
+    "builds_per_phase": 8,
+    "borderline_mtf": 0.01,
+    "scoring_builds": 16
+  },
+  "benchmark": {
+    "train": [
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec000-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec000",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "C",
+          "E"
+        ],
+        "nominal_candidates": 7,
+        "passing_candidates": 6,
+        "reward_range": 0.7009001298984735,
+        "uniform_reward_variance": 0.05330048254282106,
+        "best_reward": 0.703125,
+        "physics_regret": 0.17812499999999998,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 53,
+          "training:128": 110,
+          "training:256": 2,
+          "construction:256": 3
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0004501660574480759,
+        "contrasts": [],
+        "random_pass": 0.75,
+        "random_reward": 0.5932468587626908,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec000-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec000",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "E"
+        ],
+        "nominal_candidates": 7,
+        "passing_candidates": 7,
+        "reward_range": 0.9977751298984735,
+        "uniform_reward_variance": 0.10888885107667827,
+        "best_reward": 1.0,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 56,
+          "training:128": 112
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0,
+        "contrasts": [],
+        "random_pass": 0.875,
+        "random_reward": 0.8752781087626909,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec001-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec001",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [
+          "B",
+          "C"
+        ],
+        "nominal_candidates": 8,
+        "passing_candidates": 0,
+        "reward_range": 0.23750000000000004,
+        "uniform_reward_variance": 0.007877044677734379,
+        "best_reward": 0.525,
+        "physics_regret": 0.11875000000000008,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 57,
+          "training:128": 120,
+          "training:256": 8,
+          "construction:256": 7
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0010867028487431818,
+        "contrasts": [
+          {
+            "ids": [
+              3,
+              5
+            ],
+            "passed": [
+              4,
+              8
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              3,
+              1
+            ],
+            "passed": [
+              4,
+              8
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              3,
+              6
+            ],
+            "passed": [
+              4,
+              8
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              3,
+              8
+            ],
+            "passed": [
+              4,
+              8
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          }
+        ],
+        "random_pass": 0.0,
+        "random_reward": 0.443359375,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec001-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec001",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "B",
+          "C",
+          "E"
+        ],
+        "nominal_candidates": 8,
+        "passing_candidates": 7,
+        "reward_range": 0.653125,
+        "uniform_reward_variance": 0.045830078125,
+        "best_reward": 1.0,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 64,
+          "training:128": 125,
+          "training:256": 3
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0005115247678927348,
+        "contrasts": [
+          {
+            "ids": [
+              4,
+              3
+            ],
+            "passed": [
+              5,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.6875,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 11,
+            "builds": 16,
+            "difference_second_minus_first": 0.6875,
+            "exact_mcnemar_p": 0.0009765625
+          },
+          {
+            "ids": [
+              4,
+              6
+            ],
+            "passed": [
+              5,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.6875,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 11,
+            "builds": 16,
+            "difference_second_minus_first": 0.6875,
+            "exact_mcnemar_p": 0.0009765625
+          },
+          {
+            "ids": [
+              4,
+              8
+            ],
+            "passed": [
+              5,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.6875,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 11,
+            "builds": 16,
+            "difference_second_minus_first": 0.6875,
+            "exact_mcnemar_p": 0.0009765625
+          },
+          {
+            "ids": [
+              4,
+              5
+            ],
+            "passed": [
+              5,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.6875,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 11,
+            "builds": 16,
+            "difference_second_minus_first": 0.6875,
+            "exact_mcnemar_p": 0.0009765625
+          },
+          {
+            "ids": [
+              4,
+              1
+            ],
+            "passed": [
+              5,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.6875,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 11,
+            "builds": 16,
+            "difference_second_minus_first": 0.6875,
+            "exact_mcnemar_p": 0.0009765625
+          },
+          {
+            "ids": [
+              4,
+              2
+            ],
+            "passed": [
+              5,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.6875,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 11,
+            "builds": 16,
+            "difference_second_minus_first": 0.6875,
+            "exact_mcnemar_p": 0.0009765625
+          },
+          {
+            "ids": [
+              4,
+              7
+            ],
+            "passed": [
+              5,
+              15
+            ],
+            "tested": 16,
+            "gap": 0.625,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 10,
+            "builds": 16,
+            "difference_second_minus_first": 0.625,
+            "exact_mcnemar_p": 0.001953125
+          }
+        ],
+        "random_pass": 0.875,
+        "random_reward": 0.9109375,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec002-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec002",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [],
+        "nominal_candidates": 0,
+        "passing_candidates": 0,
+        "reward_range": 0.0022713379943345834,
+        "uniform_reward_variance": 5.489776868493223e-07,
+        "best_reward": 0.0040601100456707905,
+        "physics_regret": 0.0010336222645779209,
+        "resolution_counts": {
+          "nominal:128": 5,
+          "nominal:256": 3
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0017029990886510138,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.0028356219895413586,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec002-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec002",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [],
+        "nominal_candidates": 0,
+        "passing_candidates": 0,
+        "reward_range": 0.0022713379943345834,
+        "uniform_reward_variance": 5.489776868493223e-07,
+        "best_reward": 0.0040601100456707905,
+        "physics_regret": 0.0010336222645779209,
+        "resolution_counts": {
+          "nominal:256": 3,
+          "nominal:128": 5
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0017029990886510138,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.0028356219895413586,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec003-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec003",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [
+          "A",
+          "B"
+        ],
+        "nominal_candidates": 7,
+        "passing_candidates": 0,
+        "reward_range": 0.5823016747600843,
+        "uniform_reward_variance": 0.031264709800503644,
+        "best_reward": 0.584375,
+        "physics_regret": 0.059374999999999956,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 55,
+          "training:128": 104,
+          "construction:256": 1,
+          "training:256": 8
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0018794346608290435,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.46705604065498946,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec003-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec003",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "D",
+          "E"
+        ],
+        "nominal_candidates": 7,
+        "passing_candidates": 7,
+        "reward_range": 0.9979266747600843,
+        "uniform_reward_variance": 0.09193151245448616,
+        "best_reward": 1.0,
+        "physics_regret": 0.059374999999999956,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 55,
+          "training:128": 110,
+          "training:256": 2,
+          "construction:256": 1
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0006289380903510278,
+        "contrasts": [
+          {
+            "ids": [
+              1,
+              3
+            ],
+            "passed": [
+              11,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.3125,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 5,
+            "builds": 16,
+            "difference_second_minus_first": 0.3125,
+            "exact_mcnemar_p": 0.0625
+          },
+          {
+            "ids": [
+              2,
+              3
+            ],
+            "passed": [
+              11,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.3125,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 5,
+            "builds": 16,
+            "difference_second_minus_first": 0.3125,
+            "exact_mcnemar_p": 0.0625
+          },
+          {
+            "ids": [
+              1,
+              6
+            ],
+            "passed": [
+              11,
+              15
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              1,
+              8
+            ],
+            "passed": [
+              11,
+              15
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              1,
+              7
+            ],
+            "passed": [
+              11,
+              15
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              2,
+              6
+            ],
+            "passed": [
+              11,
+              15
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              2,
+              8
+            ],
+            "passed": [
+              11,
+              15
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              2,
+              7
+            ],
+            "passed": [
+              11,
+              15
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              5,
+              3
+            ],
+            "passed": [
+              12,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          }
+        ],
+        "random_pass": 0.875,
+        "random_reward": 0.7490872906549895,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec004-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec004",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "C",
+          "E"
+        ],
+        "nominal_candidates": 5,
+        "passing_candidates": 4,
+        "reward_range": 0.6990042871169363,
+        "uniform_reward_variance": 0.10464621773348418,
+        "best_reward": 0.703125,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 39,
+          "training:128": 74,
+          "training:256": 6,
+          "construction:256": 1
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.001728264472555363,
+        "contrasts": [
+          {
+            "ids": [
+              4,
+              8
+            ],
+            "passed": [
+              7,
+              11
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              4,
+              7
+            ],
+            "passed": [
+              7,
+              11
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              4,
+              5
+            ],
+            "passed": [
+              7,
+              11
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              4,
+              2
+            ],
+            "passed": [
+              7,
+              11
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          }
+        ],
+        "random_pass": 0.5,
+        "random_reward": 0.4118977905659666,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec004-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec004",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "C",
+          "E"
+        ],
+        "nominal_candidates": 5,
+        "passing_candidates": 4,
+        "reward_range": 0.9958792871169363,
+        "uniform_reward_variance": 0.2118686335877232,
+        "best_reward": 1.0,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 40,
+          "training:128": 80
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0,
+        "contrasts": [
+          {
+            "ids": [
+              3,
+              1
+            ],
+            "passed": [
+              9,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.4375,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 7,
+            "builds": 16,
+            "difference_second_minus_first": 0.4375,
+            "exact_mcnemar_p": 0.015625
+          },
+          {
+            "ids": [
+              3,
+              7
+            ],
+            "passed": [
+              9,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.4375,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 7,
+            "builds": 16,
+            "difference_second_minus_first": 0.4375,
+            "exact_mcnemar_p": 0.015625
+          },
+          {
+            "ids": [
+              3,
+              8
+            ],
+            "passed": [
+              9,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.4375,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 7,
+            "builds": 16,
+            "difference_second_minus_first": 0.4375,
+            "exact_mcnemar_p": 0.015625
+          },
+          {
+            "ids": [
+              3,
+              2
+            ],
+            "passed": [
+              9,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.4375,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 7,
+            "builds": 16,
+            "difference_second_minus_first": 0.4375,
+            "exact_mcnemar_p": 0.015625
+          }
+        ],
+        "random_pass": 0.5,
+        "random_reward": 0.5751790405659666,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec005-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec005",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [],
+        "nominal_candidates": 0,
+        "passing_candidates": 0,
+        "reward_range": 0.003986758279657101,
+        "uniform_reward_variance": 1.8246310573776661e-06,
+        "best_reward": 0.005695968681360523,
+        "physics_regret": 0.00197120360583276,
+        "resolution_counts": {
+          "nominal:128": 5,
+          "nominal:256": 3
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0014513966722282667,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.0032917587777311023,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec005-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec005",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [],
+        "nominal_candidates": 0,
+        "passing_candidates": 0,
+        "reward_range": 0.003986758279657101,
+        "uniform_reward_variance": 1.8246310573776661e-06,
+        "best_reward": 0.005695968681360523,
+        "physics_regret": 0.00197120360583276,
+        "resolution_counts": {
+          "nominal:256": 3,
+          "nominal:128": 5
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0014513966722282667,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.0032917587777311023,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec006-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec006",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [
+          "A"
+        ],
+        "nominal_candidates": 2,
+        "passing_candidates": 0,
+        "reward_range": 0.22597387767521157,
+        "uniform_reward_variance": 0.007189965794812348,
+        "best_reward": 0.22812499999999997,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:256": 3,
+          "nominal:128": 5,
+          "construction:128": 16,
+          "training:128": 30,
+          "training:256": 2
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0034216038615173805,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.05400550990767685,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec006-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec006",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [
+          "A"
+        ],
+        "nominal_candidates": 2,
+        "passing_candidates": 0,
+        "reward_range": 0.22597387767521157,
+        "uniform_reward_variance": 0.005872316869613801,
+        "best_reward": 0.22812499999999997,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:256": 3,
+          "nominal:128": 5,
+          "construction:256": 4,
+          "construction:128": 12,
+          "training:128": 31,
+          "training:256": 1
+        },
+        "changed_mtf_decisions": {
+          "training": 1
+        },
+        "maximum_boundary_delta": 0.005666457970773753,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.04658363490767685,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec007-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec007",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [
+          "A",
+          "B"
+        ],
+        "nominal_candidates": 6,
+        "passing_candidates": 0,
+        "reward_range": 0.3446175648578289,
+        "uniform_reward_variance": 0.014213845754713282,
+        "best_reward": 0.346875,
+        "physics_regret": 0.2375,
+        "resolution_counts": {
+          "nominal:128": 5,
+          "construction:128": 42,
+          "training:128": 83,
+          "training:256": 13,
+          "nominal:256": 3,
+          "construction:256": 6
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0010530976400238146,
+        "contrasts": [
+          {
+            "ids": [
+              8,
+              1
+            ],
+            "passed": [
+              1,
+              5
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          }
+        ],
+        "random_pass": 0.0,
+        "random_reward": 0.1736264933988407,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort000-contrast-spec007-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort000-contrast-spec007",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ],
+        "nominal_candidates": 6,
+        "passing_candidates": 4,
+        "reward_range": 0.7602425648578289,
+        "uniform_reward_variance": 0.11530472896707011,
+        "best_reward": 0.7625,
+        "physics_regret": 0.7124999999999999,
+        "resolution_counts": {
+          "nominal:128": 5,
+          "construction:128": 38,
+          "construction:256": 10,
+          "training:128": 83,
+          "training:256": 13,
+          "nominal:256": 3
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0007220706292363488,
+        "contrasts": [
+          {
+            "ids": [
+              5,
+              6
+            ],
+            "passed": [
+              0,
+              12
+            ],
+            "tested": 16,
+            "gap": 0.75,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 12,
+            "builds": 16,
+            "difference_second_minus_first": 0.75,
+            "exact_mcnemar_p": 0.00048828125
+          },
+          {
+            "ids": [
+              5,
+              4
+            ],
+            "passed": [
+              0,
+              12
+            ],
+            "tested": 16,
+            "gap": 0.75,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 12,
+            "builds": 16,
+            "difference_second_minus_first": 0.75,
+            "exact_mcnemar_p": 0.00048828125
+          },
+          {
+            "ids": [
+              2,
+              6
+            ],
+            "passed": [
+              1,
+              12
+            ],
+            "tested": 16,
+            "gap": 0.6875,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 11,
+            "builds": 16,
+            "difference_second_minus_first": 0.6875,
+            "exact_mcnemar_p": 0.0009765625
+          },
+          {
+            "ids": [
+              5,
+              8
+            ],
+            "passed": [
+              0,
+              11
+            ],
+            "tested": 16,
+            "gap": 0.6875,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 11,
+            "builds": 16,
+            "difference_second_minus_first": 0.6875,
+            "exact_mcnemar_p": 0.0009765625
+          },
+          {
+            "ids": [
+              2,
+              4
+            ],
+            "passed": [
+              1,
+              12
+            ],
+            "tested": 16,
+            "gap": 0.6875,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 11,
+            "builds": 16,
+            "difference_second_minus_first": 0.6875,
+            "exact_mcnemar_p": 0.0009765625
+          },
+          {
+            "ids": [
+              5,
+              1
+            ],
+            "passed": [
+              0,
+              10
+            ],
+            "tested": 16,
+            "gap": 0.625,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 10,
+            "builds": 16,
+            "difference_second_minus_first": 0.625,
+            "exact_mcnemar_p": 0.001953125
+          },
+          {
+            "ids": [
+              2,
+              8
+            ],
+            "passed": [
+              1,
+              11
+            ],
+            "tested": 16,
+            "gap": 0.625,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 10,
+            "builds": 16,
+            "difference_second_minus_first": 0.625,
+            "exact_mcnemar_p": 0.001953125
+          },
+          {
+            "ids": [
+              2,
+              1
+            ],
+            "passed": [
+              1,
+              10
+            ],
+            "tested": 16,
+            "gap": 0.5625,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 9,
+            "builds": 16,
+            "difference_second_minus_first": 0.5625,
+            "exact_mcnemar_p": 0.00390625
+          }
+        ],
+        "random_pass": 0.5,
+        "random_reward": 0.3814389933988407,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec000-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec000",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [
+          "B"
+        ],
+        "nominal_candidates": 8,
+        "passing_candidates": 7,
+        "reward_range": 0.17812499999999998,
+        "uniform_reward_variance": 0.0043516540527343715,
+        "best_reward": 0.7625,
+        "physics_regret": 0.11874999999999991,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 64,
+          "training:128": 118,
+          "training:256": 10
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0008006512656688336,
+        "contrasts": [],
+        "random_pass": 0.875,
+        "random_reward": 0.680859375,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec000-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec000",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [
+          "B"
+        ],
+        "nominal_candidates": 8,
+        "passing_candidates": 8,
+        "reward_range": 0.11875000000000002,
+        "uniform_reward_variance": 0.0015423583984375006,
+        "best_reward": 1.0,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 64,
+          "training:128": 128
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0,
+        "contrasts": [],
+        "random_pass": 1.0,
+        "random_reward": 0.98515625,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec001-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec001",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [
+          "B",
+          "D"
+        ],
+        "nominal_candidates": 8,
+        "passing_candidates": 4,
+        "reward_range": 0.23750000000000004,
+        "uniform_reward_variance": 0.006114349365234377,
+        "best_reward": 0.703125,
+        "physics_regret": 0.11875000000000002,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 61,
+          "training:128": 120,
+          "training:256": 8,
+          "construction:256": 3
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0007808274142682148,
+        "contrasts": [
+          {
+            "ids": [
+              5,
+              7
+            ],
+            "passed": [
+              7,
+              11
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              5,
+              3
+            ],
+            "passed": [
+              7,
+              11
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          }
+        ],
+        "random_pass": 0.5,
+        "random_reward": 0.606640625,
+        "oracle_pass": true,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec001-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec001",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "B",
+          "C",
+          "E"
+        ],
+        "nominal_candidates": 8,
+        "passing_candidates": 8,
+        "reward_range": 0.23750000000000004,
+        "uniform_reward_variance": 0.006555023193359377,
+        "best_reward": 1.0,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 64,
+          "training:128": 127,
+          "training:256": 1
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0005310324867022764,
+        "contrasts": [
+          {
+            "ids": [
+              7,
+              6
+            ],
+            "passed": [
+              12,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              7,
+              4
+            ],
+            "passed": [
+              12,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              7,
+              8
+            ],
+            "passed": [
+              12,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              7,
+              3
+            ],
+            "passed": [
+              12,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              7,
+              1
+            ],
+            "passed": [
+              12,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          }
+        ],
+        "random_pass": 1.0,
+        "random_reward": 0.948046875,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec002-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec002",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [],
+        "nominal_candidates": 0,
+        "passing_candidates": 0,
+        "reward_range": 0.008698202778084963,
+        "uniform_reward_variance": 6.8693628564487925e-06,
+        "best_reward": 0.010050392322617199,
+        "physics_regret": 0.007023904541524329,
+        "resolution_counts": {
+          "nominal:128": 7,
+          "nominal:256": 1
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0016686604926046122,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.004491060443472846,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec002-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec002",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [],
+        "nominal_candidates": 0,
+        "passing_candidates": 0,
+        "reward_range": 0.008698202778084963,
+        "uniform_reward_variance": 6.8693628564487925e-06,
+        "best_reward": 0.010050392322617199,
+        "physics_regret": 0.007023904541524329,
+        "resolution_counts": {
+          "nominal:128": 7,
+          "nominal:256": 1
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0016686604926046122,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.004491060443472846,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec003-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec003",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "E"
+        ],
+        "nominal_candidates": 7,
+        "passing_candidates": 5,
+        "reward_range": 0.8210283978632926,
+        "uniform_reward_variance": 0.06363802166778174,
+        "best_reward": 0.821875,
+        "physics_regret": 0.05937500000000007,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 53,
+          "training:128": 103,
+          "construction:256": 3,
+          "training:256": 9
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.00098229320515425,
+        "contrasts": [
+          {
+            "ids": [
+              3,
+              1
+            ],
+            "passed": [
+              8,
+              13
+            ],
+            "tested": 16,
+            "gap": 0.3125,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 5,
+            "builds": 16,
+            "difference_second_minus_first": 0.3125,
+            "exact_mcnemar_p": 0.0625
+          },
+          {
+            "ids": [
+              3,
+              4
+            ],
+            "passed": [
+              8,
+              13
+            ],
+            "tested": 16,
+            "gap": 0.3125,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 5,
+            "builds": 16,
+            "difference_second_minus_first": 0.3125,
+            "exact_mcnemar_p": 0.0625
+          },
+          {
+            "ids": [
+              3,
+              2
+            ],
+            "passed": [
+              8,
+              12
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              6,
+              1
+            ],
+            "passed": [
+              9,
+              13
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              6,
+              4
+            ],
+            "passed": [
+              9,
+              13
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          }
+        ],
+        "random_pass": 0.625,
+        "random_reward": 0.6153402002670885,
+        "oracle_pass": true,
+        "closest_pass": false,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec003-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec003",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "E"
+        ],
+        "nominal_candidates": 7,
+        "passing_candidates": 7,
+        "reward_range": 0.9397783978632926,
+        "uniform_reward_variance": 0.09524004858222208,
+        "best_reward": 0.940625,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 56,
+          "training:128": 112
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0,
+        "contrasts": [],
+        "random_pass": 0.875,
+        "random_reward": 0.8157308252670885,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec004",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "D",
+          "E"
+        ],
+        "nominal_candidates": 6,
+        "passing_candidates": 3,
+        "reward_range": 0.6428950365408505,
+        "uniform_reward_variance": 0.07139069049672733,
+        "best_reward": 0.64375,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 44,
+          "construction:256": 4,
+          "training:256": 9,
+          "training:128": 87
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0019998860446747146,
+        "contrasts": [
+          {
+            "ids": [
+              5,
+              6
+            ],
+            "passed": [
+              4,
+              10
+            ],
+            "tested": 16,
+            "gap": 0.375,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 6,
+            "builds": 16,
+            "difference_second_minus_first": 0.375,
+            "exact_mcnemar_p": 0.03125
+          },
+          {
+            "ids": [
+              5,
+              1
+            ],
+            "passed": [
+              4,
+              10
+            ],
+            "tested": 16,
+            "gap": 0.375,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 1,
+            "only_second": 7,
+            "builds": 16,
+            "difference_second_minus_first": 0.375,
+            "exact_mcnemar_p": 0.0703125
+          },
+          {
+            "ids": [
+              5,
+              7
+            ],
+            "passed": [
+              4,
+              10
+            ],
+            "tested": 16,
+            "gap": 0.375,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 6,
+            "builds": 16,
+            "difference_second_minus_first": 0.375,
+            "exact_mcnemar_p": 0.03125
+          },
+          {
+            "ids": [
+              5,
+              8
+            ],
+            "passed": [
+              4,
+              9
+            ],
+            "tested": 16,
+            "gap": 0.3125,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 2,
+            "only_second": 7,
+            "builds": 16,
+            "difference_second_minus_first": 0.3125,
+            "exact_mcnemar_p": 0.1796875
+          },
+          {
+            "ids": [
+              5,
+              4
+            ],
+            "passed": [
+              4,
+              9
+            ],
+            "tested": 16,
+            "gap": 0.3125,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 5,
+            "builds": 16,
+            "difference_second_minus_first": 0.3125,
+            "exact_mcnemar_p": 0.0625
+          }
+        ],
+        "random_pass": 0.375,
+        "random_reward": 0.42393568585270414,
+        "oracle_pass": true,
+        "closest_pass": false,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec004",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ],
+        "nominal_candidates": 6,
+        "passing_candidates": 5,
+        "reward_range": 0.9991450365408504,
+        "uniform_reward_variance": 0.1733271866891972,
+        "best_reward": 1.0,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 48,
+          "training:128": 96
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0,
+        "contrasts": [
+          {
+            "ids": [
+              6,
+              7
+            ],
+            "passed": [
+              6,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.625,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 10,
+            "builds": 16,
+            "difference_second_minus_first": 0.625,
+            "exact_mcnemar_p": 0.001953125
+          },
+          {
+            "ids": [
+              6,
+              5
+            ],
+            "passed": [
+              6,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.625,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 10,
+            "builds": 16,
+            "difference_second_minus_first": 0.625,
+            "exact_mcnemar_p": 0.001953125
+          },
+          {
+            "ids": [
+              6,
+              3
+            ],
+            "passed": [
+              6,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.625,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 10,
+            "builds": 16,
+            "difference_second_minus_first": 0.625,
+            "exact_mcnemar_p": 0.001953125
+          },
+          {
+            "ids": [
+              6,
+              8
+            ],
+            "passed": [
+              6,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.625,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 10,
+            "builds": 16,
+            "difference_second_minus_first": 0.625,
+            "exact_mcnemar_p": 0.001953125
+          },
+          {
+            "ids": [
+              1,
+              7
+            ],
+            "passed": [
+              10,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.375,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 6,
+            "builds": 16,
+            "difference_second_minus_first": 0.375,
+            "exact_mcnemar_p": 0.03125
+          },
+          {
+            "ids": [
+              1,
+              5
+            ],
+            "passed": [
+              10,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.375,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 6,
+            "builds": 16,
+            "difference_second_minus_first": 0.375,
+            "exact_mcnemar_p": 0.03125
+          },
+          {
+            "ids": [
+              1,
+              3
+            ],
+            "passed": [
+              10,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.375,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 6,
+            "builds": 16,
+            "difference_second_minus_first": 0.375,
+            "exact_mcnemar_p": 0.03125
+          },
+          {
+            "ids": [
+              1,
+              8
+            ],
+            "passed": [
+              10,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.375,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 6,
+            "builds": 16,
+            "difference_second_minus_first": 0.375,
+            "exact_mcnemar_p": 0.03125
+          },
+          {
+            "ids": [
+              6,
+              1
+            ],
+            "passed": [
+              6,
+              10
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 6,
+            "only_second": 10,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.454498291015625
+          }
+        ],
+        "random_pass": 0.625,
+        "random_reward": 0.6317481858527041,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec005-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec005",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [],
+        "nominal_candidates": 0,
+        "passing_candidates": 0,
+        "reward_range": 0.004857852973736987,
+        "uniform_reward_variance": 2.2948448861914646e-06,
+        "best_reward": 0.005771178448612868,
+        "physics_regret": 0.0020464133730851057,
+        "resolution_counts": {
+          "nominal:128": 8
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.0029609114090666092,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec005-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec005",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [],
+        "nominal_candidates": 0,
+        "passing_candidates": 0,
+        "reward_range": 0.004857852973736987,
+        "uniform_reward_variance": 2.2948448861914646e-06,
+        "best_reward": 0.005771178448612868,
+        "physics_regret": 0.0020464133730851057,
+        "resolution_counts": {
+          "nominal:128": 8
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.0029609114090666092,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec006",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "D",
+          "E"
+        ],
+        "nominal_candidates": 4,
+        "passing_candidates": 0,
+        "reward_range": 0.40402529566225426,
+        "uniform_reward_variance": 0.025550807820028307,
+        "best_reward": 0.40624999999999994,
+        "physics_regret": 0.17812499999999998,
+        "resolution_counts": {
+          "nominal:128": 7,
+          "construction:128": 30,
+          "training:128": 62,
+          "nominal:256": 1,
+          "construction:256": 2,
+          "training:256": 2
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.001512303354838762,
+        "contrasts": [
+          {
+            "ids": [
+              8,
+              2
+            ],
+            "passed": [
+              0,
+              6
+            ],
+            "tested": 16,
+            "gap": 0.375,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 6,
+            "builds": 16,
+            "difference_second_minus_first": 0.375,
+            "exact_mcnemar_p": 0.03125
+          },
+          {
+            "ids": [
+              8,
+              7
+            ],
+            "passed": [
+              0,
+              5
+            ],
+            "tested": 16,
+            "gap": 0.3125,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 5,
+            "builds": 16,
+            "difference_second_minus_first": 0.3125,
+            "exact_mcnemar_p": 0.0625
+          }
+        ],
+        "random_pass": 0.0,
+        "random_reward": 0.13015426492586113,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec006",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "D",
+          "E"
+        ],
+        "nominal_candidates": 4,
+        "passing_candidates": 1,
+        "reward_range": 0.7009002956622543,
+        "uniform_reward_variance": 0.05115401616597931,
+        "best_reward": 0.703125,
+        "physics_regret": 0.47500000000000003,
+        "resolution_counts": {
+          "nominal:128": 7,
+          "construction:128": 28,
+          "construction:256": 4,
+          "training:128": 49,
+          "training:256": 15,
+          "nominal:256": 1
+        },
+        "changed_mtf_decisions": {
+          "training": 2
+        },
+        "maximum_boundary_delta": 0.010396540841977643,
+        "contrasts": [
+          {
+            "ids": [
+              1,
+              2
+            ],
+            "passed": [
+              0,
+              11
+            ],
+            "tested": 16,
+            "gap": 0.6875,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 11,
+            "builds": 16,
+            "difference_second_minus_first": 0.6875,
+            "exact_mcnemar_p": 0.0009765625
+          },
+          {
+            "ids": [
+              7,
+              2
+            ],
+            "passed": [
+              2,
+              11
+            ],
+            "tested": 16,
+            "gap": 0.5625,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 9,
+            "builds": 16,
+            "difference_second_minus_first": 0.5625,
+            "exact_mcnemar_p": 0.00390625
+          },
+          {
+            "ids": [
+              5,
+              2
+            ],
+            "passed": [
+              3,
+              11
+            ],
+            "tested": 16,
+            "gap": 0.5,
+            "straddles_target": true,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 8,
+            "builds": 16,
+            "difference_second_minus_first": 0.5,
+            "exact_mcnemar_p": 0.0078125
+          }
+        ],
+        "random_pass": 0.125,
+        "random_reward": 0.14499801492586112,
+        "oracle_pass": true,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec007-standard-fixed",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec007",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": false,
+        "families": [
+          "A",
+          "B"
+        ],
+        "nominal_candidates": 7,
+        "passing_candidates": 0,
+        "reward_range": 0.40541205924598794,
+        "uniform_reward_variance": 0.01548431419048154,
+        "best_reward": 0.40624999999999994,
+        "physics_regret": 0.059374999999999956,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 54,
+          "training:128": 100,
+          "training:256": 12,
+          "construction:256": 2
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0013689615335928385,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.29619849259425146,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "train-a6b67e67c84d-cohort001-contrast-spec007-standard-adjusted",
+        "group": "train-a6b67e67c84d-cohort001-contrast-spec007",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:CookeTriplet",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "E"
+        ],
+        "nominal_candidates": 7,
+        "passing_candidates": 7,
+        "reward_range": 0.999162059245988,
+        "uniform_reward_variance": 0.09094877356969262,
+        "best_reward": 1.0,
+        "physics_regret": 0.23750000000000004,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 51,
+          "training:128": 103,
+          "construction:256": 5,
+          "training:256": 9
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.00044656705478285375,
+        "contrasts": [
+          {
+            "ids": [
+              1,
+              6
+            ],
+            "passed": [
+              12,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          },
+          {
+            "ids": [
+              3,
+              6
+            ],
+            "passed": [
+              12,
+              16
+            ],
+            "tested": 16,
+            "gap": 0.25,
+            "straddles_target": false,
+            "intervals": [
+              null,
+              null
+            ],
+            "reverses_nominal_sharpness": true,
+            "only_first": 0,
+            "only_second": 4,
+            "builds": 16,
+            "difference_second_minus_first": 0.25,
+            "exact_mcnemar_p": 0.125
+          }
+        ],
+        "random_pass": 0.875,
+        "random_reward": 0.7711984925942516,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      }
+    ],
+    "development": [
+      {
+        "id": "development-9caa32aa4d53-cohort000-spec000-standard-adjusted",
+        "group": "development-9caa32aa4d53-cohort000-spec000",
+        "profile": "standard-adjusted",
+        "lineage": "Sacek-table11:Gauss",
+        "capability": false,
+        "families": [
+          "A",
+          "B"
+        ],
+        "nominal_candidates": 5,
+        "passing_candidates": 3,
+        "reward_range": 0.7028862048230817,
+        "uniform_reward_variance": 0.10339835016628308,
+        "best_reward": 0.703125,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 37,
+          "development:128": 151,
+          "development:256": 9,
+          "construction:256": 3
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0008386212918854441,
+        "contrasts": [],
+        "random_pass": 0.375,
+        "random_reward": 0.41371002710416516,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "development-9caa32aa4d53-cohort000-spec000-standard-fixed",
+        "group": "development-9caa32aa4d53-cohort000-spec000",
+        "profile": "standard-fixed",
+        "lineage": "Sacek-table11:Gauss",
+        "capability": false,
+        "families": [
+          "A",
+          "B"
+        ],
+        "nominal_candidates": 5,
+        "passing_candidates": 0,
+        "reward_range": 0.6138237048230818,
+        "uniform_reward_variance": 0.07788482870864132,
+        "best_reward": 0.6140625000000001,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 39,
+          "development:128": 153,
+          "development:256": 7,
+          "construction:256": 1
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.002061644248262416,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.35804596460416516,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-9caa32aa4d53-cohort000-contrast-spec000-standard-adjusted",
+        "group": "development-9caa32aa4d53-cohort000-contrast-spec000",
+        "profile": "standard-adjusted",
+        "lineage": "Sacek-table11:Gauss",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "E"
+        ],
+        "nominal_candidates": 6,
+        "passing_candidates": 5,
+        "reward_range": 0.8179874069767354,
+        "uniform_reward_variance": 0.11765856104693542,
+        "best_reward": 0.821875,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 7,
+          "construction:128": 48,
+          "development:128": 182,
+          "development:256": 10,
+          "nominal:256": 1
+        },
+        "changed_mtf_decisions": {
+          "development": 2
+        },
+        "maximum_boundary_delta": 0.0009075251007590601,
+        "contrasts": [
+          {
+            "ids": [
+              7,
+              2
+            ],
+            "passed": [
+              9,
+              26
+            ],
+            "tested": 32,
+            "gap": 0.53125,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.15564580497742764,
+                0.45374509425916565
+              ],
+              [
+                0.6469084479862404,
+                0.9111045531043405
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 17,
+            "builds": 32,
+            "difference_second_minus_first": 0.53125,
+            "exact_mcnemar_p": 1.52587890625e-05
+          },
+          {
+            "ids": [
+              7,
+              6
+            ],
+            "passed": [
+              9,
+              25
+            ],
+            "tested": 32,
+            "gap": 0.5,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.15564580497742764,
+                0.45374509425916565
+              ],
+              [
+                0.6124500635075647,
+                0.8897616374739581
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 16,
+            "builds": 32,
+            "difference_second_minus_first": 0.5,
+            "exact_mcnemar_p": 3.0517578125e-05
+          },
+          {
+            "ids": [
+              7,
+              1
+            ],
+            "passed": [
+              9,
+              25
+            ],
+            "tested": 32,
+            "gap": 0.5,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.15564580497742764,
+                0.45374509425916565
+              ],
+              [
+                0.6124500635075647,
+                0.8897616374739581
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 16,
+            "builds": 32,
+            "difference_second_minus_first": 0.5,
+            "exact_mcnemar_p": 3.0517578125e-05
+          },
+          {
+            "ids": [
+              7,
+              5
+            ],
+            "passed": [
+              9,
+              25
+            ],
+            "tested": 32,
+            "gap": 0.5,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.15564580497742764,
+                0.45374509425916565
+              ],
+              [
+                0.6124500635075647,
+                0.8897616374739581
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 16,
+            "builds": 32,
+            "difference_second_minus_first": 0.5,
+            "exact_mcnemar_p": 3.0517578125e-05
+          },
+          {
+            "ids": [
+              7,
+              4
+            ],
+            "passed": [
+              9,
+              24
+            ],
+            "tested": 32,
+            "gap": 0.46875,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.15564580497742764,
+                0.45374509425916565
+              ],
+              [
+                0.5789344100575552,
+                0.8674759908149096
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 2,
+            "only_second": 17,
+            "builds": 32,
+            "difference_second_minus_first": 0.46875,
+            "exact_mcnemar_p": 0.000728607177734375
+          }
+        ],
+        "random_pass": 0.625,
+        "random_reward": 0.536069635945606,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "development-9caa32aa4d53-cohort000-contrast-spec000-standard-fixed",
+        "group": "development-9caa32aa4d53-cohort000-contrast-spec000",
+        "profile": "standard-fixed",
+        "lineage": "Sacek-table11:Gauss",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "E"
+        ],
+        "nominal_candidates": 6,
+        "passing_candidates": 5,
+        "reward_range": 0.7289249069767354,
+        "uniform_reward_variance": 0.08791793982432361,
+        "best_reward": 0.7328125,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:256": 1,
+          "nominal:128": 7,
+          "construction:128": 45,
+          "development:128": 177,
+          "development:256": 15,
+          "construction:256": 3
+        },
+        "changed_mtf_decisions": {
+          "development": 1
+        },
+        "maximum_boundary_delta": 0.0010067386354325192,
+        "contrasts": [
+          {
+            "ids": [
+              3,
+              1
+            ],
+            "passed": [
+              8,
+              23
+            ],
+            "tested": 32,
+            "gap": 0.46875,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.5462549057408342,
+                0.8443541950225723
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 15,
+            "builds": 32,
+            "difference_second_minus_first": 0.46875,
+            "exact_mcnemar_p": 6.103515625e-05
+          },
+          {
+            "ids": [
+              3,
+              8
+            ],
+            "passed": [
+              8,
+              22
+            ],
+            "tested": 32,
+            "gap": 0.4375,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.5143332169904459,
+                0.8204745836639026
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 14,
+            "builds": 32,
+            "difference_second_minus_first": 0.4375,
+            "exact_mcnemar_p": 0.0001220703125
+          },
+          {
+            "ids": [
+              3,
+              7
+            ],
+            "passed": [
+              8,
+              22
+            ],
+            "tested": 32,
+            "gap": 0.4375,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.5143332169904459,
+                0.8204745836639026
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 14,
+            "builds": 32,
+            "difference_second_minus_first": 0.4375,
+            "exact_mcnemar_p": 0.0001220703125
+          },
+          {
+            "ids": [
+              3,
+              2
+            ],
+            "passed": [
+              8,
+              20
+            ],
+            "tested": 32,
+            "gap": 0.375,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.4525440735307745,
+                0.7706611269054578
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 4,
+            "only_second": 16,
+            "builds": 32,
+            "difference_second_minus_first": 0.375,
+            "exact_mcnemar_p": 0.01181793212890625
+          },
+          {
+            "ids": [
+              3,
+              5
+            ],
+            "passed": [
+              8,
+              20
+            ],
+            "tested": 32,
+            "gap": 0.375,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.4525440735307745,
+                0.7706611269054578
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 12,
+            "builds": 32,
+            "difference_second_minus_first": 0.375,
+            "exact_mcnemar_p": 0.00048828125
+          }
+        ],
+        "random_pass": 0.625,
+        "random_reward": 0.465561823445606,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "development-824b807923eb-cohort000-spec000-standard-adjusted",
+        "group": "development-824b807923eb-cohort000-spec000",
+        "profile": "standard-adjusted",
+        "lineage": "Sacek-table11:Steinheil",
+        "capability": true,
+        "families": [
+          "A",
+          "E"
+        ],
+        "nominal_candidates": 4,
+        "passing_candidates": 4,
+        "reward_range": 0.9398600669560682,
+        "uniform_reward_variance": 0.19269019092007914,
+        "best_reward": 0.940625,
+        "physics_regret": 0.05937500000000007,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 32,
+          "development:128": 127,
+          "development:256": 1
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0006921155006285318,
+        "contrasts": [],
+        "random_pass": 0.5,
+        "random_reward": 0.43747499171539744,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "development-824b807923eb-cohort000-spec000-standard-fixed",
+        "group": "development-824b807923eb-cohort000-spec000",
+        "profile": "standard-fixed",
+        "lineage": "Sacek-table11:Steinheil",
+        "capability": true,
+        "families": [
+          "A",
+          "E"
+        ],
+        "nominal_candidates": 4,
+        "passing_candidates": 1,
+        "reward_range": 0.6726725669560681,
+        "uniform_reward_variance": 0.09885895445496361,
+        "best_reward": 0.6734375,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 31,
+          "development:128": 124,
+          "development:256": 4,
+          "construction:256": 1
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0009705607671444405,
+        "contrasts": [],
+        "random_pass": 0.125,
+        "random_reward": 0.31501405421539747,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "development-824b807923eb-cohort000-contrast-spec000-standard-adjusted",
+        "group": "development-824b807923eb-cohort000-contrast-spec000",
+        "profile": "standard-adjusted",
+        "lineage": "Sacek-table11:Steinheil",
+        "capability": true,
+        "families": [
+          "A",
+          "E"
+        ],
+        "nominal_candidates": 4,
+        "passing_candidates": 3,
+        "reward_range": 0.7020755392742848,
+        "uniform_reward_variance": 0.11329194378406822,
+        "best_reward": 0.703125,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 28,
+          "development:128": 123,
+          "development:256": 5,
+          "construction:256": 4
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0010832730099810672,
+        "contrasts": [],
+        "random_pass": 0.375,
+        "random_reward": 0.33783264225942167,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "development-824b807923eb-cohort000-contrast-spec000-standard-fixed",
+        "group": "development-824b807923eb-cohort000-contrast-spec000",
+        "profile": "standard-fixed",
+        "lineage": "Sacek-table11:Steinheil",
+        "capability": false,
+        "families": [
+          "A",
+          "C"
+        ],
+        "nominal_candidates": 4,
+        "passing_candidates": 0,
+        "reward_range": 0.4942630392742848,
+        "uniform_reward_variance": 0.05228165354136951,
+        "best_reward": 0.4953125,
+        "physics_regret": 0.05937500000000001,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 30,
+          "development:256": 8,
+          "development:128": 120,
+          "construction:256": 2
+        },
+        "changed_mtf_decisions": {
+          "development": 1
+        },
+        "maximum_boundary_delta": 0.0012006670204339764,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.23021545475942162,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-ffa82e790b72-cohort000-spec000-standard-adjusted",
+        "group": "development-ffa82e790b72-cohort000-spec000",
+        "profile": "standard-adjusted",
+        "lineage": "TOA-type:wide-gap-ED",
+        "capability": false,
+        "families": [
+          "A"
+        ],
+        "nominal_candidates": 3,
+        "passing_candidates": 0,
+        "reward_range": 0.1380579895677292,
+        "uniform_reward_variance": 0.0025316584766030357,
+        "best_reward": 0.13906249999999998,
+        "physics_regret": 0.05937499999999998,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 24,
+          "development:128": 90,
+          "development:256": 6
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0012076170487793636,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.03842536885562601,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-ffa82e790b72-cohort000-spec000-standard-fixed",
+        "group": "development-ffa82e790b72-cohort000-spec000",
+        "profile": "standard-fixed",
+        "lineage": "TOA-type:wide-gap-ED",
+        "capability": false,
+        "families": [
+          "A"
+        ],
+        "nominal_candidates": 3,
+        "passing_candidates": 0,
+        "reward_range": 0.07868298956772922,
+        "uniform_reward_variance": 0.00142341566078811,
+        "best_reward": 0.0796875,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 23,
+          "construction:256": 1,
+          "development:128": 94,
+          "development:256": 2
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0014864994797118003,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.031003493855626008,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-ffa82e790b72-cohort000-contrast-spec001-standard-adjusted",
+        "group": "development-ffa82e790b72-cohort000-contrast-spec001",
+        "profile": "standard-adjusted",
+        "lineage": "TOA-type:wide-gap-ED",
+        "capability": false,
+        "families": [
+          "A",
+          "B",
+          "C"
+        ],
+        "nominal_candidates": 7,
+        "passing_candidates": 0,
+        "reward_range": 0.18117575709907327,
+        "uniform_reward_variance": 0.002735630286255969,
+        "best_reward": 0.1984375,
+        "physics_regret": 0.029687499999999978,
+        "resolution_counts": {
+          "nominal:128": 7,
+          "construction:128": 52,
+          "construction:256": 4,
+          "development:128": 216,
+          "development:256": 8,
+          "nominal:256": 1
+        },
+        "changed_mtf_decisions": {
+          "development": 1
+        },
+        "maximum_boundary_delta": 0.0021403914126307995,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.13868115536261583,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-ffa82e790b72-cohort000-contrast-spec001-standard-fixed",
+        "group": "development-ffa82e790b72-cohort000-contrast-spec001",
+        "profile": "standard-fixed",
+        "lineage": "TOA-type:wide-gap-ED",
+        "capability": false,
+        "families": [
+          "A",
+          "B",
+          "C"
+        ],
+        "nominal_candidates": 7,
+        "passing_candidates": 0,
+        "reward_range": 0.1514882570990733,
+        "uniform_reward_variance": 0.0024873708539116354,
+        "best_reward": 0.16875,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 7,
+          "construction:128": 48,
+          "construction:256": 8,
+          "development:128": 216,
+          "development:256": 8,
+          "nominal:256": 1
+        },
+        "changed_mtf_decisions": {
+          "development": 1
+        },
+        "maximum_boundary_delta": 0.0033225754138667503,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.12012646786261584,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-3c7c9aaf8683-cohort000-spec000-standard-adjusted",
+        "group": "development-3c7c9aaf8683-cohort000-spec000",
+        "profile": "standard-adjusted",
+        "lineage": "US2487873:Herzberger-Hoadley",
+        "capability": true,
+        "families": [
+          "A",
+          "E"
+        ],
+        "nominal_candidates": 5,
+        "passing_candidates": 4,
+        "reward_range": 0.8210603617372001,
+        "uniform_reward_variance": 0.1399633757825258,
+        "best_reward": 0.821875,
+        "physics_regret": 0.029687499999999978,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:256": 4,
+          "construction:128": 36,
+          "development:128": 140,
+          "development:256": 20
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0022013498506968376,
+        "contrasts": [
+          {
+            "ids": [
+              8,
+              7
+            ],
+            "passed": [
+              8,
+              26
+            ],
+            "tested": 32,
+            "gap": 0.5625,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.6469084479862404,
+                0.9111045531043405
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 18,
+            "builds": 32,
+            "difference_second_minus_first": 0.5625,
+            "exact_mcnemar_p": 7.62939453125e-06
+          },
+          {
+            "ids": [
+              8,
+              2
+            ],
+            "passed": [
+              8,
+              25
+            ],
+            "tested": 32,
+            "gap": 0.53125,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.6124500635075647,
+                0.8897616374739581
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 1,
+            "only_second": 18,
+            "builds": 32,
+            "difference_second_minus_first": 0.53125,
+            "exact_mcnemar_p": 7.62939453125e-05
+          },
+          {
+            "ids": [
+              8,
+              6
+            ],
+            "passed": [
+              8,
+              25
+            ],
+            "tested": 32,
+            "gap": 0.53125,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.6124500635075647,
+                0.8897616374739581
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 17,
+            "builds": 32,
+            "difference_second_minus_first": 0.53125,
+            "exact_mcnemar_p": 1.52587890625e-05
+          },
+          {
+            "ids": [
+              8,
+              5
+            ],
+            "passed": [
+              8,
+              25
+            ],
+            "tested": 32,
+            "gap": 0.53125,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.6124500635075647,
+                0.8897616374739581
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 1,
+            "only_second": 18,
+            "builds": 32,
+            "difference_second_minus_first": 0.53125,
+            "exact_mcnemar_p": 7.62939453125e-05
+          }
+        ],
+        "random_pass": 0.5,
+        "random_reward": 0.43604943509261307,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "development-3c7c9aaf8683-cohort000-spec000-standard-fixed",
+        "group": "development-3c7c9aaf8683-cohort000-spec000",
+        "profile": "standard-fixed",
+        "lineage": "US2487873:Herzberger-Hoadley",
+        "capability": false,
+        "families": [
+          "A",
+          "C"
+        ],
+        "nominal_candidates": 5,
+        "passing_candidates": 0,
+        "reward_range": 0.6132478617372001,
+        "uniform_reward_variance": 0.06065739255218893,
+        "best_reward": 0.6140625000000001,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:256": 7,
+          "construction:128": 33,
+          "development:128": 147,
+          "development:256": 13
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.02147869113717185,
+        "contrasts": [
+          {
+            "ids": [
+              3,
+              2
+            ],
+            "passed": [
+              10,
+              19
+            ],
+            "tested": 32,
+            "gap": 0.28125,
+            "straddles_target": false,
+            "intervals": [
+              [
+                0.17952541633609734,
+                0.4856667830095541
+              ],
+              [
+                0.42260024875382873,
+                0.7448036515733456
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 9,
+            "builds": 32,
+            "difference_second_minus_first": 0.28125,
+            "exact_mcnemar_p": 0.00390625
+          }
+        ],
+        "random_pass": 0.0,
+        "random_reward": 0.30616662259261307,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-3c7c9aaf8683-cohort000-contrast-spec001-standard-adjusted",
+        "group": "development-3c7c9aaf8683-cohort000-contrast-spec001",
+        "profile": "standard-adjusted",
+        "lineage": "US2487873:Herzberger-Hoadley",
+        "capability": false,
+        "families": [],
+        "nominal_candidates": 8,
+        "passing_candidates": 8,
+        "reward_range": 0.08906249999999993,
+        "uniform_reward_variance": 0.0008675765991210925,
+        "best_reward": 0.9109375,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 64,
+          "development:128": 252,
+          "development:256": 4
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0015805101788411435,
+        "contrasts": [],
+        "random_pass": 1.0,
+        "random_reward": 0.8923828125,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "development-3c7c9aaf8683-cohort000-contrast-spec001-standard-fixed",
+        "group": "development-3c7c9aaf8683-cohort000-contrast-spec001",
+        "profile": "standard-fixed",
+        "lineage": "US2487873:Herzberger-Hoadley",
+        "capability": true,
+        "families": [
+          "C",
+          "D",
+          "E"
+        ],
+        "nominal_candidates": 8,
+        "passing_candidates": 4,
+        "reward_range": 0.1484375,
+        "uniform_reward_variance": 0.0018590927124023445,
+        "best_reward": 0.6734375,
+        "physics_regret": 0.059374999999999956,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 61,
+          "development:128": 244,
+          "development:256": 12,
+          "construction:256": 3
+        },
+        "changed_mtf_decisions": {
+          "development": 1
+        },
+        "maximum_boundary_delta": 0.002445145615691471,
+        "contrasts": [],
+        "random_pass": 0.5,
+        "random_reward": 0.6177734375,
+        "oracle_pass": true,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-1583a59749b8-cohort000-spec000-standard-adjusted",
+        "group": "development-1583a59749b8-cohort000-spec000",
+        "profile": "standard-adjusted",
+        "lineage": "US4877318:Beecher-Miles",
+        "capability": true,
+        "families": [
+          "A",
+          "E"
+        ],
+        "nominal_candidates": 1,
+        "passing_candidates": 1,
+        "reward_range": 0.6429481618596783,
+        "uniform_reward_variance": 0.04495078691818712,
+        "best_reward": 0.64375,
+        "physics_regret": 0.6346088433741126,
+        "resolution_counts": {
+          "nominal:128": 7,
+          "nominal:256": 1,
+          "construction:128": 8,
+          "development:128": 31,
+          "development:256": 1
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0019467333252651264,
+        "contrasts": [],
+        "random_pass": 0.125,
+        "random_reward": 0.08285254538178134,
+        "oracle_pass": true,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-1583a59749b8-cohort000-spec000-standard-fixed",
+        "group": "development-1583a59749b8-cohort000-spec000",
+        "profile": "standard-fixed",
+        "lineage": "US4877318:Beecher-Miles",
+        "capability": false,
+        "families": [
+          "A"
+        ],
+        "nominal_candidates": 1,
+        "passing_candidates": 0,
+        "reward_range": 0.2866981618596783,
+        "uniform_reward_variance": 0.008877082952189514,
+        "best_reward": 0.2875,
+        "physics_regret": 0.2783588433741126,
+        "resolution_counts": {
+          "nominal:128": 7,
+          "construction:256": 4,
+          "construction:128": 4,
+          "development:128": 27,
+          "development:256": 5,
+          "nominal:256": 1
+        },
+        "changed_mtf_decisions": {
+          "development": 3
+        },
+        "maximum_boundary_delta": 0.008268098454624201,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.03832129538178134,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-1583a59749b8-cohort000-contrast-spec001-standard-adjusted",
+        "group": "development-1583a59749b8-cohort000-contrast-spec001",
+        "profile": "standard-adjusted",
+        "lineage": "US4877318:Beecher-Miles",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "D",
+          "E"
+        ],
+        "nominal_candidates": 5,
+        "passing_candidates": 3,
+        "reward_range": 0.9366740351501469,
+        "uniform_reward_variance": 0.15382473364860108,
+        "best_reward": 0.940625,
+        "physics_regret": 0.20781250000000007,
+        "resolution_counts": {
+          "nominal:128": 7,
+          "construction:128": 34,
+          "construction:256": 6,
+          "development:128": 151,
+          "development:256": 9,
+          "nominal:256": 1
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.01276899069462839,
+        "contrasts": [
+          {
+            "ids": [
+              5,
+              3
+            ],
+            "passed": [
+              2,
+              30
+            ],
+            "tested": 32,
+            "gap": 0.875,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.017310567031640967,
+                0.2014712314415458
+              ],
+              [
+                0.7985287685584542,
+                0.982689432968359
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 28,
+            "builds": 32,
+            "difference_second_minus_first": 0.875,
+            "exact_mcnemar_p": 7.450580596923828e-09
+          },
+          {
+            "ids": [
+              1,
+              3
+            ],
+            "passed": [
+              3,
+              30
+            ],
+            "tested": 32,
+            "gap": 0.84375,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.032401551298366194,
+                0.24218154728387864
+              ],
+              [
+                0.7985287685584542,
+                0.982689432968359
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 27,
+            "builds": 32,
+            "difference_second_minus_first": 0.84375,
+            "exact_mcnemar_p": 1.4901161193847656e-08
+          },
+          {
+            "ids": [
+              5,
+              6
+            ],
+            "passed": [
+              2,
+              28
+            ],
+            "tested": 32,
+            "gap": 0.8125,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.017310567031640967,
+                0.2014712314415458
+              ],
+              [
+                0.7193169451834978,
+                0.9502986561251991
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 26,
+            "builds": 32,
+            "difference_second_minus_first": 0.8125,
+            "exact_mcnemar_p": 2.9802322387695312e-08
+          },
+          {
+            "ids": [
+              1,
+              6
+            ],
+            "passed": [
+              3,
+              28
+            ],
+            "tested": 32,
+            "gap": 0.78125,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.032401551298366194,
+                0.24218154728387864
+              ],
+              [
+                0.7193169451834978,
+                0.9502986561251991
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 25,
+            "builds": 32,
+            "difference_second_minus_first": 0.78125,
+            "exact_mcnemar_p": 5.960464477539063e-08
+          },
+          {
+            "ids": [
+              5,
+              2
+            ],
+            "passed": [
+              2,
+              23
+            ],
+            "tested": 32,
+            "gap": 0.65625,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.017310567031640967,
+                0.2014712314415458
+              ],
+              [
+                0.5462549057408342,
+                0.8443541950225723
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 21,
+            "builds": 32,
+            "difference_second_minus_first": 0.65625,
+            "exact_mcnemar_p": 9.5367431640625e-07
+          },
+          {
+            "ids": [
+              1,
+              2
+            ],
+            "passed": [
+              3,
+              23
+            ],
+            "tested": 32,
+            "gap": 0.625,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.032401551298366194,
+                0.24218154728387864
+              ],
+              [
+                0.5462549057408342,
+                0.8443541950225723
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 20,
+            "builds": 32,
+            "difference_second_minus_first": 0.625,
+            "exact_mcnemar_p": 1.9073486328125e-06
+          }
+        ],
+        "random_pass": 0.375,
+        "random_reward": 0.3534390656194435,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "development-1583a59749b8-cohort000-contrast-spec001-standard-fixed",
+        "group": "development-1583a59749b8-cohort000-contrast-spec001",
+        "profile": "standard-fixed",
+        "lineage": "US4877318:Beecher-Miles",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "E"
+        ],
+        "nominal_candidates": 5,
+        "passing_candidates": 2,
+        "reward_range": 0.7882365351501469,
+        "uniform_reward_variance": 0.09403820809802274,
+        "best_reward": 0.7921875,
+        "physics_regret": 0.20781250000000007,
+        "resolution_counts": {
+          "nominal:256": 1,
+          "construction:128": 33,
+          "construction:256": 7,
+          "development:128": 148,
+          "development:256": 12,
+          "nominal:128": 7
+        },
+        "changed_mtf_decisions": {
+          "construction": 2,
+          "development": 1
+        },
+        "maximum_boundary_delta": 0.006421516042244613,
+        "contrasts": [
+          {
+            "ids": [
+              5,
+              3
+            ],
+            "passed": [
+              8,
+              25
+            ],
+            "tested": 32,
+            "gap": 0.53125,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.6124500635075647,
+                0.8897616374739581
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 17,
+            "builds": 32,
+            "difference_second_minus_first": 0.53125,
+            "exact_mcnemar_p": 1.52587890625e-05
+          },
+          {
+            "ids": [
+              5,
+              2
+            ],
+            "passed": [
+              8,
+              23
+            ],
+            "tested": 32,
+            "gap": 0.46875,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.5462549057408342,
+                0.8443541950225723
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 15,
+            "builds": 32,
+            "difference_second_minus_first": 0.46875,
+            "exact_mcnemar_p": 6.103515625e-05
+          },
+          {
+            "ids": [
+              7,
+              3
+            ],
+            "passed": [
+              11,
+              25
+            ],
+            "tested": 32,
+            "gap": 0.4375,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.20410437924433172,
+                0.5168891202103778
+              ],
+              [
+                0.6124500635075647,
+                0.8897616374739581
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 14,
+            "builds": 32,
+            "difference_second_minus_first": 0.4375,
+            "exact_mcnemar_p": 0.0001220703125
+          },
+          {
+            "ids": [
+              7,
+              2
+            ],
+            "passed": [
+              11,
+              23
+            ],
+            "tested": 32,
+            "gap": 0.375,
+            "straddles_target": true,
+            "intervals": [
+              [
+                0.20410437924433172,
+                0.5168891202103778
+              ],
+              [
+                0.5462549057408342,
+                0.8443541950225723
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 0,
+            "only_second": 12,
+            "builds": 32,
+            "difference_second_minus_first": 0.375,
+            "exact_mcnemar_p": 0.00048828125
+          },
+          {
+            "ids": [
+              5,
+              1
+            ],
+            "passed": [
+              8,
+              18
+            ],
+            "tested": 32,
+            "gap": 0.3125,
+            "straddles_target": false,
+            "intervals": [
+              [
+                0.1325240091850904,
+                0.4210655899424448
+              ],
+              [
+                0.3932559113685198,
+                0.7183466888495963
+              ]
+            ],
+            "reverses_nominal_sharpness": false,
+            "only_first": 1,
+            "only_second": 11,
+            "builds": 32,
+            "difference_second_minus_first": 0.3125,
+            "exact_mcnemar_p": 0.00634765625
+          }
+        ],
+        "random_pass": 0.25,
+        "random_reward": 0.34972812811944354,
+        "oracle_pass": true,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-7e1af381e63d-cohort000-spec000-standard-adjusted",
+        "group": "development-7e1af381e63d-cohort000-spec000",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:TripletTelescopeObjective",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "E"
+        ],
+        "nominal_candidates": 5,
+        "passing_candidates": 5,
+        "reward_range": 0.7616908371648395,
+        "uniform_reward_variance": 0.12425577216463912,
+        "best_reward": 0.7625,
+        "physics_regret": 0.0,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 40,
+          "development:128": 153,
+          "development:256": 7
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.006475450847322484,
+        "contrasts": [],
+        "random_pass": 0.625,
+        "random_reward": 0.45465456190311254,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "development-7e1af381e63d-cohort000-spec000-standard-fixed",
+        "group": "development-7e1af381e63d-cohort000-spec000",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:TripletTelescopeObjective",
+        "capability": true,
+        "families": [
+          "A",
+          "B",
+          "E"
+        ],
+        "nominal_candidates": 5,
+        "passing_candidates": 0,
+        "reward_range": 0.3460658371648396,
+        "uniform_reward_variance": 0.017225923438202367,
+        "best_reward": 0.346875,
+        "physics_regret": 0.11875000000000002,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 38,
+          "development:128": 145,
+          "development:256": 15,
+          "construction:256": 2
+        },
+        "changed_mtf_decisions": {
+          "development": 1
+        },
+        "maximum_boundary_delta": 0.01603632526476402,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.16149049940311253,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      },
+      {
+        "id": "development-7e1af381e63d-cohort000-contrast-spec001-standard-adjusted",
+        "group": "development-7e1af381e63d-cohort000-contrast-spec001",
+        "profile": "standard-adjusted",
+        "lineage": "optiland-0.6.3:TripletTelescopeObjective",
+        "capability": true,
+        "families": [
+          "A",
+          "E"
+        ],
+        "nominal_candidates": 3,
+        "passing_candidates": 3,
+        "reward_range": 0.8451786488523099,
+        "uniform_reward_variance": 0.1621921905561741,
+        "best_reward": 0.8515625,
+        "physics_regret": 0.029687499999999978,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 24,
+          "development:128": 95,
+          "development:256": 1
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.005547682035368207,
+        "contrasts": [],
+        "random_pass": 0.375,
+        "random_reward": 0.32187499930758967,
+        "oracle_pass": true,
+        "closest_pass": true,
+        "physics_pass": true
+      },
+      {
+        "id": "development-7e1af381e63d-cohort000-contrast-spec001-standard-fixed",
+        "group": "development-7e1af381e63d-cohort000-contrast-spec001",
+        "profile": "standard-fixed",
+        "lineage": "optiland-0.6.3:TripletTelescopeObjective",
+        "capability": false,
+        "families": [
+          "A"
+        ],
+        "nominal_candidates": 3,
+        "passing_candidates": 0,
+        "reward_range": 0.3998661488523098,
+        "uniform_reward_variance": 0.02870643438395376,
+        "best_reward": 0.40624999999999994,
+        "physics_regret": 0.08906249999999999,
+        "resolution_counts": {
+          "nominal:128": 8,
+          "construction:128": 22,
+          "construction:256": 2,
+          "development:128": 94,
+          "development:256": 2
+        },
+        "changed_mtf_decisions": {},
+        "maximum_boundary_delta": 0.0054813721779158955,
+        "contrasts": [],
+        "random_pass": 0.0,
+        "random_reward": 0.14003906180758963,
+        "oracle_pass": false,
+        "closest_pass": false,
+        "physics_pass": false
+      }
+    ]
+  },
+  "mean_baselines": {
+    "train": {
+      "random_pass": 0.3671875,
+      "oracle_pass": 0.53125,
+      "closest_pass": 0.40625,
+      "physics_pass": 0.40625,
+      "reward_range": 0.44203343597792083
+    },
+    "development": {
+      "random_pass": 0.265625,
+      "oracle_pass": 0.5833333333333334,
+      "closest_pass": 0.4583333333333333,
+      "physics_pass": 0.4583333333333333,
+      "reward_range": 0.537544375788429
+    }
+  },
+  "panel": {
+    "parent_sha256": "0395e29cdec4a891539a0bee97fadf47e3ec624553c0a515975dd1c494d68881",
+    "contest_parent_sha256": "33f2b2edeebdec8ea40d8fc5b8552c9e4cf4776eb62fa1c20a8ec2fd348c6a7a",
+    "selection_phase": "construction",
+    "selection": {
+      "Sacek-table11:Gauss": {
+        "representative": "development-9caa32aa4d53-cohort000-spec000",
+        "prioritized": "development-9caa32aa4d53-cohort000-contrast-spec000",
+        "prioritized_construction_scores": [
+          true,
+          2,
+          0,
+          2,
+          1,
+          2,
+          1.5172248139534708
+        ]
+      },
+      "Sacek-table11:Steinheil": {
+        "representative": "development-824b807923eb-cohort000-spec000",
+        "prioritized": "development-824b807923eb-cohort000-contrast-spec000",
+        "prioritized_construction_scores": [
+          true,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1.0479010785485696
+        ]
+      },
+      "TOA-type:wide-gap-ED": {
+        "representative": "development-ffa82e790b72-cohort000-spec000",
+        "prioritized": "development-ffa82e790b72-cohort000-contrast-spec001",
+        "prioritized_construction_scores": [
+          false,
+          0,
+          2,
+          2,
+          2,
+          0,
+          0.8967265141981464
+        ]
+      },
+      "US2487873:Herzberger-Hoadley": {
+        "representative": "development-3c7c9aaf8683-cohort000-spec000",
+        "prioritized": "development-3c7c9aaf8683-cohort000-contrast-spec001",
+        "prioritized_construction_scores": [
+          true,
+          1,
+          1,
+          2,
+          2,
+          2,
+          0.3562500000000001
+        ]
+      },
+      "US4877318:Beecher-Miles": {
+        "representative": "development-1583a59749b8-cohort000-spec000",
+        "prioritized": "development-1583a59749b8-cohort000-contrast-spec001",
+        "prioritized_construction_scores": [
+          true,
+          2,
+          0,
+          2,
+          2,
+          2,
+          1.7545980703002937
+        ]
+      },
+      "optiland-0.6.3:TripletTelescopeObjective": {
+        "representative": "development-7e1af381e63d-cohort000-spec000",
+        "prioritized": "development-7e1af381e63d-cohort000-contrast-spec001",
+        "prioritized_construction_scores": [
+          true,
+          0,
+          0,
+          2,
+          1,
+          1,
+          1.2747322977046196
+        ]
+      }
+    }
+  },
+  "manufacturing": {
+    "parent_sha256": "f4cf1fc29bdf97a42e7d1c7b6b90774a12cddae59109d5935aa2591db55e328a",
+    "phase": "development",
+    "fidelity": "investigation",
+    "builds": 32,
+    "seed": 28301,
+    "source_key": "71e68735045b31a07a47e6fc280ae0484f16a77e5bcc4700f7de5705a00953ed",
+    "task_ids": [
+      "development-1583a59749b8-cohort000-contrast-spec001-standard-adjusted",
+      "development-1583a59749b8-cohort000-contrast-spec001-standard-fixed",
+      "development-1583a59749b8-cohort000-spec000-standard-adjusted",
+      "development-1583a59749b8-cohort000-spec000-standard-fixed",
+      "development-3c7c9aaf8683-cohort000-contrast-spec001-standard-adjusted",
+      "development-3c7c9aaf8683-cohort000-contrast-spec001-standard-fixed",
+      "development-3c7c9aaf8683-cohort000-spec000-standard-adjusted",
+      "development-3c7c9aaf8683-cohort000-spec000-standard-fixed",
+      "development-7e1af381e63d-cohort000-contrast-spec001-standard-adjusted",
+      "development-7e1af381e63d-cohort000-contrast-spec001-standard-fixed",
+      "development-7e1af381e63d-cohort000-spec000-standard-adjusted",
+      "development-7e1af381e63d-cohort000-spec000-standard-fixed",
+      "development-824b807923eb-cohort000-contrast-spec000-standard-adjusted",
+      "development-824b807923eb-cohort000-contrast-spec000-standard-fixed",
+      "development-824b807923eb-cohort000-spec000-standard-adjusted",
+      "development-824b807923eb-cohort000-spec000-standard-fixed",
+      "development-9caa32aa4d53-cohort000-contrast-spec000-standard-adjusted",
+      "development-9caa32aa4d53-cohort000-contrast-spec000-standard-fixed",
+      "development-9caa32aa4d53-cohort000-spec000-standard-adjusted",
+      "development-9caa32aa4d53-cohort000-spec000-standard-fixed",
+      "development-ffa82e790b72-cohort000-contrast-spec001-standard-adjusted",
+      "development-ffa82e790b72-cohort000-contrast-spec001-standard-fixed",
+      "development-ffa82e790b72-cohort000-spec000-standard-adjusted",
+      "development-ffa82e790b72-cohort000-spec000-standard-fixed"
+    ]
+  },
+  "schedule": {
+    "steps": [
+      {
+        "step": 1,
+        "allocation": {
+          "A": 0.15,
+          "B": 0.15,
+          "C": 0.3,
+          "D": 0.1,
+          "E": 0.3
+        },
+        "attempts": [
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-fixed",
+            "family": "E",
+            "seed": 807636701,
+            "order": [
+              2,
+              8,
+              1,
+              6,
+              5,
+              4,
+              7,
+              3
+            ],
+            "prompt_tokens": 2501
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec000-standard-adjusted",
+            "family": "A",
+            "seed": 1120945528,
+            "order": [
+              6,
+              2,
+              7,
+              1,
+              4,
+              5,
+              8,
+              3
+            ],
+            "prompt_tokens": 2504
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec000-standard-fixed",
+            "family": "C",
+            "seed": 97471829,
+            "order": [
+              2,
+              7,
+              1,
+              5,
+              3,
+              8,
+              6,
+              4
+            ],
+            "prompt_tokens": 2500
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec007-standard-adjusted",
+            "family": "B",
+            "seed": 3611284,
+            "order": [
+              2,
+              6,
+              8,
+              3,
+              7,
+              5,
+              1,
+              4
+            ],
+            "prompt_tokens": 2504
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-adjusted",
+            "family": "E",
+            "seed": 965017639,
+            "order": [
+              1,
+              7,
+              6,
+              3,
+              4,
+              5,
+              8,
+              2
+            ],
+            "prompt_tokens": 2404
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec004-standard-fixed",
+            "family": "B",
+            "seed": 1893534844,
+            "order": [
+              5,
+              3,
+              7,
+              6,
+              2,
+              4,
+              8,
+              1
+            ],
+            "prompt_tokens": 2502
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-fixed",
+            "family": "E",
+            "seed": 1282605014,
+            "order": [
+              5,
+              2,
+              4,
+              1,
+              7,
+              6,
+              8,
+              3
+            ],
+            "prompt_tokens": 2400
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec003-standard-fixed",
+            "family": "B",
+            "seed": 1784966893,
+            "order": [
+              5,
+              6,
+              2,
+              3,
+              1,
+              8,
+              4,
+              7
+            ],
+            "prompt_tokens": 2505
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "allocation": {
+          "A": 0.15,
+          "B": 0.15,
+          "C": 0.3,
+          "D": 0.1,
+          "E": 0.3
+        },
+        "attempts": [
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec001-standard-adjusted",
+            "family": "C",
+            "seed": 1309725299,
+            "order": [
+              8,
+              4,
+              7,
+              1,
+              5,
+              3,
+              6,
+              2
+            ],
+            "prompt_tokens": 2504
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-fixed",
+            "family": "D",
+            "seed": 1482969834,
+            "order": [
+              4,
+              2,
+              1,
+              8,
+              7,
+              5,
+              6,
+              3
+            ],
+            "prompt_tokens": 2501
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec004-standard-fixed",
+            "family": "C",
+            "seed": 256748986,
+            "order": [
+              1,
+              3,
+              2,
+              8,
+              7,
+              5,
+              4,
+              6
+            ],
+            "prompt_tokens": 2502
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-fixed",
+            "family": "E",
+            "seed": 1723969697,
+            "order": [
+              6,
+              4,
+              2,
+              3,
+              8,
+              7,
+              5,
+              1
+            ],
+            "prompt_tokens": 2400
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-adjusted",
+            "family": "D",
+            "seed": 1063628787,
+            "order": [
+              5,
+              8,
+              1,
+              7,
+              2,
+              3,
+              4,
+              6
+            ],
+            "prompt_tokens": 2404
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec000-standard-adjusted",
+            "family": "E",
+            "seed": 1607483809,
+            "order": [
+              1,
+              4,
+              5,
+              6,
+              2,
+              8,
+              7,
+              3
+            ],
+            "prompt_tokens": 2504
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec007-standard-adjusted",
+            "family": "B",
+            "seed": 161003614,
+            "order": [
+              7,
+              3,
+              5,
+              4,
+              6,
+              1,
+              8,
+              2
+            ],
+            "prompt_tokens": 2504
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-adjusted",
+            "family": "E",
+            "seed": 1487311934,
+            "order": [
+              4,
+              5,
+              3,
+              8,
+              1,
+              2,
+              7,
+              6
+            ],
+            "prompt_tokens": 2505
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "allocation": {
+          "A": 0.15,
+          "B": 0.15,
+          "C": 0.3,
+          "D": 0.1,
+          "E": 0.3
+        },
+        "attempts": [
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-fixed",
+            "family": "E",
+            "seed": 711851837,
+            "order": [
+              6,
+              3,
+              8,
+              7,
+              4,
+              2,
+              1,
+              5
+            ],
+            "prompt_tokens": 2400
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-adjusted",
+            "family": "E",
+            "seed": 227636720,
+            "order": [
+              8,
+              1,
+              5,
+              2,
+              6,
+              7,
+              3,
+              4
+            ],
+            "prompt_tokens": 2404
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-fixed",
+            "family": "B",
+            "seed": 1119333150,
+            "order": [
+              4,
+              5,
+              8,
+              7,
+              6,
+              2,
+              3,
+              1
+            ],
+            "prompt_tokens": 2501
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec004-standard-adjusted",
+            "family": "E",
+            "seed": 1230025327,
+            "order": [
+              1,
+              7,
+              4,
+              3,
+              2,
+              8,
+              5,
+              6
+            ],
+            "prompt_tokens": 2506
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec001-standard-adjusted",
+            "family": "C",
+            "seed": 190269903,
+            "order": [
+              2,
+              8,
+              3,
+              5,
+              1,
+              6,
+              4,
+              7
+            ],
+            "prompt_tokens": 2503
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-adjusted",
+            "family": "D",
+            "seed": 2146892115,
+            "order": [
+              8,
+              2,
+              5,
+              1,
+              7,
+              3,
+              4,
+              6
+            ],
+            "prompt_tokens": 2505
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec004-standard-fixed",
+            "family": "E",
+            "seed": 1272616035,
+            "order": [
+              6,
+              5,
+              1,
+              4,
+              8,
+              7,
+              3,
+              2
+            ],
+            "prompt_tokens": 2502
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec000-standard-fixed",
+            "family": "C",
+            "seed": 88329071,
+            "order": [
+              6,
+              8,
+              7,
+              5,
+              4,
+              1,
+              3,
+              2
+            ],
+            "prompt_tokens": 2500
+          }
+        ]
+      },
+      {
+        "step": 4,
+        "allocation": {
+          "A": 0.15,
+          "B": 0.15,
+          "C": 0.3,
+          "D": 0.1,
+          "E": 0.3
+        },
+        "attempts": [
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-fixed",
+            "family": "B",
+            "seed": 1756457728,
+            "order": [
+              8,
+              5,
+              4,
+              7,
+              3,
+              2,
+              1,
+              6
+            ],
+            "prompt_tokens": 2501
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-adjusted",
+            "family": "E",
+            "seed": 1331001588,
+            "order": [
+              8,
+              2,
+              7,
+              1,
+              6,
+              4,
+              5,
+              3
+            ],
+            "prompt_tokens": 2404
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-fixed",
+            "family": "A",
+            "seed": 818866100,
+            "order": [
+              6,
+              4,
+              5,
+              2,
+              7,
+              3,
+              1,
+              8
+            ],
+            "prompt_tokens": 2400
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-adjusted",
+            "family": "C",
+            "seed": 1096763654,
+            "order": [
+              1,
+              6,
+              8,
+              7,
+              5,
+              4,
+              2,
+              3
+            ],
+            "prompt_tokens": 2505
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec003-standard-adjusted",
+            "family": "E",
+            "seed": 1535007414,
+            "order": [
+              4,
+              6,
+              3,
+              7,
+              8,
+              2,
+              5,
+              1
+            ],
+            "prompt_tokens": 2509
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec003-standard-adjusted",
+            "family": "A",
+            "seed": 590037270,
+            "order": [
+              2,
+              8,
+              6,
+              3,
+              7,
+              1,
+              5,
+              4
+            ],
+            "prompt_tokens": 2509
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec003-standard-fixed",
+            "family": "B",
+            "seed": 1534714465,
+            "order": [
+              6,
+              7,
+              3,
+              4,
+              2,
+              1,
+              8,
+              5
+            ],
+            "prompt_tokens": 2505
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec000-standard-fixed",
+            "family": "C",
+            "seed": 853379091,
+            "order": [
+              6,
+              8,
+              1,
+              5,
+              2,
+              3,
+              7,
+              4
+            ],
+            "prompt_tokens": 2500
+          }
+        ]
+      },
+      {
+        "step": 5,
+        "allocation": {
+          "A": 0.15,
+          "B": 0.15,
+          "C": 0.3,
+          "D": 0.1,
+          "E": 0.3
+        },
+        "attempts": [
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec004-standard-adjusted",
+            "family": "C",
+            "seed": 558698152,
+            "order": [
+              6,
+              4,
+              3,
+              8,
+              1,
+              7,
+              5,
+              2
+            ],
+            "prompt_tokens": 2506
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-adjusted",
+            "family": "C",
+            "seed": 1204953179,
+            "order": [
+              7,
+              2,
+              4,
+              1,
+              5,
+              3,
+              8,
+              6
+            ],
+            "prompt_tokens": 2505
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec001-standard-adjusted",
+            "family": "C",
+            "seed": 605954067,
+            "order": [
+              6,
+              3,
+              8,
+              4,
+              1,
+              7,
+              5,
+              2
+            ],
+            "prompt_tokens": 2504
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-fixed",
+            "family": "B",
+            "seed": 1339281852,
+            "order": [
+              6,
+              8,
+              2,
+              7,
+              5,
+              4,
+              3,
+              1
+            ],
+            "prompt_tokens": 2501
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec004-standard-fixed",
+            "family": "C",
+            "seed": 1643808796,
+            "order": [
+              3,
+              5,
+              7,
+              1,
+              4,
+              8,
+              2,
+              6
+            ],
+            "prompt_tokens": 2502
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-adjusted",
+            "family": "A",
+            "seed": 669697128,
+            "order": [
+              7,
+              5,
+              6,
+              8,
+              2,
+              1,
+              4,
+              3
+            ],
+            "prompt_tokens": 2404
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec000-standard-adjusted",
+            "family": "B",
+            "seed": 1309870745,
+            "order": [
+              2,
+              1,
+              4,
+              3,
+              8,
+              6,
+              5,
+              7
+            ],
+            "prompt_tokens": 2504
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-fixed",
+            "family": "E",
+            "seed": 1482739743,
+            "order": [
+              3,
+              5,
+              6,
+              4,
+              7,
+              2,
+              8,
+              1
+            ],
+            "prompt_tokens": 2400
+          }
+        ]
+      },
+      {
+        "step": 6,
+        "allocation": {
+          "A": 0.15,
+          "B": 0.15,
+          "C": 0.3,
+          "D": 0.1,
+          "E": 0.3
+        },
+        "attempts": [
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec004-standard-fixed",
+            "family": "A",
+            "seed": 1396607819,
+            "order": [
+              6,
+              7,
+              5,
+              2,
+              3,
+              1,
+              8,
+              4
+            ],
+            "prompt_tokens": 2501
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec004-standard-adjusted",
+            "family": "C",
+            "seed": 1322847684,
+            "order": [
+              7,
+              1,
+              4,
+              6,
+              2,
+              5,
+              8,
+              3
+            ],
+            "prompt_tokens": 2506
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec007-standard-adjusted",
+            "family": "E",
+            "seed": 1325999586,
+            "order": [
+              4,
+              7,
+              1,
+              2,
+              6,
+              5,
+              3,
+              8
+            ],
+            "prompt_tokens": 2502
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-adjusted",
+            "family": "E",
+            "seed": 695545285,
+            "order": [
+              5,
+              6,
+              2,
+              7,
+              4,
+              1,
+              8,
+              3
+            ],
+            "prompt_tokens": 2404
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec006-standard-fixed",
+            "family": "D",
+            "seed": 1949676668,
+            "order": [
+              6,
+              7,
+              3,
+              5,
+              4,
+              8,
+              2,
+              1
+            ],
+            "prompt_tokens": 2400
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec007-standard-adjusted",
+            "family": "A",
+            "seed": 375557843,
+            "order": [
+              4,
+              2,
+              3,
+              5,
+              6,
+              1,
+              8,
+              7
+            ],
+            "prompt_tokens": 2504
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort000-contrast-spec004-standard-fixed",
+            "family": "E",
+            "seed": 1695632414,
+            "order": [
+              7,
+              8,
+              6,
+              2,
+              5,
+              4,
+              1,
+              3
+            ],
+            "prompt_tokens": 2502
+          },
+          {
+            "id": "train-a6b67e67c84d-cohort001-contrast-spec001-standard-adjusted",
+            "family": "C",
+            "seed": 1434039832,
+            "order": [
+              7,
+              2,
+              8,
+              4,
+              6,
+              5,
+              1,
+              3
+            ],
+            "prompt_tokens": 2503
+          }
+        ]
+      }
+    ],
+    "evaluation_tokens": {
+      "development-9caa32aa4d53-cohort000-spec000-standard-adjusted": {
+        "0": 2179,
+        "4": 2179
+      },
+      "development-9caa32aa4d53-cohort000-spec000-standard-fixed": {
+        "0": 2175,
+        "4": 2175
+      },
+      "development-9caa32aa4d53-cohort000-contrast-spec000-standard-adjusted": {
+        "0": 2166,
+        "4": 2166
+      },
+      "development-9caa32aa4d53-cohort000-contrast-spec000-standard-fixed": {
+        "0": 2162,
+        "4": 2162
+      },
+      "development-824b807923eb-cohort000-spec000-standard-adjusted": {
+        "0": 2155,
+        "4": 2155
+      },
+      "development-824b807923eb-cohort000-spec000-standard-fixed": {
+        "0": 2151,
+        "4": 2151
+      },
+      "development-824b807923eb-cohort000-contrast-spec000-standard-adjusted": {
+        "0": 2138,
+        "4": 2138
+      },
+      "development-824b807923eb-cohort000-contrast-spec000-standard-fixed": {
+        "0": 2134,
+        "4": 2134
+      },
+      "development-ffa82e790b72-cohort000-spec000-standard-adjusted": {
+        "0": 2414,
+        "4": 2414
+      },
+      "development-ffa82e790b72-cohort000-spec000-standard-fixed": {
+        "0": 2410,
+        "4": 2410
+      },
+      "development-ffa82e790b72-cohort000-contrast-spec001-standard-adjusted": {
+        "0": 2409,
+        "4": 2409
+      },
+      "development-ffa82e790b72-cohort000-contrast-spec001-standard-fixed": {
+        "0": 2405,
+        "4": 2405
+      },
+      "development-3c7c9aaf8683-cohort000-spec000-standard-adjusted": {
+        "0": 2518,
+        "4": 2518
+      },
+      "development-3c7c9aaf8683-cohort000-spec000-standard-fixed": {
+        "0": 2514,
+        "4": 2514
+      },
+      "development-3c7c9aaf8683-cohort000-contrast-spec001-standard-adjusted": {
+        "0": 2489,
+        "4": 2489
+      },
+      "development-3c7c9aaf8683-cohort000-contrast-spec001-standard-fixed": {
+        "0": 2485,
+        "4": 2485
+      },
+      "development-1583a59749b8-cohort000-spec000-standard-adjusted": {
+        "0": 2149,
+        "4": 2149
+      },
+      "development-1583a59749b8-cohort000-spec000-standard-fixed": {
+        "0": 2145,
+        "4": 2145
+      },
+      "development-1583a59749b8-cohort000-contrast-spec001-standard-adjusted": {
+        "0": 2145,
+        "4": 2145
+      },
+      "development-1583a59749b8-cohort000-contrast-spec001-standard-fixed": {
+        "0": 2141,
+        "4": 2141
+      },
+      "development-7e1af381e63d-cohort000-spec000-standard-adjusted": {
+        "0": 2424,
+        "4": 2424
+      },
+      "development-7e1af381e63d-cohort000-spec000-standard-fixed": {
+        "0": 2420,
+        "4": 2420
+      },
+      "development-7e1af381e63d-cohort000-contrast-spec001-standard-adjusted": {
+        "0": 2421,
+        "4": 2421
+      },
+      "development-7e1af381e63d-cohort000-contrast-spec001-standard-fixed": {
+        "0": 2417,
+        "4": 2417
+      }
+    }
+  },
+  "training_plan_per_arm": {
+    "maximum_sampled_completions": 416,
+    "token_bound": {
+      "prefill": 1720448,
+      "generated": 13312,
+      "training": 396192
+    },
+    "storage_reserve_usd": 0.1,
+    "budget_estimate_usd": 2.71936,
+    "rates_usd_per_million": {
+      "prefill": 0.33,
+      "generated": 1.005,
+      "training": 0.737
+    },
+    "application_margin": 3,
+    "provider_limit": false
+  },
+  "evaluation_plan_per_arm": {
+    "maximum_sampled_completions": 48,
+    "token_bound": {
+      "prefill": 196608,
+      "generated": 1536,
+      "training": 0
+    },
+    "storage_reserve_usd": 0.0,
+    "budget_estimate_usd": 0.199273,
+    "rates_usd_per_million": {
+      "prefill": 0.33,
+      "generated": 1.005,
+      "training": 0.737
+    },
+    "application_margin": 3,
+    "provider_limit": false
+  },
+  "total_estimate_usd": 6.036539
+}

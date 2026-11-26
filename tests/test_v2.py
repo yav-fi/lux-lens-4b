@@ -101,6 +101,28 @@ def test_refinement_architecture_and_budget_and_independent_real_rays(optical):
         build_optic(p.model_copy(update={"sensor_z_mm": 1.}))
 
 
+def test_measurement_promotes_mtf_near_cutoff(optical, monkeypatch):
+    from lux_frontier.v2 import optics
+
+    p, _, brief, _ = optical
+    real_measure = optics.measure_optic
+    calls = []
+
+    def observed(*args, **kwargs):
+        calls.append(kwargs["pupil_samples"])
+        return real_measure(*args, **kwargs)
+
+    monkeypatch.setattr(optics, "measure_optic", observed)
+    screen = measurements(p, brief, 128)
+    mtf = screen["metrics"]["mtf"][0]["mtf_fraction"]
+    threshold = brief.mtf_thresholds[0].model_copy(update={"minimum_mtf_fraction": mtf})
+    at_cutoff = brief.model_copy(update={"mtf_thresholds": (threshold, *brief.mtf_thresholds[1:])})
+    checked = measurements(p, at_cutoff, 128, borderline=.01)
+    assert calls == [128, 128, 256]
+    assert checked["trace"]["pupil_samples"] == 256
+    assert checked["trace"]["boundary_check"]["screen_mtf"][0] == mtf
+
+
 def test_assembly_focus_is_bounded_and_agrees_with_an_explicit_rebuild(optical):
     p, profile, brief, _ = optical
     errors = draw(p, profile, [17291, 123, 4, 1])
@@ -240,6 +262,24 @@ def test_harbor_runs_the_same_verifier_and_keeps_rewards_out_of_agent_context(ta
         assert float(reward.read_text()) == pytest.approx(grade(task, response, phase="training").reward)
 
 
+def test_matched_arms_share_training_orders_and_rollout_counts(task, tmp_path):
+    settings = Settings(steps=2, group_size=2, max_attempts_per_step=3, groups_per_step=1,
+                        matched_attempts=True, shuffle_training=True, min_optical_reward_span=.10,
+                        sampling="batched", eval_samples=1, curriculum=((0., {"A": 1.}),))
+    dev = dict(task, split="development", task_id="dev-example")
+    arms = []
+    for mode in ("yield", "random"):
+        arm = settings.model_copy(update={"mode": mode})
+        record = asyncio.run(train(arm, [task], [dev], tmp_path/f"{mode}.json", backend=LocalBackend(arm)))
+        path = tmp_path/record["group_journal"]
+        groups = [row for line in path.read_text().splitlines() if (row := json.loads(line))["phase"] == "training"]
+        assert record["attempted"] == 6 and record["sampled_completions"] == 14
+        assert all(g["valid_optical_reward_span"] >= .10 for g in groups if g["accepted_for_update"])
+        arms.append([(g["task_id"], g["requests"], g["candidate_order"], g["prompt_sha256"]) for g in groups])
+    assert arms[0] == arms[1]
+    assert len({tuple(row[2]) for row in arms[0]}) > 1
+
+
 def test_inference_records_feed_matched_evaluation_with_exact_prompt_hash(task, tmp_path):
     class Sampler(LocalBackend):
         async def initialize(self, training, *, checkpoint):
@@ -263,3 +303,14 @@ def test_inference_records_feed_matched_evaluation_with_exact_prompt_hash(task, 
     record["responses"][0]["prompt_sha256"] = "different-prompt"
     with pytest.raises(ValueError, match="did not match"):
         evaluate([evaluation_task], phase="final", predictions={"fixture": record})
+
+    development = dict(evaluation_task, split="development")
+    rotated = Settings(eval_samples=1, position_offsets=(0, 4))
+    record = asyncio.run(inference(rotated, [development], tmp_path/"rotated.json", backend=Sampler(rotated)))
+    orders = [row["candidate_order"] for row in record["responses"]]
+    assert orders[1] == orders[0][4:] + orders[0][:4]
+    result = evaluate([development], phase="development", predictions={"fixture": record})
+    assert result["development_pass_by_permutation"] == {"0": {"fixture": 0.}, "4": {"fixture": 0.}}
+    record["responses"].pop()
+    with pytest.raises(ValueError, match="incomplete or mismatched permutation matrix"):
+        evaluate([development], phase="development", predictions={"fixture": record})

@@ -52,7 +52,7 @@ def main():
     make.add_argument("--contrast-parent", type=Path, help="append controlled train-only contrasts to a frozen pilot")
     make.add_argument("--lineages", type=Path, help="documented reference prescriptions and preassigned splits")
     for key, field in Protocol.model_fields.items():
-        make.add_argument("--"+key.replace("_", "-"), type=int, default=field.default)
+        make.add_argument("--"+key.replace("_", "-"), type=float if key == "borderline_mtf" else int, default=field.default)
     validate = commands.add_parser("validate", help="check reference optics or cached submissions")
     validate.add_argument("--manifest", type=Path)
     validate.add_argument("--task")
@@ -89,6 +89,10 @@ def main():
     expand.add_argument("--output", type=Path, required=True)
     expand.add_argument("--per-context", type=int, default=4)
     expand.add_argument("--seed", type=int, default=17292)
+    panel = commands.add_parser("development-panel", help="freeze balanced development briefs from construction data")
+    panel.add_argument("manifest", type=Path)
+    panel.add_argument("--output", type=Path, required=True)
+    panel.add_argument("--contests", type=Path, help="supplemental development-only construction sweep")
     builds = commands.add_parser("manufacture", help="generate independent paired yield evidence")
     builds.add_argument("manifest", type=Path)
     builds.add_argument("--output", type=Path, required=True)
@@ -230,6 +234,9 @@ def main():
     elif command == "expand":
         from lux_frontier.v2.situations import expand
         result = expand(args.manifest, args.output, limit=args.per_context, seed=args.seed)
+    elif command == "development-panel":
+        from lux_frontier.v2.situations import development_panel
+        result = development_panel(args.manifest, args.output, contests=args.contests)
     elif command == "manufacture":
         from lux_frontier.v2.manufacturing import extend
         result = extend(args.manifest, args.output, phase=args.phase, fidelity=args.fidelity, seed=args.seed,
@@ -285,7 +292,7 @@ def main():
             elif getattr(args, "training_run", None):
                 raise ValueError("--training-run is used with a sealed checkpoint")
             result = estimate(settings, groups=len(tasks)*len(REPRESENTATIONS)*2*len(args.temperatures)*len(settings.position_offsets) if explore else 0,
-                              other_samples=0 if explore else len(tasks)*settings.eval_samples)
+                              other_samples=0 if explore else len(tasks)*settings.eval_samples*len(settings.position_offsets))
             if args.execute:
                 result = asyncio.run(inference(settings, tasks, args.output, exploration=explore,
                                      checkpoint=args.checkpoint, temperatures=args.temperatures, evaluation_seal=seal,

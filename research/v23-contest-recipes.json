@@ -1,0 +1,158 @@
+[
+  {
+    "split": "development",
+    "source": "https://optics.udjat.nl/achromats.html Table 11; named example at 100 mm scale; modeled front stop and mechanical rims; sensor at computed 0.55 um paraxial focus",
+    "scenarios": [
+      [
+        1,
+        0.0,
+        0.014,
+        0.0,
+        0.039,
+        0.012,
+        0.8
+      ],
+      [
+        1,
+        0.0,
+        0.015,
+        0.012,
+        0.054,
+        0.012,
+        0.86
+      ]
+    ],
+    "contrast_pool": true,
+    "ancestry": "Sacek-table11:Steinheil"
+  },
+  {
+    "split": "development",
+    "source": "https://optics.udjat.nl/achromats.html Table 11; named example at 100 mm scale; modeled front stop and mechanical rims; sensor at computed 0.55 um paraxial focus",
+    "scenarios": [
+      [
+        1,
+        0.0,
+        0.014,
+        0.0,
+        0.039,
+        0.012,
+        0.44
+      ],
+      [
+        1,
+        0.0,
+        0.015,
+        0.012,
+        0.054,
+        0.012,
+        0.55
+      ]
+    ],
+    "contrast_pool": true,
+    "ancestry": "Sacek-table11:Gauss"
+  },
+  {
+    "split": "development",
+    "source": "Milton Laikin, Lens Design, 4th ed., Ohio 2007. Optiland 0.6.3 TripletTelescopeObjective with benchmark rims and reduced stop.",
+    "scenarios": [
+      [
+        1,
+        0.0,
+        0.014,
+        0.0,
+        0.039,
+        0.012,
+        0.74
+      ],
+      [
+        1,
+        0.0,
+        0.015,
+        0.012,
+        0.054,
+        0.012,
+        0.83
+      ]
+    ],
+    "contrast_pool": true,
+    "ancestry": "optiland-0.6.3:TripletTelescopeObjective"
+  },
+  {
+    "split": "development",
+    "source": "https://patents.google.com/patent/US2487873A/en Example 1. Fluorite and Schott N-SK16 dispersion proxy for the specified 1.620/60.4 dense barium crown. Modeled front stop at f/5 and green paraxial plane.",
+    "scenarios": [
+      [
+        1,
+        0.0,
+        0.014,
+        0.0,
+        0.039,
+        0.012,
+        0.6
+      ],
+      [
+        1,
+        0.0,
+        0.015,
+        0.012,
+        0.054,
+        0.012,
+        0.66
+      ]
+    ],
+    "contrast_pool": true,
+    "ancestry": "US2487873:Herzberger-Hoadley"
+  },
+  {
+    "split": "development",
+    "source": "https://telescope-optics.net/semiapo_and_apo_examples.htm Table 12 example 20. Wide-gap TOA-type model, no OEM prescription claim. Modeled front stop, mechanical rims and green paraxial sensor plane.",
+    "scenarios": [
+      [
+        0.25,
+        0.0,
+        0.014,
+        0.0,
+        0.039,
+        0.012,
+        0.4
+      ],
+      [
+        0.5,
+        0.0,
+        0.015,
+        0.012,
+        0.054,
+        0.012,
+        0.51
+      ]
+    ],
+    "contrast_pool": true,
+    "ancestry": "TOA-type:wide-gap-ED"
+  },
+  {
+    "split": "development",
+    "source": "https://patents.justia.com/patent/4877318 Fig. 1 front objective only. Use descriptive R3, modeled 1 mm negative center per patent upper bound, catalog N-SK16 in place of SK16. Unfolded centered camera derivative, excluding mirrors and curved binocular focal surface. Sensor at green paraxial focus.",
+    "scenarios": [
+      [
+        1,
+        0.0,
+        0.014,
+        0.0,
+        0.039,
+        0.012,
+        0.39
+      ],
+      [
+        1,
+        0.0,
+        0.015,
+        0.012,
+        0.054,
+        0.012,
+        0.49
+      ]
+    ],
+    "contrast_pool": true,
+    "ancestry": "US4877318:Beecher-Miles"
+  }
+]

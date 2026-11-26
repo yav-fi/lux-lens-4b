@@ -1,0 +1,479 @@
+{
+  "manifest_sha256": "f4cf1fc29bdf97a42e7d1c7b6b90774a12cddae59109d5935aa2591db55e328a",
+  "reference_tasks": [
+    {
+      "task_id": "development-9caa32aa4d53-cohort000-spec000-standard-fixed",
+      "candidate_order": [
+        8,
+        3,
+        6,
+        5,
+        7,
+        2,
+        1,
+        4
+      ],
+      "canonical_best_id": 1,
+      "canonical_pupil_grid": 128,
+      "canonical_budget": 25,
+      "canonical_nominal": [
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true
+      ],
+      "fixed_design_resolution": {
+        "128": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            true
+          ],
+          "cpu_seconds": 2.457470999999999,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.0
+        },
+        "256": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            true
+          ],
+          "cpu_seconds": 3.892011,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.0009177522636875193
+        }
+      },
+      "refits": {
+        "49": {
+          "pair_order_agreement": 0.8928571428571429,
+          "best_id": 1,
+          "cpu_seconds": 107.100037,
+          "nominal": [
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true
+          ],
+          "nominal_flips": 2
+        }
+      },
+      "wall_seconds": 131.3317400419619
+    },
+    {
+      "task_id": "development-824b807923eb-cohort000-spec000-standard-fixed",
+      "candidate_order": [
+        5,
+        8,
+        4,
+        7,
+        1,
+        2,
+        3,
+        6
+      ],
+      "canonical_best_id": 4,
+      "canonical_pupil_grid": 128,
+      "canonical_budget": 25,
+      "canonical_nominal": [
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true
+      ],
+      "fixed_design_resolution": {
+        "128": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            true,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            true
+          ],
+          "cpu_seconds": 2.493995999999999,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.0
+        },
+        "256": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            true,
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            true
+          ],
+          "cpu_seconds": 3.9326000000000008,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.00377920606318538
+        }
+      },
+      "refits": {
+        "49": {
+          "pair_order_agreement": 0.8928571428571429,
+          "best_id": 4,
+          "cpu_seconds": 105.277822,
+          "nominal": [
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            false,
+            true
+          ],
+          "nominal_flips": 2
+        }
+      },
+      "wall_seconds": 129.3545086249942
+    },
+    {
+      "task_id": "development-ffa82e790b72-cohort000-spec000-standard-fixed",
+      "candidate_order": [
+        4,
+        3,
+        2,
+        6,
+        8,
+        7,
+        1,
+        5
+      ],
+      "canonical_best_id": 8,
+      "canonical_pupil_grid": 128,
+      "canonical_budget": 25,
+      "canonical_nominal": [
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "fixed_design_resolution": {
+        "128": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false
+          ],
+          "cpu_seconds": 3.039324999999999,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.0
+        },
+        "256": {
+          "pair_order_agreement": 0.8571428571428571,
+          "nominal": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false
+          ],
+          "cpu_seconds": 4.587702999999999,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.15972856716063655
+        }
+      },
+      "refits": {
+        "49": {
+          "pair_order_agreement": 0.8214285714285714,
+          "best_id": 8,
+          "cpu_seconds": 132.38034,
+          "nominal": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false
+          ],
+          "nominal_flips": 0
+        }
+      },
+      "wall_seconds": 160.0758313750266
+    },
+    {
+      "task_id": "development-3c7c9aaf8683-cohort000-spec000-standard-fixed",
+      "candidate_order": [
+        3,
+        8,
+        6,
+        4,
+        7,
+        1,
+        2,
+        5
+      ],
+      "canonical_best_id": 2,
+      "canonical_pupil_grid": 128,
+      "canonical_budget": 25,
+      "canonical_nominal": [
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true
+      ],
+      "fixed_design_resolution": {
+        "128": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            true,
+            true
+          ],
+          "cpu_seconds": 3.1130690000000003,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.0
+        },
+        "256": {
+          "pair_order_agreement": 0.9642857142857143,
+          "nominal": [
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            true,
+            true
+          ],
+          "cpu_seconds": 4.659786,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.0067686080135944075
+        }
+      },
+      "refits": {
+        "49": {
+          "pair_order_agreement": 0.5714285714285714,
+          "best_id": 2,
+          "cpu_seconds": 136.16588199999998,
+          "nominal": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "nominal_flips": 3
+        }
+      },
+      "wall_seconds": 164.3670498339925
+    },
+    {
+      "task_id": "development-1583a59749b8-cohort000-spec000-standard-fixed",
+      "candidate_order": [
+        4,
+        8,
+        6,
+        7,
+        5,
+        2,
+        1,
+        3
+      ],
+      "canonical_best_id": 6,
+      "canonical_pupil_grid": 128,
+      "canonical_budget": 25,
+      "canonical_nominal": [
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "fixed_design_resolution": {
+        "128": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "cpu_seconds": 2.4779459999999993,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.0015468089671719643
+        },
+        "256": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "cpu_seconds": 3.8503819999999997,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.010452678949243593
+        }
+      },
+      "refits": {
+        "49": {
+          "pair_order_agreement": 0.8214285714285714,
+          "best_id": 6,
+          "cpu_seconds": 124.728797,
+          "nominal": [
+            false,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "nominal_flips": 1
+        }
+      },
+      "wall_seconds": 149.9239932919736
+    },
+    {
+      "task_id": "development-7e1af381e63d-cohort000-spec000-standard-fixed",
+      "candidate_order": [
+        8,
+        6,
+        4,
+        3,
+        5,
+        2,
+        7,
+        1
+      ],
+      "canonical_best_id": 4,
+      "canonical_pupil_grid": 128,
+      "canonical_budget": 25,
+      "canonical_nominal": [
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true
+      ],
+      "fixed_design_resolution": {
+        "128": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            false,
+            true,
+            true,
+            true,
+            false,
+            false,
+            true,
+            true
+          ],
+          "cpu_seconds": 2.4553220000000096,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.0
+        },
+        "256": {
+          "pair_order_agreement": 1.0,
+          "nominal": [
+            false,
+            true,
+            true,
+            true,
+            false,
+            false,
+            true,
+            true
+          ],
+          "cpu_seconds": 4.189880000000002,
+          "nominal_flips": 0,
+          "maximum_mtf_delta": 0.013738599709805344
+        }
+      },
+      "refits": {
+        "49": {
+          "pair_order_agreement": 0.75,
+          "best_id": 4,
+          "cpu_seconds": 112.55128899999998,
+          "nominal": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true
+          ],
+          "nominal_flips": 2
+        }
+      },
+      "wall_seconds": 124.09031820902601
+    }
+  ]
+}

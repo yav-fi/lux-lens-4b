@@ -124,7 +124,7 @@ def verify_seal(path, source, tasks, settings=None):
     if (seal["version"] != SEAL_VERSION or digest(load_envelope(source, "manifest")) != seal["manifest_sha256"]
             or {t["task_id"]: digest(t) for t in tasks} != seal["task_sha256"]):
         raise ValueError("tasks do not match the complete frozen final protocol")
-    if settings is not None and seal["sample_settings"] != settings.model_dump(mode="json"):
+    if settings is not None and type(settings).model_validate(seal["sample_settings"]) != settings:
         raise ValueError("sampling settings differ from the frozen protocol")
     return seal
 

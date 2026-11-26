@@ -227,9 +227,17 @@ def trace_field(lens, p, field, wave, count=61):
         return lens.trace_generic(Hx=hx, Hy=hy, Px=px, Py=py, wavelength=wave)
 
 
-def measurements(p, brief, samples, *, errors=None, focus=0., optic=None, curves=False):
+def measurements(p, brief, samples, *, errors=None, focus=0., optic=None, curves=False, borderline=None):
     lens, geometry = optic if optic is not None else build_optic(p, errors, focus)
     metrics, details = measure_optic(lens, p, brief, pupil_samples=samples, sensor_shift_mm=focus, curves=curves)
+    if borderline is not None and samples < 256:
+        margin = min(abs(m.mtf_fraction-t.minimum_mtf_fraction)
+                     for m, t in zip(metrics.mtf, brief.mtf_thresholds, strict=True))
+        if margin <= borderline:
+            coarse = metrics
+            metrics, details = measure_optic(lens, p, brief, pupil_samples=256, sensor_shift_mm=focus, curves=curves)
+            details["boundary_check"] = dict(screen_samples=samples, minimum_margin=margin,
+                screen_mtf=[m.mtf_fraction for m in coarse.mtf])
     throughput = []
     for field, wave in dict.fromkeys((t.field_angle_deg, t.wavelength_um) for t in brief.mtf_thresholds):
         rays = trace_field(lens, p, field, wave)
@@ -296,7 +304,7 @@ def focus_position(lens, p, profile):
     return quantized, ideal
 
 
-def simulate_build(p, brief, samples, profile, stream):
+def simulate_build(p, brief, samples, profile, stream, *, borderline=None):
     errors = draw(p, profile, stream)
     focus, ideal = None, None
     try:
@@ -307,7 +315,7 @@ def simulate_build(p, brief, samples, profile, stream):
             if geometry["minimum_sensor_clearance_mm"] <= 0:
                 raise InvalidBuild("geometry:perturbed_sensor_clearance_not_certified")
             lens.image_surface.geometry.cs.z = p.sensor_z_mm + focus
-        measured = measurements(p, brief, samples, focus=focus, optic=(lens, geometry))
+        measured = measurements(p, brief, samples, focus=focus, optic=(lens, geometry), borderline=borderline)
         reasons = failures(measured, brief)
     except InvalidBuild as exc:
         measured, reasons = None, [dict(constraint=str(exc))]

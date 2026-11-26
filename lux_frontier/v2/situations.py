@@ -54,6 +54,64 @@ def report(tasks):
     return result
 
 
+def development_panel(source, root, *, contests=None):
+    """Keep one representative and one construction-prioritized brief per lineage."""
+    manifest = load_envelope(source, "manifest")
+    if (root/"manifest.json").exists() or any(r["split"] == "test" for r in manifest["task_index"]):
+        raise ValueError("use a development-only source and a new destination")
+    development = load_tasks(source, split="development")
+    contest_manifest = load_envelope(contests, "manifest") if contests else None
+    if contest_manifest and (contest_manifest["protocol"] != manifest["protocol"] or
+                             any(r["split"] != "development" for r in contest_manifest["task_index"])):
+        raise ValueError("supplemental contests need development tasks with the same optics protocol")
+    supplemental = load_tasks(contests, split="development") if contests else []
+    primary_groups = {t["group"] for t in development}
+    lineages = defaultdict(lambda: defaultdict(list))
+    for task in [*development, *supplemental]:
+        ancestry = {c["prescription"]["ancestry"] for c in task["candidates"]}
+        if len(ancestry) != 1:
+            raise ValueError("every development brief must use one reference ancestry")
+        lineages[next(iter(ancestry))][task["group"]].append(task)
+    if len(lineages) < 6:
+        raise ValueError("development needs at least six reference lineages")
+
+    def priority(group):
+        scores = [t["construction"] for t in group]
+        gaps = []
+        for task in group:
+            yields = [o["simulations"]["construction"] for o in task["outcomes"].values() if o["nominal_pass"]]
+            fractions = [r["passed"]/r["tested"] for r in yields]
+            gaps.append(bool(fractions) and min(fractions) < task["yield_target"] <= max(fractions)
+                        and max(fractions)-min(fractions) >= .25)
+        return (any(r["yield_target_passes"] for r in scores), sum(gaps),
+                sum(bool(r["manufacturing_reversals"]) for r in scores),
+                sum(r["nominally_feasible"] >= 2 for r in scores),
+                sum(r["physics_heuristic_regret"] >= .10 for r in scores),
+                sum(bool(r["yield_target_passes"]) for r in scores),
+                sum(r["spread"] for r in scores))
+
+    panel, selection = [], {}
+    for ancestry, by_group in sorted(lineages.items()):
+        groups = [sorted(group, key=lambda t: t["task_id"]) for _, group in sorted(by_group.items())
+                  if {t["profile"]["name"] for t in group} == {"standard-fixed", "standard-adjusted"}]
+        primary = [group for group in groups if group[0]["group"] in primary_groups]
+        if not primary or len(groups) < 2:
+            raise ValueError(f"{ancestry} needs two complete process pairs")
+        representative = primary[0]
+        contest = max((group for group in groups if group is not representative), key=priority)
+        panel.extend(representative + contest)
+        selection[ancestry] = {"representative": representative[0]["group"], "prioritized": contest[0]["group"],
+                               "prioritized_construction_scores": priority(contest)}
+    tasks = [*load_tasks(source, split="train"), *panel]
+    validate_splits(tasks)
+    supplemental_ids = {t["task_id"] for t in supplemental}
+    revised = {t["task_id"]: (t, load_replay_details(contests, t)) for t in panel if t["task_id"] in supplemental_ids}
+    contest_digest = digest(contest_manifest) if contest_manifest else None
+    publish_tasks(root, source, manifest, tasks, revised, development_panel=dict(
+        parent_sha256=digest(manifest), contest_parent_sha256=contest_digest, selection_phase="construction", selection=selection))
+    return dict(development=len(panel), lineages=len(lineages), training=len(tasks)-len(panel))
+
+
 def subsets(ids, seed, limit):
     """Sample deterministic sets without enumerating large binomial spaces."""
     rng = random.Random(digest([seed, ids]))

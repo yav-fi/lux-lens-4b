@@ -1,0 +1,39 @@
+{
+  "steps": 6,
+  "seed": 17,
+  "groups_per_step": 2,
+  "minimum_groups": 1,
+  "group_size": 8,
+  "max_attempts_per_step": 8,
+  "lora_rank": 16,
+  "learning_rate": 2e-05,
+  "temperature": 1.25,
+  "top_p": 1.0,
+  "representation": "full",
+  "sampling": "separate",
+  "format_example": true,
+  "matched_attempts": true,
+  "mixture": {
+    "adaptive": false,
+    "weights": {
+      "A": 0.15,
+      "B": 0.15,
+      "C": 0.3,
+      "D": 0.1,
+      "E": 0.3
+    }
+  },
+  "checkpoint_every": 6,
+  "eval_every": 6,
+  "eval_samples": 1,
+  "eval_briefs": 8,
+  "ttl_seconds": 86400,
+  "max_completions": 416,
+  "budget_usd": 2.72,
+  "position_offsets": [
+    0,
+    4
+  ],
+  "shuffle_training": true,
+  "min_optical_reward_span": 0.1
+}

@@ -1,0 +1,851 @@
+[
+  {
+    "split": "development",
+    "source": "https://optics.udjat.nl/achromats.html Table 11; named example at 100 mm scale; modeled front stop and mechanical rims; sensor at computed 0.55 um paraxial focus",
+    "prescription": {
+      "ancestry": "Sacek-table11:Steinheil",
+      "radii_mm": [
+        44.2,
+        22.9,
+        22.85,
+        -1500.0
+      ],
+      "spacings_mm": [
+        0.7,
+        0.1,
+        0.9
+      ],
+      "sensor_z_mm": 100.97314418930026,
+      "clear_semidiameters_mm": [
+        5.4,
+        5.4
+      ],
+      "stop_surface": 1,
+      "stop_diameter_mm": 10.0,
+      "glasses": [
+        [
+          "F2",
+          "schott"
+        ],
+        [
+          "N-BK7",
+          "schott"
+        ]
+      ],
+      "material_sha256": [
+        "8942cd5f0717647645d12a1c195090e5d1b01bfbb9393a1b1c1d21b2be637455",
+        "359dadddae166f2fff802645201ae43611f2fdf8f336808491230838162fc0ce"
+      ],
+      "fields_deg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          7.0
+        ],
+        [
+          0.0,
+          14.0
+        ],
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "wavelengths_um": [
+        0.48,
+        0.55,
+        0.65
+      ],
+      "primary_wavelength_um": 0.55
+    },
+    "scenarios": [
+      [
+        1,
+        0.0,
+        0.028,
+        0.0,
+        0.12,
+        0.028,
+        0.68
+      ],
+      [
+        3,
+        0.0,
+        0.03,
+        0.0,
+        0.13,
+        0.014,
+        0.62
+      ],
+      [
+        1,
+        -0.018,
+        0.023,
+        -0.07,
+        0.06,
+        0.005,
+        0.73
+      ],
+      [
+        3,
+        0.018,
+        0.023,
+        0.07,
+        0.075,
+        -0.003,
+        0.73
+      ]
+    ]
+  },
+  {
+    "split": "development",
+    "source": "https://optics.udjat.nl/achromats.html Table 11; named example at 100 mm scale; modeled front stop and mechanical rims; sensor at computed 0.55 um paraxial focus",
+    "prescription": {
+      "ancestry": "Sacek-table11:Gauss",
+      "radii_mm": [
+        12.9,
+        33.45,
+        14.206,
+        10.357
+      ],
+      "spacings_mm": [
+        0.665,
+        0.03,
+        0.42
+      ],
+      "sensor_z_mm": 97.40783458945415,
+      "clear_semidiameters_mm": [
+        3.75,
+        3.75
+      ],
+      "stop_surface": 1,
+      "stop_diameter_mm": 6.666666666666667,
+      "glasses": [
+        [
+          "N-BK7",
+          "schott"
+        ],
+        [
+          "F2",
+          "schott"
+        ]
+      ],
+      "material_sha256": [
+        "359dadddae166f2fff802645201ae43611f2fdf8f336808491230838162fc0ce",
+        "8942cd5f0717647645d12a1c195090e5d1b01bfbb9393a1b1c1d21b2be637455"
+      ],
+      "fields_deg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          7.0
+        ],
+        [
+          0.0,
+          14.0
+        ],
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "wavelengths_um": [
+        0.48,
+        0.55,
+        0.65
+      ],
+      "primary_wavelength_um": 0.55
+    },
+    "scenarios": [
+      [
+        1,
+        0.0,
+        0.028,
+        0.0,
+        0.12,
+        0.028,
+        0.68
+      ],
+      [
+        3,
+        0.0,
+        0.03,
+        0.0,
+        0.13,
+        0.014,
+        0.62
+      ],
+      [
+        1,
+        -0.018,
+        0.023,
+        -0.07,
+        0.06,
+        0.005,
+        0.73
+      ],
+      [
+        3,
+        0.018,
+        0.023,
+        0.07,
+        0.075,
+        -0.003,
+        0.73
+      ]
+    ]
+  },
+  {
+    "split": "development",
+    "source": "Milton Laikin, Lens Design, 4th ed., Ohio 2007. Optiland 0.6.3 TripletTelescopeObjective with benchmark rims and reduced stop.",
+    "prescription": {
+      "ancestry": "optiland-0.6.3:TripletTelescopeObjective",
+      "radii_mm": [
+        50.098,
+        -983.42,
+        56.671,
+        -171.15,
+        -97.339,
+        81.454
+      ],
+      "spacings_mm": [
+        4.5,
+        0.1,
+        4.5,
+        5.571,
+        3.5
+      ],
+      "sensor_z_mm": 93.303,
+      "clear_semidiameters_mm": [
+        18.0,
+        18.0,
+        18.0
+      ],
+      "stop_surface": 1,
+      "stop_diameter_mm": 32.14326259986394,
+      "glasses": [
+        [
+          "N-BK7",
+          "schott"
+        ],
+        [
+          "N-BK7",
+          "schott"
+        ],
+        [
+          "SF1",
+          "schott"
+        ]
+      ],
+      "material_sha256": [
+        "359dadddae166f2fff802645201ae43611f2fdf8f336808491230838162fc0ce",
+        "359dadddae166f2fff802645201ae43611f2fdf8f336808491230838162fc0ce",
+        "5863dff6fa5fb56ae104aee5ee1d2a5b3edfda2f4872c1fb3ecff4b697aae2e8"
+      ],
+      "fields_deg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          7.0
+        ],
+        [
+          0.0,
+          14.0
+        ],
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "wavelengths_um": [
+        0.48,
+        0.55,
+        0.65
+      ],
+      "primary_wavelength_um": 0.55
+    },
+    "scenarios": [
+      [
+        1,
+        0.0,
+        0.028,
+        0.0,
+        0.12,
+        0.028,
+        0.68
+      ],
+      [
+        3,
+        0.0,
+        0.03,
+        0.0,
+        0.13,
+        0.014,
+        0.62
+      ],
+      [
+        1,
+        -0.018,
+        0.023,
+        -0.07,
+        0.06,
+        0.005,
+        0.73
+      ],
+      [
+        3,
+        0.018,
+        0.023,
+        0.07,
+        0.075,
+        -0.003,
+        0.73
+      ]
+    ]
+  },
+  {
+    "split": "development",
+    "source": "https://patents.google.com/patent/US2487873A/en Example 1. Fluorite and Schott N-SK16 dispersion proxy for the specified 1.620/60.4 dense barium crown. Modeled front stop at f/5 and green paraxial plane.",
+    "prescription": {
+      "ancestry": "US2487873:Herzberger-Hoadley",
+      "radii_mm": [
+        49.1,
+        -42.6,
+        -34.1,
+        108.0,
+        62.9,
+        -62.9
+      ],
+      "spacings_mm": [
+        3.4,
+        5.1,
+        1.2,
+        7.1,
+        2.6
+      ],
+      "sensor_z_mm": 108.35210465388795,
+      "clear_semidiameters_mm": [
+        10.6,
+        10.6,
+        10.6
+      ],
+      "stop_surface": 1,
+      "stop_diameter_mm": 20.0,
+      "glasses": [
+        [
+          "LITHOTEC-CAF2",
+          "schott"
+        ],
+        [
+          "N-SK16",
+          "schott"
+        ],
+        [
+          "LITHOTEC-CAF2",
+          "schott"
+        ]
+      ],
+      "material_sha256": [
+        "bc452aa599f36a6771bd780922402acef53875bcbe0be1664b9620d9489c17fd",
+        "5ed50269638938ea9e4664a82a08ca52897e6677dae0242a068d2f151ecc01d5",
+        "bc452aa599f36a6771bd780922402acef53875bcbe0be1664b9620d9489c17fd"
+      ],
+      "fields_deg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          7.0
+        ],
+        [
+          0.0,
+          14.0
+        ],
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "wavelengths_um": [
+        0.48,
+        0.55,
+        0.65
+      ],
+      "primary_wavelength_um": 0.55
+    },
+    "scenarios": [
+      [
+        1,
+        0.0,
+        0.028,
+        0.0,
+        0.12,
+        0.028,
+        0.68
+      ],
+      [
+        3,
+        0.0,
+        0.03,
+        0.0,
+        0.13,
+        0.014,
+        0.62
+      ],
+      [
+        1,
+        -0.018,
+        0.023,
+        -0.07,
+        0.06,
+        0.005,
+        0.73
+      ],
+      [
+        3,
+        0.018,
+        0.023,
+        0.07,
+        0.075,
+        -0.003,
+        0.73
+      ]
+    ]
+  },
+  {
+    "split": "development",
+    "source": "https://telescope-optics.net/semiapo_and_apo_examples.htm Table 12 example 20. Wide-gap TOA-type model, no OEM prescription claim. Modeled front stop, mechanical rims and green paraxial sensor plane.",
+    "prescription": {
+      "ancestry": "TOA-type:wide-gap-ED",
+      "radii_mm": [
+        2380.0,
+        -262.2,
+        -239.8,
+        2580.0,
+        444.0,
+        -926.0
+      ],
+      "spacings_mm": [
+        12.0,
+        22.9,
+        7.0,
+        1.0,
+        11.0
+      ],
+      "sensor_z_mm": 1004.3127256295545,
+      "clear_semidiameters_mm": [
+        69.0,
+        70.0,
+        70.0
+      ],
+      "stop_surface": 1,
+      "stop_diameter_mm": 130.0,
+      "glasses": [
+        [
+          "S-FPL53",
+          "ohara"
+        ],
+        [
+          "BSL7",
+          "ohara"
+        ],
+        [
+          "S-FPL53",
+          "ohara"
+        ]
+      ],
+      "material_sha256": [
+        "68a5d4d5916308e3c183aeea0206c9b6ba7c07b7fbb0402f3f375823dce8670c",
+        "a8b539a2d9df17fe37d8b19c0ee6b808526434f648b7de3ad380ea1937b3d53e",
+        "68a5d4d5916308e3c183aeea0206c9b6ba7c07b7fbb0402f3f375823dce8670c"
+      ],
+      "fields_deg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0,
+          0.25
+        ],
+        [
+          0,
+          0.5
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          7.0
+        ],
+        [
+          0.0,
+          14.0
+        ],
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "wavelengths_um": [
+        0.48,
+        0.55,
+        0.65
+      ],
+      "primary_wavelength_um": 0.55
+    },
+    "scenarios": [
+      [
+        0.25,
+        0.0,
+        0.028,
+        0.0,
+        0.12,
+        0.028,
+        0.68
+      ],
+      [
+        0.5,
+        0.0,
+        0.03,
+        0.0,
+        0.13,
+        0.014,
+        0.62
+      ],
+      [
+        0.25,
+        -0.018,
+        0.023,
+        -0.07,
+        0.06,
+        0.005,
+        0.73
+      ],
+      [
+        0.5,
+        0.018,
+        0.023,
+        0.07,
+        0.075,
+        -0.003,
+        0.73
+      ]
+    ]
+  },
+  {
+    "split": "development",
+    "source": "https://patents.justia.com/patent/4877318 Fig. 1 front objective only. Use descriptive R3, modeled 1 mm negative center per patent upper bound, catalog N-SK16 in place of SK16. Unfolded centered camera derivative, excluding mirrors and curved binocular focal surface. Sensor at green paraxial focus.",
+    "prescription": {
+      "ancestry": "US4877318:Beecher-Miles",
+      "radii_mm": [
+        34.741,
+        -79.6844,
+        -47.5533,
+        223.2772
+      ],
+      "spacings_mm": [
+        5.65,
+        5.48,
+        1.0
+      ],
+      "sensor_z_mm": 87.2206153705324,
+      "clear_semidiameters_mm": [
+        15.0,
+        12.7
+      ],
+      "stop_surface": 1,
+      "stop_diameter_mm": 28.0,
+      "glasses": [
+        [
+          "N-SK16",
+          "schott"
+        ],
+        [
+          "SF1",
+          "schott"
+        ]
+      ],
+      "material_sha256": [
+        "5ed50269638938ea9e4664a82a08ca52897e6677dae0242a068d2f151ecc01d5",
+        "5863dff6fa5fb56ae104aee5ee1d2a5b3edfda2f4872c1fb3ecff4b697aae2e8"
+      ],
+      "fields_deg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          7.0
+        ],
+        [
+          0.0,
+          14.0
+        ],
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "wavelengths_um": [
+        0.48,
+        0.55,
+        0.65
+      ],
+      "primary_wavelength_um": 0.55
+    },
+    "scenarios": [
+      [
+        1,
+        0.0,
+        0.028,
+        0.0,
+        0.12,
+        0.028,
+        0.68
+      ],
+      [
+        3,
+        0.0,
+        0.03,
+        0.0,
+        0.13,
+        0.014,
+        0.62
+      ],
+      [
+        1,
+        -0.018,
+        0.023,
+        -0.07,
+        0.06,
+        0.005,
+        0.73
+      ],
+      [
+        3,
+        0.018,
+        0.023,
+        0.07,
+        0.075,
+        -0.003,
+        0.73
+      ]
+    ]
+  },
+  {
+    "split": "train",
+    "source": "Optiland 0.6.3 CookeTriplet. V2.2 same Cooke reference and contrast recipes, regenerated at the new protocol.",
+    "prescription": {
+      "ancestry": "optiland-0.6.3:CookeTriplet",
+      "radii_mm": [
+        22.01359,
+        -435.76044,
+        -22.21328,
+        20.29192,
+        79.6836,
+        -18.39533
+      ],
+      "spacings_mm": [
+        3.25896,
+        6.00755,
+        0.99997,
+        4.75041,
+        2.95208
+      ],
+      "sensor_z_mm": 60.17675,
+      "clear_semidiameters_mm": [
+        9.0,
+        4.5,
+        8.0
+      ],
+      "stop_surface": 4,
+      "stop_diameter_mm": 7.6016993113037845,
+      "glasses": [
+        [
+          "SK16",
+          "hikari"
+        ],
+        [
+          "F2",
+          "schott"
+        ],
+        [
+          "SK16",
+          "hikari"
+        ]
+      ],
+      "material_sha256": [
+        "d7c673c6cfc6c79b77139c3caf8553dacd7b92df929a66f0db0e785f844939c6",
+        "8942cd5f0717647645d12a1c195090e5d1b01bfbb9393a1b1c1d21b2be637455",
+        "d7c673c6cfc6c79b77139c3caf8553dacd7b92df929a66f0db0e785f844939c6"
+      ],
+      "fields_deg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          7.0
+        ],
+        [
+          0.0,
+          14.0
+        ],
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "wavelengths_um": [
+        0.48,
+        0.55,
+        0.65
+      ],
+      "primary_wavelength_um": 0.55
+    },
+    "scenarios": [
+      [
+        3,
+        0.0,
+        0.013,
+        0.0,
+        0.11,
+        0.014,
+        0.91
+      ],
+      [
+        7,
+        0.0,
+        0.015,
+        0.0,
+        0.1,
+        0.02,
+        0.93
+      ],
+      [
+        14,
+        0.0,
+        0.018,
+        0.0,
+        0.1,
+        0.02,
+        1.04
+      ],
+      [
+        1,
+        -0.009,
+        0.012,
+        -0.035,
+        0.085,
+        0.007,
+        0.96
+      ],
+      [
+        7,
+        0.007,
+        0.015,
+        0.06,
+        0.1,
+        0.008,
+        0.92
+      ],
+      [
+        14,
+        0.0,
+        0.018,
+        0.055,
+        0.115,
+        0.008,
+        0.96
+      ],
+      [
+        20,
+        0.0,
+        0.02,
+        0.0,
+        0.11,
+        0.015,
+        0.78
+      ],
+      [
+        3,
+        0.0,
+        0.016,
+        -0.01,
+        0.09,
+        0.003,
+        1.13
+      ]
+    ],
+    "pools": 2,
+    "contrast_pool": true
+  }
+]

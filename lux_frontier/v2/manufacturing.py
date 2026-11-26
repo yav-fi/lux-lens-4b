@@ -63,10 +63,11 @@ def cached_builds(cache, task, outcome, prefix, count, source_key):
     brief = Requirements.model_validate(task["brief"])
     profile = Profile(**{f.name: task["profile"][f.name] for f in fields(Profile)})
     samples = task["protocol"]["pupil_samples"]
+    borderline = task["protocol"].get("borderline_mtf")
     key = dict(source=source_key, prescription=prescription, brief=physical_brief(task["brief"]),
-               profile=profile.record(), pupil_samples=samples, stream=prefix, count=count)
+               profile=profile.record(), pupil_samples=samples, borderline_mtf=borderline, stream=prefix, count=count)
     return cache.compute("paired-builds-v21", key, lambda: [
-        simulate_build(prescription, brief, samples, profile, [*prefix, i]) for i in range(count)
+        simulate_build(prescription, brief, samples, profile, [*prefix, i], borderline=borderline) for i in range(count)
     ])[0]
 
 
