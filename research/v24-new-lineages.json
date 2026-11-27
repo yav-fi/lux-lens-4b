@@ -1,0 +1,352 @@
+[
+  {
+    "split": "train",
+    "contrast_pool": true,
+    "source": "https://telescope-optics.net/semiapo_and_apo_examples.htm Table 12 example 2. Published N-BK7/KZFSN4 air-spaced enhanced achromat, 0.085x proportional scaling and exact catalog materials. Mechanical rims, reduced front stop and 0.55 um paraxial sensor plane are modeled.",
+    "prescription": {
+      "ancestry": "Sacek-short-flint02:BK7-KZFSN4",
+      "radii_mm": [
+        77.35000000000001,
+        -28.05,
+        -28.8575,
+        -154.53
+      ],
+      "spacings_mm": [
+        1.36,
+        0.085,
+        0.7650000000000001
+      ],
+      "sensor_z_mm": 128.4494722343086,
+      "clear_semidiameters_mm": [
+        7.140000000000001,
+        7.140000000000001
+      ],
+      "stop_surface": 1,
+      "stop_diameter_mm": 11.73,
+      "glasses": [
+        [
+          "N-BK7",
+          "schott"
+        ],
+        [
+          "KZFSN4",
+          "schott"
+        ]
+      ],
+      "material_sha256": [
+        "359dadddae166f2fff802645201ae43611f2fdf8f336808491230838162fc0ce",
+        "f33a4683d0e93db616b45f054fd817813c3353c38d5a51ebb88ef6fda19ade33"
+      ],
+      "fields_deg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.5
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.5
+        ],
+        [
+          0.0,
+          2.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          5.0
+        ],
+        [
+          0.0,
+          7.0
+        ],
+        [
+          0.0,
+          14.0
+        ],
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "wavelengths_um": [
+        0.48,
+        0.55,
+        0.65
+      ],
+      "primary_wavelength_um": 0.55
+    },
+    "scenarios": [
+      [
+        0.5,
+        0.0,
+        0.019,
+        0.0,
+        0.085,
+        0.017,
+        0.4856
+      ],
+      [
+        1.0,
+        0.0,
+        0.02,
+        0.0,
+        0.08,
+        0.017,
+        0.5427
+      ],
+      [
+        1.5,
+        0.0,
+        0.017,
+        0.0,
+        0.067,
+        0.014,
+        0.5713
+      ],
+      [
+        2.0,
+        0.0,
+        0.021,
+        0.0,
+        0.08,
+        0.012,
+        0.2897
+      ],
+      [
+        0.5,
+        -0.008,
+        0.016,
+        -0.02,
+        0.07,
+        0.012,
+        0.557
+      ],
+      [
+        1.0,
+        0.008,
+        0.015,
+        0.015,
+        0.075,
+        0.01,
+        0.5999
+      ],
+      [
+        1.5,
+        -0.006,
+        0.014,
+        0.018,
+        0.06,
+        0.013,
+        0.6142
+      ],
+      [
+        2.0,
+        0.005,
+        0.017,
+        -0.012,
+        0.068,
+        0.012,
+        0.3178
+      ],
+      [
+        1.0,
+        0.003,
+        0.013,
+        -0.02,
+        0.057,
+        0.009,
+        0.6356
+      ]
+    ]
+  },
+  {
+    "split": "train",
+    "contrast_pool": true,
+    "source": "https://telescope-optics.net/semiapo_and_apo_examples.htm Table 12 example 16. Published air-spaced rear-fluorite design. Catalog Hikari K5 and Schott CaF2. Scale 0.15\u00d7, modeled 0.135 mm central air gap, reduced front stop, mechanical rims and paraxial sensor plane.",
+    "prescription": {
+      "ancestry": "Sacek-FC16:rear-fluorite-doublet",
+      "radii_mm": [
+        56.699999999999996,
+        25.8,
+        25.395,
+        -759.0
+      ],
+      "spacings_mm": [
+        1.95,
+        0.135,
+        2.1
+      ],
+      "sensor_z_mm": 151.19160439646203,
+      "clear_semidiameters_mm": [
+        8.4,
+        8.4
+      ],
+      "stop_surface": 1,
+      "stop_diameter_mm": 13.8,
+      "glasses": [
+        [
+          "K5",
+          "hikari"
+        ],
+        [
+          "LITHOTEC-CAF2",
+          "schott"
+        ]
+      ],
+      "material_sha256": [
+        "49b62176272249156194b0faffcb2ea6be79ab7e7970fa78761497644af9a095",
+        "bc452aa599f36a6771bd780922402acef53875bcbe0be1664b9620d9489c17fd"
+      ],
+      "fields_deg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.5
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.5
+        ],
+        [
+          0.0,
+          2.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          5.0
+        ],
+        [
+          0.0,
+          7.0
+        ],
+        [
+          0.0,
+          14.0
+        ],
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "wavelengths_um": [
+        0.48,
+        0.55,
+        0.65
+      ],
+      "primary_wavelength_um": 0.55
+    },
+    "scenarios": [
+      [
+        0.5,
+        0.0,
+        0.019,
+        0.0,
+        0.085,
+        0.017,
+        0.5876
+      ],
+      [
+        1.0,
+        0.0,
+        0.02,
+        0.0,
+        0.08,
+        0.017,
+        0.6566
+      ],
+      [
+        1.5,
+        0.0,
+        0.017,
+        0.0,
+        0.067,
+        0.014,
+        0.6912
+      ],
+      [
+        2.0,
+        0.0,
+        0.021,
+        0.0,
+        0.08,
+        0.012,
+        0.4758
+      ],
+      [
+        0.5,
+        -0.008,
+        0.016,
+        -0.02,
+        0.07,
+        0.012,
+        0.6739
+      ],
+      [
+        1.0,
+        0.008,
+        0.015,
+        0.015,
+        0.075,
+        0.01,
+        0.7257
+      ],
+      [
+        1.5,
+        -0.006,
+        0.014,
+        0.018,
+        0.06,
+        0.013,
+        0.7431
+      ],
+      [
+        2.0,
+        0.005,
+        0.017,
+        -0.012,
+        0.068,
+        0.012,
+        0.5221
+      ],
+      [
+        1.0,
+        0.003,
+        0.013,
+        -0.02,
+        0.057,
+        0.009,
+        0.769
+      ]
+    ]
+  }
+]
